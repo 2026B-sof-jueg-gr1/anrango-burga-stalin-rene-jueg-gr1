@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080f19">
+  <meta name="description" content="Órbita: una pequeña aventura espacial. Recoge cristales, esquiva asteroides y encuentra el camino a casa.">
+  <title>Órbita — El camino a casa</title>
+  <link rel="icon" href="assets/orbita.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Órbita, inicio"><img src="assets/orbita.svg" alt="" width="39" height="39"><span>ÓRBITA<span class="brand-dot">.</span></span></a>
+      <div class="topbar-caption">UNA PEQUEÑA AVENTURA ESPACIAL</div>
+      <div class="online"><span></span> SISTEMAS EN LÍNEA</div>
+    </header>
+
+    <main>
+      <section class="mission-heading" aria-label="Misión">
+        <div><div class="eyebrow"><span class="tiny-line"></span> MISIÓN 001 <span class="muted">/</span> SECTOR AURORA</div><h1>El camino a casa<span>.</span></h1><p>Un último salto. Ocho cristales. Todo un universo por cruzar.</p></div>
+        <div class="mission-patch"><span class="patch-orbit">✦</span><div>EXPLORACIÓN LIBRE<small>VEHÍCULO · NOMAD-01</small></div></div>
+      </section>
+
+      <section class="game-panel" aria-label="Juego Órbita">
+        <div class="instrument-bar">
+          <div class="instrument crystals"><span class="instrument-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 10 13-10 13L6 16Z"/><path d="M6 16h20M16 3l-4 13 4 13 4-13Z" class="fine-line"/></svg></span><div><span class="instrument-label">CRISTALES</span><div class="instrument-value"><span id="crystal-count">00</span><span class="value-total"> / 08</span></div></div><div class="crystal-slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="instrument"><span class="instrument-icon clock-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 8v9l6 3"/><path d="M16 3v3m13 10h-3M16 29v-3M3 16h3" class="fine-line"/></svg></span><div><span class="instrument-label">TIEMPO RESTANTE</span><div class="instrument-value" id="time-left">01:15</div></div></div>
+          <div class="instrument shield-instrument"><span class="instrument-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 10 4v9c0 6-10 13-10 13S6 22 6 16V7Z"/><path d="M16 9v12m-6-6h12" class="fine-line"/></svg></span><div><span class="instrument-label">ESCUDO</span><div class="shield-bars" id="shield-bars" aria-label="3 de 3 puntos de escudo"><i></i><i></i><i></i></div></div></div>
+          <div class="game-actions"><button id="sound-button" class="icon-button" aria-label="Activar sonido" aria-pressed="false" title="Activar sonido"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path id="sound-waves" d="m16 9 6 6m0-6-6 6"/></svg></button><span class="action-divider"></span><button id="pause-button" class="icon-button" aria-label="Pausar misión" title="Pausar (P)" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button></div>
+        </div>
+
+        <div class="viewport" id="viewport">
+          <div id="game" tabindex="0" role="application" aria-label="Juego espacial. Usa las flechas o WASD para moverte. P para pausar."></div>
+          <div class="sector-label"><span class="live-dot"></span> AURORA <span>/ 07.24.86</span></div>
+          <div class="coordinates" id="coordinates">X 0180 <span>Y 0360</span></div>
+          <div class="screen-effect" id="screen-effect" aria-hidden="true"></div>
+          <div class="overlay" id="overlay">
+            <div class="briefing" id="briefing">
+              <div class="eyebrow" id="overlay-kicker"><span class="tiny-line"></span> TU MISIÓN TE ESPERA</div>
+              <h2 id="overlay-title">El universo es enorme.<br><em>Tu próximo paso, pequeño.</em></h2>
+              <p id="overlay-description">Pilota la Nomad, reúne los 8 cristales de energía y activa el portal para volver a casa. Cuidado con los asteroides.</p>
+              <button class="primary-button" id="start-button" disabled>Preparando nave… <span>↗</span></button>
+              <div class="launch-note" id="launch-note"><span class="key">↵</span> para despegar <span class="note-dot">·</span> 75 segundos de aventura</div>
+            </div>
+          </div>
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          <div class="portal-hint" id="portal-hint" hidden>PORTAL ACTIVADO <span>CONTINÚA A LA DERECHA →</span></div>
+        </div>
+
+        <div class="route-bar"><span>INICIO</span><div class="route-track" aria-label="Avance por el sector"><div id="route-progress"></div><span class="route-ship" id="route-ship">◆</span><i></i><i></i><i></i><i></i></div><span class="route-destination">◇ PORTAL</span></div>
+      </section>
+
+      <div class="below-game">
+        <div class="controls-legend"><span class="legend-label">CONTROLES</span><span class="key">←</span><span class="key">↑</span><span class="key">↓</span><span class="key">→</span><span class="or">o</span><span class="key wide-key">W A S D</span><span class="legend-description">Mover nave</span><span class="legend-separator"></span><span class="key">P</span><span class="legend-description">Pausa</span></div>
+        <span class="explore-note"><span></span> Tómate un momento. Mira las estrellas.</span>
+      </div>
+
+      <div class="touch-controls" aria-label="Controles táctiles"><button data-direction="left" aria-label="Mover a la izquierda">←</button><div><button data-direction="up" aria-label="Mover arriba">↑</button><button data-direction="down" aria-label="Mover abajo">↓</button></div><button data-direction="right" aria-label="Mover a la derecha">→</button></div>
+
+      <section class="mission-notes" aria-label="Instrucciones de la misión">
+        <article><span class="note-number">01</span><div><h3>Recoge la energía</h3><p>Encuentra los 8 cristales que iluminan el sector.</p></div><span class="note-symbol mint">◇</span></article>
+        <article><span class="note-number">02</span><div><h3>Cuida tu nave</h3><p>Tienes 3 puntos de escudo. Evita los asteroides.</p></div><span class="note-symbol peach">◌</span></article>
+        <article><span class="note-number">03</span><div><h3>Vuelve a casa</h3><p>Al reunirlos todos, cruza el portal al final del mapa.</p></div><span class="note-symbol violet">◎</span></article>
+      </section>
+    </main>
+    <footer><span>HECHO PARA EXPLORAR.</span><span>ÓRBITA <span class="footer-cross">✦</span> PHASER 3</span></footer>
+  </div>
+  <noscript><p class="noscript">Activa JavaScript para iniciar la misión.</p></noscript>
+  <script>
+    // Phaser por CDN, como en el taller. La copia local permite jugar sin conexión.
+    function loadScript(source) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = source;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    }
+    loadScript('https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js')
+      .catch(() => loadScript('vendor/phaser.min.js'))
+      .then(() => loadScript('visuals.js'))
+      .then(() => loadScript('game.js'))
+      .catch(() => {
+        document.querySelector('#overlay-title').textContent = 'No se pudo preparar la nave.';
+        document.querySelector('#overlay-description').textContent = 'Recarga la página y comprueba que game.js, visuals.js y vendor/phaser.min.js estén en el proyecto.';
+        document.querySelector('#start-button').textContent = 'Recarga para volver a intentar';
+      });
+  </script>
+</body>
+</html>
