@@ -38,7 +38,7 @@ class Contrapunto {
     $$('#difficulty button').forEach(button => { button.onclick = () => { this.preferences.difficulty = button.dataset.difficulty; this.renderPreferences(); this.renderMenu(); this.save(); }; });
     $('#volume').oninput = e => { this.preferences.volume = Number(e.target.value) / 100; this.audio.setVolume(this.preferences.volume); this.renderPreferences(); this.save(); };
     $('#offset').oninput = e => { this.preferences.offset = Number(e.target.value); this.renderPreferences(); this.save(); };
-    $('#reduced').onchange = e => { this.preferences.reduced = e.target.checked; this.save(); };
+    $('#reduced').onchange = e => { this.preferences.reduced = e.target.checked; this.renderPreferences(); this.save(); };
     $$('#rebinds button').forEach(button => { button.onclick = () => { this.awaiting = Number(button.dataset.bind); this.renderPreferences(); $('#binding-status').textContent = 'Pulsa una letra. Escape cancela.'; }; });
     $('#calibrate').onclick = () => this.startCalibration(); $('#calibration-stop').onclick = () => this.stopCalibration();
     document.addEventListener('keydown', e => this.keyDown(e)); document.addEventListener('keyup', e => this.keyUp(e));
@@ -81,6 +81,7 @@ class Contrapunto {
   }
   renderKeys() { $$('#keypads button').forEach((button, i) => button.classList.toggle('down', this.down.has(i))); }
   renderPreferences() {
+    document.documentElement.classList.toggle('reduced-motion', this.preferences.reduced);
     $('#volume').value = this.preferences.volume * 100; $('#volume-value').textContent = `${Math.round(this.preferences.volume * 100)}%`;
     $('#offset').value = this.preferences.offset; $('#offset-value').textContent = `${this.preferences.offset > 0 ? '+' : ''}${this.preferences.offset} ms`;
     $('#reduced').checked = this.preferences.reduced;
@@ -90,10 +91,11 @@ class Contrapunto {
     this.audio.setVolume(this.preferences.volume);
   }
   renderMenu() {
+    $('#menu').dataset.chapter = this.chapter.id;
     const list = $('#chapter-list'); list.replaceChildren();
     Core.CHAPTERS.forEach((chapter, i) => {
       const button = document.createElement('button'); button.className = `chapter ${this.selected === i ? 'selected' : ''}`; button.setAttribute('aria-pressed', String(this.selected === i));
-      button.innerHTML = `<span class="number">${chapter.number}</span><span><strong>${chapter.name}</strong><small>${chapter.bpm} BPM · ${i === 0 ? 'LA LLAMADA' : i === 1 ? 'LA RESPUESTA' : 'EL ENCUENTRO'}</small></span><span class="chapter-state">${this.progress[chapter.id]?.complete ? '✓' : '↗'}</span>`;
+      button.innerHTML = `<span class="map-planet planet-${i}" aria-hidden="true"><i></i></span><span class="number">${chapter.number}</span><span><strong>${chapter.name}</strong><small>${chapter.bpm} BPM · ${i === 0 ? 'LA LLAMADA' : i === 1 ? 'LA RESPUESTA' : 'EL ENCUENTRO'}</small></span><span class="chapter-state">${this.progress[chapter.id]?.complete ? '✓' : '↗'}</span>`;
       button.onclick = () => { this.selected = i; this.save(); this.renderMenu(); }; list.append(button);
     });
     $('#transmission-place').textContent = this.chapter.place; $('#transmission-title').textContent = this.chapter.subtitle; $('#transmission-description').textContent = this.chapter.description;
@@ -110,13 +112,23 @@ class Contrapunto {
     this.renderMenu();
   }
   story(outro) {
-    this.dialogueOutro = outro; this.dialogue = outro ? this.chapter.outro : this.chapter.intro; this.dialoguePage = 0;
+    this.dialogueOutro = outro; this.dialogue = OrbitaNarrative[this.chapter.id][outro ? 'outro' : 'intro']; this.dialoguePage = 0;
     $('#results').hidden = true; $('#dialog').hidden = false; this.renderDialogue();
   }
   renderDialogue() {
     $('#dialog-kicker').textContent = this.dialogueOutro ? 'LA OTRA VOZ' : 'TRANSMISIÓN ENTRANTE';
-    $('#dialog-speaker').textContent = this.dialogueOutro ? (this.selected === 0 ? 'ELIA · RESPUESTA RECUPERADA' : 'CANAL ABIERTO · SIRA / ELIA') : this.chapter.speaker;
-    $('#dialog-title').textContent = this.chapter.name; $('#dialog-text').textContent = this.dialogue[this.dialoguePage];
+    const [speaker, title, line, motif, coordinate] = this.dialogue[this.dialoguePage];
+    const names = { sira: 'SIRA / OPERADORA DEL FARO', elia: 'ELIA / MÚSICA E INGENIERA', nomad: 'NOMAD / NAVE DE ENLACE', both: 'SIRA + ELIA / DOS VOCES' };
+    $('#dialog').dataset.speaker = speaker; $('#dialog').dataset.motif = motif;
+    $('#dialog').dataset.chapter = this.chapter.id; $('#dialog').classList.toggle('reply', this.dialogueOutro);
+    $('#dialog-speaker').textContent = names[speaker];
+    $('#dialog-title').textContent = title; $('#dialog-text').textContent = line;
+    $('#scene-motif').innerHTML = OrbitaMotifs[motif]; $('#scene-coordinate').textContent = coordinate;
+    $('#scene-steps').innerHTML = this.dialogue.map((_, i) => `<i class="${i <= this.dialoguePage ? 'seen' : ''}"></i>`).join('');
+    if (!this.preferences.reduced) {
+      $('.dialog-copy').getAnimations().forEach(a => a.cancel());
+      $('.dialog-copy').animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 320 });
+    }
     $('#dialog-page').textContent = `${String(this.dialoguePage + 1).padStart(2, '0')} / ${String(this.dialogue.length).padStart(2, '0')}`;
     $('#dialog-next').innerHTML = this.dialoguePage === this.dialogue.length - 1 ? (this.dialogueOutro ? 'Seguir el viaje <span>→</span>' : 'Interpretar señal <span>↗</span>') : 'Continuar <span>→</span>';
     $('#dialog-next').focus();
@@ -176,6 +188,9 @@ class Contrapunto {
   }
   judge({ note, grade, error }) {
     window.orbitaStage?.hit(note.lane, grade);
+    const crew = $(note.lane < 2 ? '.crew-sira' : '.crew-elia');
+    crew.classList.toggle('interference', grade === 'miss');
+    if (!this.preferences.reduced) { crew.getAnimations().forEach(a => a.cancel()); crew.animate([{ opacity: 1 }, { opacity: .55 }], { duration: 450, fill: 'forwards' }); }
     const label = { perfect: 'EN SINTONÍA', great: 'BUEN ENLACE', good: 'SEÑAL RECIBIDA', miss: 'INTERFERENCIA' }[grade];
     const timing = error === null || Math.abs(error) < .025 ? '' : error < 0 ? 'UN POCO ANTES' : 'UN POCO DESPUÉS';
     const el = $('#judgement'); el.innerHTML = `${label}<small>${timing}</small>`; el.style.color = grade === 'miss' ? '#bac9d3' : note.lane < 2 ? '#a5f5d2' : '#eeb99e';

@@ -6,7 +6,7 @@
       subtitle: 'Alguien sigue escuchando.', description: 'Una señal lleva años repitiéndose. Dale una respuesta.',
       speaker: 'SIRA · OPERADORA DEL FARO', intro: ['Aquí Faro 07. Si alguien recibe esto… la luz sigue encendida.', 'Guardé una melodía para mi hija. La enviaba cada noche, antes de que la red cayera.', 'Nomad, tú llevas la llamada. Quizá al otro lado todavía quede alguien que pueda responder.'],
       outro: ['He oído las primeras notas. Son las que mi madre tocaba en el taller.', 'Mi nombre es Elia. Ya no vivo donde ella recuerda. Pero sigo aquí.', 'Dile que tengo una respuesta. Y que esta vez la voy a tocar yo.'] },
-    { id: 'sira', name: 'La respuesta pendiente', number: '02', place: 'TALLER DE SIRA · DOS ORILLAS', bpm: 128, root: 48, bars: 36, color: 0xeeb99e,
+    { id: 'sira', name: 'La respuesta pendiente', number: '02', place: 'TALLER DE ELIA · DOS ORILLAS', bpm: 128, root: 48, bars: 36, color: 0xeeb99e,
       subtitle: 'La misma canción. Otra vida.', description: 'Una guitarra responde al viejo pulso de un taller.',
       speaker: 'ELIA · COLONIA DEL UMBRAL', intro: ['Han pasado diecisiete años. Mi madre quizá sigue esperando una voz de niña.', 'Aprendí a tocar con una guitarra que construí aquí. La melodía es la suya… pero ahora también es mía.', 'Lleva las dos partes juntas, Nomad. Quiero que escuche en quién me convertí.'],
       outro: ['Esa guitarra… Elia, ¿la construiste tú?', 'Y el taller, mamá. Construí mi propio taller.', 'Entonces cuéntamelo todo. Tenemos mucho que escuchar.'] },

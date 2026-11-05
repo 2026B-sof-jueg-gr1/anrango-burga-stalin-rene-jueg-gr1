@@ -20,6 +20,12 @@ Las tres piezas son composiciones originales sintetizadas para el juego: ambient
 
 La interfaz ocupa la ventana completa, con mapa de faros, historia, instrucciones, ajustes y resultados integrados. El botón ⛶ permite solicitar pantalla completa del navegador. El movimiento reducido del sistema se respeta y se puede ajustar en el juego.
 
+## Presentación visual
+
+El mapa de faros es interactivo: cada planeta selecciona un encuentro. Una ilustración creada para el proyecto presenta a Sira y Elia; las transmisiones se cuentan en 19 escenas con frases breves, encuadres por personaje y motivos visuales de la melodía, la guitarra, el faro y el enlace. Los retratos reaccionan a las notas durante la partida. Las escenas avanzan al pulsar Continuar, sin tiempos obligatorios de lectura, y se pueden saltar.
+
+El arte se sirve desde `assets/contrapunto-keyart.png`. Su procedencia y el prompt de generación con la herramienta integrada de imágenes están documentados en [assets/ART-DIRECTION.md](assets/ART-DIRECTION.md). Los planetas, los motivos y las animaciones se dibujan con CSS y SVG.
+
 ## Ejecutar localmente
 
 Abre esta carpeta en VS Code y usa **Open with Live Server** sobre `index.html`. También puedes ejecutar:
@@ -68,6 +74,8 @@ El reloj de `AudioContext` gobierna las notas y la canción. Cambiar de pestaña
 
 - `index.html`: pantallas, controles, diálogos e instrucciones.
 - `styles.css`: interfaz de juego que se adapta a la ventana.
+- `cinema.css`: mapa estelar, encuadres, retratos y presentación de escenas.
+- `narrative.js`: diálogo por personaje y motivos gráficos de las 19 escenas.
 - `rhythm.js`: capítulos, partitura, mapas por dificultad y reglas de juicio; se prueba sin navegador.
 - `music.js`: síntesis de las canciones, reproducción y reloj musical.
 - `game.js`: historia, estados de partida, entrada, resultados, calibración y persistencia.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080f19"><meta name="description" content="Órbita: Contrapunto. Dos manos, dos voces y una conversación que cruza las estrellas. Una aventura de ritmo original.">
-  <title>Órbita: Contrapunto</title><link rel="icon" href="assets/orbita.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
+  <title>Órbita: Contrapunto</title><link rel="preload" as="image" href="assets/contrapunto-keyart.png"><link rel="icon" href="assets/orbita.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="cinema.css">
 </head>
 <body>
   <div id="space" aria-hidden="true"></div>
@@ -15,16 +15,15 @@
     </header>
 
     <section id="menu" class="screen menu-screen" aria-label="Mapa de faros">
-      <div class="menu-content">
-        <div class="eyebrow"><span class="tiny-line"></span> UNA AVENTURA DE RITMO Y SEÑALES</div>
-        <h1>Hay mensajes que<br>todavía esperan<br><em>una respuesta.</em></h1>
-        <p class="lead">Dos manos. Dos voces. Una nave entre mundos.<br>Reconstruye las canciones que la distancia dejó a medias.</p>
-        <div class="chapter-list" id="chapter-list" aria-label="Elegir encuentro"></div>
-        <div class="launch-row"><button id="launch" class="primary">Escuchar la señal <span>↗</span></button><div class="mission-summary"><span id="mission-duration">01:12</span><span id="mission-bpm">120 BPM</span></div></div>
-        <div class="difficulty-row"><span>DIFICULTAD</span><div class="segmented" id="difficulty" role="group" aria-label="Dificultad"><button data-difficulty="story">Historia</button><button data-difficulty="normal" aria-pressed="true" class="selected">Normal</button><button data-difficulty="expert">Experto</button></div></div>
+      <div class="keyart" role="img" aria-label="Sira y su hija Elia, separadas entre estrellas, conectadas por una señal musical"></div>
+      <div class="menu-heading"><span class="eyebrow">DOS VOCES SEPARADAS POR LAS ESTRELLAS</span><h1>ÓRBITA<span>CONTRAPUNTO</span></h1><p>Una canción puede traerlas de vuelta.</p></div>
+      <div class="star-route" aria-hidden="true"><svg viewBox="0 0 700 180" preserveAspectRatio="none"><path d="M65 120Q210 120 350 55T635 95"/></svg></div>
+      <div class="chapter-list" id="chapter-list" aria-label="Mapa de faros · Elegir encuentro"></div>
+      <div class="character-tag tag-sira"><span>01 / LA LLAMADA</span><strong>Sira</strong></div><div class="character-tag tag-elia"><span>02 / LA RESPUESTA</span><strong>Elia</strong></div>
+      <div class="mission-console">
+        <div class="mission-copy"><span class="eyebrow" id="transmission-place">FARO 07 · AURORA</span><h2 id="transmission-title">Alguien sigue escuchando.</h2><p id="transmission-description">Una señal lleva años repitiéndose.</p><span id="chapter-best">ENLACE POR ESTABLECER</span></div>
+        <div class="mission-launch"><div class="launch-row"><div class="mission-summary"><span id="mission-duration">01:12</span><span id="mission-bpm">120 BPM</span></div><button id="launch" class="primary">Abrir transmisión <span>↗</span></button></div><div class="difficulty-row"><span>DIFICULTAD</span><div class="segmented" id="difficulty" role="group" aria-label="Dificultad"><button data-difficulty="story">Historia</button><button data-difficulty="normal" aria-pressed="true" class="selected">Normal</button><button data-difficulty="expert">Experto</button></div></div></div>
       </div>
-      <aside class="transmission" aria-label="Señal seleccionada"><div class="transmission-top"><span class="live-dot"></span> SEÑAL DETECTADA <span>↗</span></div><div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="eyebrow" id="transmission-place">FARO 07 · AURORA</span><h2 id="transmission-title">Alguien sigue escuchando.</h2><p id="transmission-description">Una señal lleva años repitiéndose. Dale una respuesta.</p><div class="transmission-bottom"><span>NOMAD–01</span><span id="chapter-best">ENLACE POR ESTABLECER</span></div></aside>
-      <div class="orbital-coordinate">AURORA / 07.24.86 <span>✦</span> CANAL DE LARGO ALCANCE</div>
     </section>
 
     <section id="play" class="screen play-screen" hidden aria-label="Interpretación musical">
@@ -34,12 +33,19 @@
       <div class="countdown" id="countdown" aria-live="polite"></div>
       <div class="hands-label"><span>LA LLAMADA</span><span>LA RESPUESTA</span></div>
       <div class="keypads" id="keypads"><button data-lane="0" aria-label="Canal izquierdo exterior">D</button><button data-lane="1" aria-label="Canal izquierdo interior">F</button><span></span><button data-lane="2" aria-label="Canal derecho interior">J</button><button data-lane="3" aria-label="Canal derecho exterior">K</button></div>
+      <div class="crew-link crew-sira" aria-hidden="true"><div class="crew-portrait"></div><span>SIRA <small>LA LLAMADA</small></span><div class="crew-bars"><i></i><i></i><i></i><i></i><i></i></div></div><div class="crew-link crew-elia" aria-hidden="true"><div class="crew-portrait"></div><span>ELIA <small>LA RESPUESTA</small></span><div class="crew-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
       <div class="song-progress"><i id="song-progress"></i></div>
     </section>
 
     <footer><span id="footer-left">TU MANO IZQUIERDA LLAMA. TU MANO DERECHA RESPONDE.</span><span id="footer-right"><kbd>D</kbd><kbd>F</kbd><span class="footer-gap"></span><kbd>J</kbd><kbd>K</kbd> <span class="footer-caption">DOS VOCES · UN MISMO VIAJE</span></span></footer>
 
-    <section id="dialog" class="modal-layer" hidden aria-labelledby="dialog-title"><div class="dialog-card"><div class="dialog-top"><span class="eyebrow" id="dialog-kicker">TRANSMISIÓN ENTRANTE</span><span id="dialog-page">01 / 03</span></div><div class="signal-avatar" aria-hidden="true">⌁</div><span class="label" id="dialog-speaker">SIRA · OPERADORA DEL FARO</span><h2 id="dialog-title">Faro dormido</h2><p id="dialog-text"></p><div class="dialog-actions"><button id="dialog-skip" class="quiet">Saltar transmisión</button><button id="dialog-next" class="primary">Continuar <span>→</span></button></div></div></section>
+    <section id="dialog" class="modal-layer cinema" hidden aria-labelledby="dialog-title" role="dialog" aria-modal="true">
+      <div class="cinema-art" aria-hidden="true"></div><div class="cinema-shade" aria-hidden="true"></div>
+      <div class="cinema-top"><span class="eyebrow" id="dialog-kicker">TRANSMISIÓN ENTRANTE</span><span id="dialog-page">01 / 03</span></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-orbit"></div><svg id="scene-motif" viewBox="0 0 200 200"></svg><span id="scene-coordinate"></span></div>
+      <div class="scene-cast" aria-hidden="true"><span class="cast-sira">SIRA <i></i></span><span class="cast-elia"><i></i> ELIA</span></div>
+      <div class="dialog-card"><div class="dialog-copy"><span class="label" id="dialog-speaker">SIRA</span><h2 id="dialog-title">Faro dormido</h2><p id="dialog-text"></p></div><div class="dialog-actions"><button id="dialog-next" class="primary">Continuar <span>→</span></button><button id="dialog-skip" class="quiet">Saltar transmisión</button></div><div id="scene-steps" class="scene-steps" aria-hidden="true"></div></div>
+    </section>
 
     <section id="pause-menu" class="modal-layer" hidden aria-labelledby="pause-title"><div class="panel compact"><span class="eyebrow">SISTEMAS EN ESPERA</span><h2 id="pause-title">La señal te espera.</h2><p id="pause-description">La música y tus notas continuarán juntas.</p><button id="resume" class="primary full">Continuar <span>→</span></button><button id="restart" class="secondary full">Reiniciar encuentro</button><button id="back-map" class="quiet full">Volver al mapa de faros</button><small class="hint">P / ESC para continuar · Reanuda los sostenidos al volver.</small></div></section>
 
@@ -52,5 +58,5 @@
     <div id="notice" class="notice" hidden role="status"></div>
   </main>
   <noscript>Activa JavaScript para interpretar la señal.</noscript>
-  <script src="rhythm.js"></script><script src="music.js"></script><script src="vendor/phaser.min.js"></script><script src="visuals.js"></script><script src="stage.js"></script><script src="game.js"></script>
+  <script src="rhythm.js"></script><script src="music.js"></script><script src="vendor/phaser.min.js"></script><script src="visuals.js"></script><script src="stage.js"></script><script src="narrative.js"></script><script src="game.js"></script>
 </body></html>
