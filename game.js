@@ -1,360 +1,248 @@
-/* ÓRBITA · Phaser 3
- * La estructura sigue el taller: configuración → preload → create → update.
- * El resto son funciones pequeñas para la misión, la interfaz y los dibujos.
- */
+/* Órbita: Contrapunto. Menús, historia, entrada y coordinación de audio y dibujo. */
 'use strict';
-
-// 1. CONFIGURACIÓN: cambia estos valores para ajustar la dificultad.
-const MISSION = {
-  width: 3700, height: 620, seconds: 75, speed: 300, shields: 3,
-  crystals: [[510, 330], [890, 200], [1260, 430], [1650, 265],
-    [2040, 405], [2420, 180], [2820, 350], [3180, 240]],
-  asteroids: [[710, 390, 35], [1110, 280, 43], [1450, 350, 32],
-    [1780, 420, 46], [1940, 175, 30], [2230, 300, 44],
-    [2620, 250, 38], [2950, 450, 44], [3130, 390, 29]],
-  portal: { x: 3490, y: 310 }
-};
-
-const ui = {
-  overlay: document.querySelector('#overlay'),
-  kicker: document.querySelector('#overlay-kicker'),
-  title: document.querySelector('#overlay-title'),
-  description: document.querySelector('#overlay-description'),
-  start: document.querySelector('#start-button'),
-  note: document.querySelector('#launch-note'),
-  count: document.querySelector('#crystal-count'),
-  time: document.querySelector('#time-left'),
-  shields: document.querySelector('#shield-bars'),
-  pause: document.querySelector('#pause-button'),
-  sound: document.querySelector('#sound-button'),
-  coordinates: document.querySelector('#coordinates'),
-  progress: document.querySelector('#route-progress'),
-  marker: document.querySelector('#route-ship'),
-  portal: document.querySelector('#portal-hint'),
-  toast: document.querySelector('#toast')
-};
-
-let scene, player, cursors, wasd, crystals, asteroids, portal;
-let starsFar, starsNear, planet, moon, engine, shield, portalRing, portalGlow;
-let mode = 'intro'; // intro, playing, paused, won, lost
-let collected = 0, shields = MISSION.shields, remaining = MISSION.seconds;
-let invulnerableUntil = 0, toastTimeout;
-let muted = true, audioContext;
-const touch = { left: false, right: false, up: false, down: false };
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// 2. PRELOAD: los recursos se dibujan aquí, sin imágenes externas.
-function preload() {
-  makeTextures(this);
-}
-
-// 3. CREATE: escenario, jugador, cámara, teclado y colisiones.
-function create() {
-  scene = this;
-  this.physics.world.setBounds(35, 52, MISSION.width - 70, MISSION.height - 100);
-  this.cameras.main.setBounds(0, 0, MISSION.width, MISSION.height);
-  this.cameras.main.setOrigin(0, 0);
-
-  this.add.image(0, 0, 'nebula').setOrigin(0).setScrollFactor(0).setDepth(-10);
-  starsFar = this.add.tileSprite(0, 0, 1600, 620, 'stars-far').setOrigin(0).setScrollFactor(0).setDepth(-9);
-  starsNear = this.add.tileSprite(0, 0, 1600, 620, 'stars-near').setOrigin(0).setScrollFactor(0).setDepth(-6);
-  planet = this.add.image(940, 440, 'planet').setScrollFactor(0).setDepth(-8).setAlpha(.65);
-  moon = this.add.image(500, 100, 'moon').setScrollFactor(0).setDepth(-7).setAlpha(.6);
-  drawRoute(this);
-
-  crystals = this.physics.add.staticGroup();
-  MISSION.crystals.forEach(([x, y], i) => {
-    const halo = this.add.image(x, y, 'crystal-aura').setAlpha(.7).setDepth(-1);
-    const crystal = crystals.create(x, y, 'crystal');
-    crystal.body.setCircle(23, 9, 9);
-    crystal.setData('number', i + 1);
-    crystal.setData('halo', halo);
-    crystal.setData('label', this.add.text(x, y + 40, String(i + 1).padStart(2, '0'), {
-      fontFamily: 'monospace', fontSize: '11px', color: '#a3c4c8'
-    }).setOrigin(.5));
-    if (!reduceMotion) this.tweens.add({ targets: halo, alpha: .32, scale: .85, duration: 1500 + i * 90, yoyo: true, repeat: -1 });
-  });
-
-  asteroids = this.physics.add.staticGroup();
-  MISSION.asteroids.forEach(([x, y, radius], i) => {
-    const rock = asteroids.create(x, y, `rock-${i % 3}`).setDisplaySize(radius * 2.5, radius * 2.5);
-    rock.refreshBody();
-    // El círculo de colisión es más pequeño que el dibujo: el juego perdona los roces.
-    rock.body.setCircle(radius / rock.scaleX, (60 - radius / rock.scaleX), (60 - radius / rock.scaleY));
-    // La luz llega desde arriba a la izquierda en todas las rocas.
-  });
-
-  portalGlow = this.add.image(MISSION.portal.x, MISSION.portal.y, 'glow').setTint(0x9e91ff).setScale(3.5).setAlpha(.2);
-  portalRing = this.add.image(MISSION.portal.x, MISSION.portal.y, 'portal').setAlpha(.55);
-  createVisualDetails(this);
-  portal = this.physics.add.staticImage(MISSION.portal.x, MISSION.portal.y, 'dot').setVisible(false);
-  portal.body.setCircle(66, -62, -62);
-  this.add.text(MISSION.portal.x, MISSION.portal.y + 116, 'P O R T A L  /  C A S A', {
-    fontFamily: 'monospace', fontSize: '11px', color: '#b8b2df'
-  }).setOrigin(.5);
-
-  engine = this.add.image(0, 0, 'engine').setOrigin(1, .5).setBlendMode(Phaser.BlendModes.ADD).setDepth(4);
-  player = this.physics.add.image(880, 335, 'ship').setDepth(5).setCollideWorldBounds(true);
-  player.body.setSize(64, 28).setOffset(22, 23);
-  shield = this.add.image(player.x, player.y, 'shield').setDepth(6).setAlpha(.15);
-  cursors = this.input.keyboard.createCursorKeys();
-  wasd = this.input.keyboard.addKeys('W,A,S,D');
-  this.input.keyboard.addCapture([37, 38, 39, 40, 32]);
-  this.input.keyboard.on('keydown-P', () => togglePause());
-  this.input.keyboard.on('keydown-ESC', () => { if (mode === 'playing' || mode === 'paused') togglePause(); });
-  this.input.keyboard.on('keydown-ENTER', () => { if (mode !== 'playing') primaryAction(); });
-
-  this.physics.add.overlap(player, crystals, collectCrystal);
-  this.physics.add.overlap(player, asteroids, hitAsteroid);
-  this.physics.add.overlap(player, portal, enterPortal);
-  this.scale.on('resize', resizeScene);
-  resizeScene();
-  updateHUD();
-  ui.start.disabled = false;
-  ui.start.innerHTML = 'Iniciar misión <span>↗</span>';
-  this.physics.pause();
-}
-
-// 4. UPDATE: se ejecuta en cada fotograma. El teclado cambia la velocidad.
-function update(time, delta) {
-  if (!player) return;
-  updateVisuals(time, delta);
-
-  if (mode !== 'playing') {
-    if (mode === 'intro' && !reduceMotion) {
-      player.y = 335 + Math.sin(time * .0013) * 9;
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+const Core = OrbitaCore;
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+class Contrapunto {
+  constructor() {
+    this.mode = 'menu'; this.selected = 0; this.down = new Set(); this.progress = {}; this.awaiting = null; this.audio = new OrbitaAudio();
+    this.preferences = { difficulty: 'normal', volume: .65, offset: 0, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches, keys: ['KeyD', 'KeyF', 'KeyJ', 'KeyK'] };
+    this.load(); this.bind(); this.renderMenu(); this.renderPreferences(); this.lastUI = 0;
+  }
+  load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('orbita-contrapunto-v1'));
+      if (!saved) return;
+      this.progress = saved.progress && typeof saved.progress === 'object' ? saved.progress : {};
+      this.selected = Math.round(clamp(Number(saved.selected) || 0, 0, 2));
+      const p = saved.preferences || {};
+      if (Core.DIFFICULTIES[p.difficulty]) this.preferences.difficulty = p.difficulty;
+      if (Number.isFinite(p.volume)) this.preferences.volume = clamp(p.volume, 0, 1);
+      if (Number.isFinite(p.offset)) this.preferences.offset = clamp(p.offset, -250, 250);
+      if (typeof p.reduced === 'boolean') this.preferences.reduced = p.reduced;
+      if (Array.isArray(p.keys) && p.keys.length === 4 && new Set(p.keys).size === 4 && p.keys.every(key => /^Key[A-Z]$/.test(key) && key !== 'KeyP')) this.preferences.keys = p.keys;
+    } catch { /* El juego también funciona con almacenamiento deshabilitado. */ }
+  }
+  save() { try { localStorage.setItem('orbita-contrapunto-v1', JSON.stringify({ preferences: this.preferences, progress: this.progress, selected: this.selected })); } catch {} }
+  get chapter() { return Core.CHAPTERS[this.selected]; }
+  songTime() { return this.audio.ctx ? this.audio.time : 0; }
+  bind() {
+    $('#home').onclick = () => this.home(); $('#launch').onclick = () => this.story(false);
+    $('#help').onclick = () => this.openModal('help-panel'); $('#settings').onclick = () => this.openModal('settings-panel');
+    $$('[data-close]').forEach(button => { button.onclick = () => this.closeModal(button.dataset.close); });
+    $('#pause').onclick = () => this.pause(); $('#resume').onclick = () => this.resume(); $('#restart').onclick = () => this.start(); $('#back-map').onclick = () => this.home();
+    $('#retry').onclick = () => this.start(); $('#result-next').onclick = () => this.failed ? this.start() : this.story(true);
+    $('#dialog-next').onclick = () => this.nextDialogue(); $('#dialog-skip').onclick = () => this.finishDialogue();
+    $('#fullscreen').onclick = async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch { this.notice('Puedes ampliar la ventana con F11.'); } };
+    $$('#difficulty button').forEach(button => { button.onclick = () => { this.preferences.difficulty = button.dataset.difficulty; this.renderPreferences(); this.renderMenu(); this.save(); }; });
+    $('#volume').oninput = e => { this.preferences.volume = Number(e.target.value) / 100; this.audio.setVolume(this.preferences.volume); this.renderPreferences(); this.save(); };
+    $('#offset').oninput = e => { this.preferences.offset = Number(e.target.value); this.renderPreferences(); this.save(); };
+    $('#reduced').onchange = e => { this.preferences.reduced = e.target.checked; this.save(); };
+    $$('#rebinds button').forEach(button => { button.onclick = () => { this.awaiting = Number(button.dataset.bind); this.renderPreferences(); $('#binding-status').textContent = 'Pulsa una letra. Escape cancela.'; }; });
+    $('#calibrate').onclick = () => this.startCalibration(); $('#calibration-stop').onclick = () => this.stopCalibration();
+    document.addEventListener('keydown', e => this.keyDown(e)); document.addEventListener('keyup', e => this.keyUp(e));
+    $$('#keypads button').forEach(button => {
+      const lane = Number(button.dataset.lane);
+      button.onpointerdown = e => { e.preventDefault(); button.setPointerCapture(e.pointerId); this.press(lane); };
+      ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => button.addEventListener(type, () => this.release(lane)));
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { this.pause(); this.stopCalibration(); } });
+    window.addEventListener('blur', () => { this.pause(); });
+  }
+  keyDown(e) {
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    if (this.awaiting !== null) {
+      e.preventDefault();
+      if (e.code === 'Escape') { this.awaiting = null; this.renderPreferences(); return; }
+      if (!/^Key[A-Z]$/.test(e.code) || e.code === 'KeyP' || this.preferences.keys.some((key, i) => i !== this.awaiting && key === e.code)) { $('#binding-status').textContent = 'Elige una letra libre; P está reservada para pausa.'; return; }
+      this.preferences.keys[this.awaiting] = e.code; this.awaiting = null; this.renderPreferences(); this.save(); $('#binding-status').textContent = 'Control actualizado.'; return;
     }
-    return;
+    if (this.calibration && e.code === 'Space') { e.preventDefault(); if (!e.repeat) this.calibrationTap(); return; }
+    if ((e.code === 'KeyP' || e.code === 'Escape') && ['playing', 'countdown', 'paused'].includes(this.mode)) { e.preventDefault(); if (!e.repeat) this.mode === 'paused' ? this.resume() : this.pause(); return; }
+    if (e.code === 'Escape') { ['help-panel', 'settings-panel'].forEach(id => this.closeModal(id)); return; }
+    const lane = this.preferences.keys.indexOf(e.code);
+    if (lane !== -1 && ['playing', 'countdown'].includes(this.mode)) { e.preventDefault(); if (!e.repeat) this.press(lane); }
   }
-
-  remaining = Math.max(0, remaining - delta / 1000);
-  if (remaining <= 0) { finishMission(false, 'El tiempo se agotó.'); return; }
-
-  let x = Number(cursors.right.isDown || wasd.D.isDown || touch.right) - Number(cursors.left.isDown || wasd.A.isDown || touch.left);
-  let y = Number(cursors.down.isDown || wasd.S.isDown || touch.down) - Number(cursors.up.isDown || wasd.W.isDown || touch.up);
-  const direction = new Phaser.Math.Vector2(x, y).normalize();
-  player.setVelocity(direction.x * MISSION.speed, direction.y * MISSION.speed);
-  updateThrusters(time, x, y);
-  updateHUD();
-}
-
-// 5. MISIÓN: recoger, recibir daño, ganar, perder y reiniciar.
-function startMission() {
-  mode = 'playing';
-  collected = 0; shields = MISSION.shields; remaining = MISSION.seconds;
-  invulnerableUntil = 0;
-  resetVisuals();
-  Object.keys(touch).forEach(key => { touch[key] = false; });
-  scene.input.keyboard.resetKeys();
-  crystals.getChildren().forEach(crystal => {
-    crystal.enableBody(false, crystal.x, crystal.y, true, true);
-    crystal.getData('label').setVisible(true);
-    crystal.getData('halo').setVisible(true);
-  });
-  player.enableBody(true, 180, 330, true, true);
-  player.setVelocity(0).setAngle(0).setAlpha(1).setScale(1);
-  scene.cameras.main.startFollow(player, true, .085, .085);
-  scene.cameras.main.setScroll(0, 0);
-  portalRing.setTint(0xffffff).setAlpha(.42);
-  ui.portal.hidden = true;
-  ui.overlay.hidden = true;
-  ui.pause.disabled = false;
-  ui.pause.setAttribute('aria-label', 'Pausar misión');
-  scene.physics.resume();
-  ui.start.blur();
-  document.querySelector('#game').focus({ preventScroll: true });
-  updateHUD();
-  showToast('Recoge los 8 cristales. Las flechas o WASD guían tu nave.');
-  playTone(320, .14); playTone(480, .18, .13);
-}
-
-function collectCrystal(_player, crystal) {
-  if (mode !== 'playing' || !crystal.active) return;
-  const { x, y } = crystal;
-  crystal.disableBody(true, true);
-  crystal.getData('label').setVisible(false);
-  crystal.getData('halo').setVisible(false);
-  collected++;
-  burst(x, y, 0xa5f5d2, 13);
-  crystalFeedback(x, y);
-  playTone(520 + collected * 65, .13);
-  updateHUD();
-  if (collected === MISSION.crystals.length) {
-    portalRing.setTint(0xa5f5d2).setAlpha(1);
-    ui.portal.hidden = false;
-    showToast('¡Energía completa! El portal te espera al final del sector.');
-    playTone(880, .3, .12);
-    activatePortal();
-  } else showToast(`Cristal ${String(collected).padStart(2, '0')} / 08 · Energía recuperada`);
-}
-
-function hitAsteroid() {
-  if (mode !== 'playing' || scene.time.now < invulnerableUntil) return;
-  shields--;
-  invulnerableUntil = scene.time.now + 1700;
-  burst(player.x, player.y, 0xffb69f, 11);
-  impactFeedback();
-  if (!reduceMotion) scene.cameras.main.shake(180, .004);
-  playTone(100, .24);
-  updateHUD();
-  if (shields <= 0) finishMission(false, 'La nave se quedó sin escudo.');
-  else showToast(`Impacto recibido · ${shields} ${shields === 1 ? 'punto' : 'puntos'} de escudo. ¡Sigue adelante!`);
-}
-
-function enterPortal() {
-  if (mode !== 'playing') return;
-  if (collected === MISSION.crystals.length) finishMission(true);
-  else if (!ui.toast.classList.contains('visible')) showToast(`Al portal le falta energía. Busca ${8 - collected} cristales más hacia la izquierda.`);
-}
-
-function finishMission(won, reason = '') {
-  mode = won ? 'won' : 'lost';
-  scene.physics.pause();
-  player.setVelocity(0);
-  ui.pause.disabled = true;
-  ui.portal.hidden = true;
-  ui.toast.classList.remove('visible');
-  clearTimeout(toastTimeout);
-  ui.overlay.className = `overlay result ${won ? 'victory' : 'defeat'}`;
-  ui.overlay.hidden = false;
-  ui.kicker.textContent = won ? 'MISIÓN 001 / COMPLETADA' : 'MISIÓN 001 / NUEVO INTENTO';
-  ui.title.innerHTML = won ? 'Todas las estrellas<br><em>te trajeron a casa.</em>' : 'El espacio puede esperar.<br><em>Tu aventura continúa.</em>';
-  ui.description.textContent = won
-    ? `Recuperaste los 8 cristales y regresaste con ${Math.ceil(remaining)} segundos de reserva y ${shields} ${shields === 1 ? 'punto' : 'puntos'} de escudo. Buen viaje, comandante.`
-    : `${reason} Recuperaste ${collected} de 8 cristales. Respira, encuentra tu ruta y vuelve a despegar.`;
-  ui.start.innerHTML = won ? 'Explorar de nuevo <span>↗</span>' : 'Volver a intentar <span>↗</span>';
-  ui.note.innerHTML = '<span class="key">↵</span> para una nueva misión';
-  ui.start.focus({ preventScroll: true });
-  if (won) {
-    burst(player.x, player.y, 0xa5f5d2, 32);
-    victoryFeedback();
-    [523, 659, 784, 1046].forEach((note, i) => playTone(note, .3, i * .14));
+  keyUp(e) { const lane = this.preferences.keys.indexOf(e.code); if (lane !== -1) this.release(lane); }
+  press(lane) {
+    if (!['playing', 'countdown'].includes(this.mode) || this.down.has(lane)) return;
+    this.down.add(lane); this.renderKeys();
+    if (this.mode === 'playing') this.session.press(lane, this.songTime() - this.preferences.offset / 1000);
   }
-}
-
-function togglePause() {
-  if (mode === 'playing') {
-    mode = 'paused'; scene.physics.pause(); player.setVelocity(0);
-    scene.tweens.pauseAll();
-    clearTimeout(toastTimeout);
-    ui.toast.classList.remove('visible');
-    Object.keys(touch).forEach(key => { touch[key] = false; });
-    ui.overlay.className = 'overlay paused'; ui.overlay.hidden = false;
-    ui.kicker.textContent = 'SISTEMAS EN ESPERA';
-    ui.title.innerHTML = 'Incluso las estrellas<br><em>necesitan una pausa.</em>';
-    ui.description.textContent = 'Tu misión está a salvo. El tiempo y la nave continuarán cuando tú estés listo.';
-    ui.start.innerHTML = 'Continuar misión <span>→</span>';
-    ui.note.innerHTML = '<span class="key">P</span> o <span class="key">↵</span> para continuar';
-    ui.pause.setAttribute('aria-label', 'Continuar misión');
-    ui.start.focus({ preventScroll: true });
-  } else if (mode === 'paused') {
-    mode = 'playing'; scene.input.keyboard.resetKeys(); scene.physics.resume();
-    scene.tweens.resumeAll();
-    ui.overlay.hidden = true; ui.pause.setAttribute('aria-label', 'Pausar misión');
-    document.querySelector('#game').focus({ preventScroll: true });
+  release(lane) {
+    if (!this.down.has(lane)) return;
+    this.down.delete(lane); this.renderKeys();
+    if (this.mode === 'playing') this.session.release(lane, this.songTime() - this.preferences.offset / 1000);
   }
-}
-
-function primaryAction() {
-  if (!scene) return;
-  if (mode === 'paused') togglePause();
-  else if (mode !== 'playing') startMission();
-}
-
-// 6. INTERFAZ Y SONIDO. Los sonidos son tonos sencillos, sin archivos de audio.
-function updateHUD() {
-  ui.count.textContent = String(collected).padStart(2, '0');
-  const seconds = Math.ceil(remaining);
-  ui.time.textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
-  ui.time.classList.toggle('danger', remaining <= 15);
-  ui.shields.setAttribute('aria-label', `${shields} de 3 puntos de escudo`);
-  [...ui.shields.children].forEach((bar, i) => bar.classList.toggle('lost', i >= shields));
-  document.querySelectorAll('.crystal-slots i').forEach((slot, i) => slot.classList.toggle('collected', i < collected));
-  const progress = mode === 'intro' ? 0 : Phaser.Math.Clamp((player.x - 180) / (MISSION.portal.x - 180), 0, 1) * 100;
-  ui.progress.style.width = `${progress}%`; ui.marker.style.left = `${progress}%`;
-  ui.coordinates.innerHTML = `X ${String(Math.round(player.x)).padStart(4, '0')} <span>Y ${String(Math.round(player.y)).padStart(4, '0')}</span>`;
-}
-
-function showToast(message) {
-  clearTimeout(toastTimeout);
-  ui.toast.textContent = message; ui.toast.classList.add('visible');
-  toastTimeout = setTimeout(() => ui.toast.classList.remove('visible'), 3000);
-}
-
-function playTone(frequency, duration, delay = 0) {
-  if (muted) return;
-  try {
-    audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
-    if (audioContext.state === 'suspended') audioContext.resume().catch(() => {});
-    const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
-    const start = audioContext.currentTime + delay;
-    oscillator.type = 'sine'; oscillator.frequency.setValueAtTime(frequency, start);
-    gain.gain.setValueAtTime(0, start);
-    gain.gain.linearRampToValueAtTime(.07, start + .015);
-    gain.gain.exponentialRampToValueAtTime(.001, start + duration);
-    oscillator.connect(gain); gain.connect(audioContext.destination);
-    oscillator.start(start); oscillator.stop(start + duration + .01);
-  } catch { /* El sonido es opcional si el navegador no admite Web Audio. */ }
-}
-
-ui.start.addEventListener('click', primaryAction);
-ui.pause.addEventListener('click', () => togglePause());
-ui.sound.addEventListener('click', () => {
-  muted = !muted;
-  if (muted && audioContext) audioContext.suspend().catch(() => {});
-  ui.sound.setAttribute('aria-pressed', String(!muted));
-  ui.sound.setAttribute('aria-label', muted ? 'Activar sonido' : 'Silenciar sonido');
-  ui.sound.title = muted ? 'Activar sonido' : 'Silenciar sonido';
-  document.querySelector('#sound-waves').setAttribute('d', muted ? 'm16 9 6 6m0-6-6 6' : 'M15 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14');
-  playTone(640, .12);
-});
-document.querySelectorAll('[data-direction]').forEach(button => {
-  const direction = button.dataset.direction;
-  button.addEventListener('pointerdown', event => { event.preventDefault(); button.setPointerCapture(event.pointerId); touch[direction] = true; });
-  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => button.addEventListener(type, () => { touch[direction] = false; }));
-});
-document.addEventListener('visibilitychange', () => { if (document.hidden && mode === 'playing') togglePause(); });
-window.addEventListener('blur', () => { if (mode === 'playing') togglePause(); });
-
-function resizeScene() {
-  const camera = scene.cameras.main;
-  const zoom = scene.scale.height / MISSION.height;
-  camera.setZoom(zoom);
-  const viewWidth = scene.scale.width / zoom;
-  starsFar.setSize(viewWidth, 620); starsNear.setSize(viewWidth, 620);
-  planet.setPosition(viewWidth * .84, 440).setScale(Math.min(.82, viewWidth / 1250));
-  moon.setPosition(viewWidth * .48, 105);
-  if (mode === 'intro') {
-    player.setPosition(viewWidth * .72, 335);
-    camera.setScroll(0, 0);
+  clearKeys(paused = false) {
+    if (this.session && paused) for (const lane of this.down) this.session.release(lane, this.songTime() - this.preferences.offset / 1000, true);
+    this.down.clear(); this.renderKeys();
   }
-  updateHUD();
-}
-
-function burst(x, y, color, count) {
-  if (reduceMotion) return;
-  for (let i = 0; i < count; i++) {
-    const angle = (Math.PI * 2 * i) / count;
-    const distance = Phaser.Math.Between(25, 80);
-    const particle = scene.add.image(x, y, i % 3 ? 'spark' : 'dot').setTint(color).setScale(Phaser.Math.FloatBetween(.4, 1)).setRotation(angle).setDepth(8).setBlendMode(Phaser.BlendModes.ADD);
-    scene.tweens.add({ targets: particle, x: x + Math.cos(angle) * distance, y: y + Math.sin(angle) * distance,
-      alpha: 0, scale: 0, duration: 650, onComplete: () => particle.destroy() });
+  renderKeys() { $$('#keypads button').forEach((button, i) => button.classList.toggle('down', this.down.has(i))); }
+  renderPreferences() {
+    $('#volume').value = this.preferences.volume * 100; $('#volume-value').textContent = `${Math.round(this.preferences.volume * 100)}%`;
+    $('#offset').value = this.preferences.offset; $('#offset-value').textContent = `${this.preferences.offset > 0 ? '+' : ''}${this.preferences.offset} ms`;
+    $('#reduced').checked = this.preferences.reduced;
+    $$('#difficulty button').forEach(button => { const active = button.dataset.difficulty === this.preferences.difficulty; button.classList.toggle('selected', active); button.setAttribute('aria-pressed', String(active)); });
+    ['#keypads button', '#rebinds button', 'footer kbd', '.help-keys kbd'].forEach(selector => $$(selector).forEach((el, i) => { el.textContent = this.preferences.keys[i].slice(3); }));
+    $$('#rebinds button').forEach((button, i) => button.classList.toggle('awaiting', i === this.awaiting));
+    this.audio.setVolume(this.preferences.volume);
+  }
+  renderMenu() {
+    const list = $('#chapter-list'); list.replaceChildren();
+    Core.CHAPTERS.forEach((chapter, i) => {
+      const button = document.createElement('button'); button.className = `chapter ${this.selected === i ? 'selected' : ''}`; button.setAttribute('aria-pressed', String(this.selected === i));
+      button.innerHTML = `<span class="number">${chapter.number}</span><span><strong>${chapter.name}</strong><small>${chapter.bpm} BPM · ${i === 0 ? 'LA LLAMADA' : i === 1 ? 'LA RESPUESTA' : 'EL ENCUENTRO'}</small></span><span class="chapter-state">${this.progress[chapter.id]?.complete ? '✓' : '↗'}</span>`;
+      button.onclick = () => { this.selected = i; this.save(); this.renderMenu(); }; list.append(button);
+    });
+    $('#transmission-place').textContent = this.chapter.place; $('#transmission-title').textContent = this.chapter.subtitle; $('#transmission-description').textContent = this.chapter.description;
+    const best = this.progress[this.chapter.id]?.[this.preferences.difficulty];
+    $('#chapter-best').textContent = Number.isFinite(best) ? `MEJOR ENLACE · ${best.toFixed(1)}%` : 'ENLACE POR ESTABLECER';
+    const duration = this.chapter.bars * 4 * 60 / this.chapter.bpm; $('#mission-duration').textContent = this.formatTime(duration); $('#mission-bpm').textContent = `${this.chapter.bpm} BPM`;
+  }
+  openModal(id) { $('#' + id).hidden = false; $('#' + id).querySelector('button')?.focus(); }
+  closeModal(id) { $('#' + id).hidden = true; if (id === 'settings-panel') { this.awaiting = null; this.stopCalibration(); this.renderPreferences(); } }
+  home() {
+    this.audio.stop(); this.mode = 'menu'; this.clearKeys();
+    $$('.modal-layer').forEach(el => { el.hidden = true; }); $('#menu').hidden = false; $('#play').hidden = true; $('#app').classList.remove('game-mode');
+    $('#connection-label').textContent = 'RED DE FAROS / SECTOR AURORA'; $('#footer-left').textContent = 'TU MANO IZQUIERDA LLAMA. TU MANO DERECHA RESPONDE.';
+    this.renderMenu();
+  }
+  story(outro) {
+    this.dialogueOutro = outro; this.dialogue = outro ? this.chapter.outro : this.chapter.intro; this.dialoguePage = 0;
+    $('#results').hidden = true; $('#dialog').hidden = false; this.renderDialogue();
+  }
+  renderDialogue() {
+    $('#dialog-kicker').textContent = this.dialogueOutro ? 'LA OTRA VOZ' : 'TRANSMISIÓN ENTRANTE';
+    $('#dialog-speaker').textContent = this.dialogueOutro ? (this.selected === 0 ? 'ELIA · RESPUESTA RECUPERADA' : 'CANAL ABIERTO · SIRA / ELIA') : this.chapter.speaker;
+    $('#dialog-title').textContent = this.chapter.name; $('#dialog-text').textContent = this.dialogue[this.dialoguePage];
+    $('#dialog-page').textContent = `${String(this.dialoguePage + 1).padStart(2, '0')} / ${String(this.dialogue.length).padStart(2, '0')}`;
+    $('#dialog-next').innerHTML = this.dialoguePage === this.dialogue.length - 1 ? (this.dialogueOutro ? 'Seguir el viaje <span>→</span>' : 'Interpretar señal <span>↗</span>') : 'Continuar <span>→</span>';
+    $('#dialog-next').focus();
+  }
+  nextDialogue() { this.dialoguePage++; if (this.dialoguePage >= this.dialogue.length) this.finishDialogue(); else this.renderDialogue(); }
+  finishDialogue() {
+    $('#dialog').hidden = true;
+    if (this.dialogueOutro) { if (this.selected < Core.CHAPTERS.length - 1) this.selected++; this.save(); this.home(); }
+    else this.start();
+  }
+  async start() {
+    if (this.preparing) return;
+    this.preparing = true; this.audio.stop(); this.mode = 'loading';
+    $$('.modal-layer').forEach(el => { el.hidden = true; }); $('#loading').hidden = false;
+    try {
+      if (!window.orbitaStage) throw new Error('El escenario todavía no está listo. Espera un momento y vuelve a intentar.');
+      await this.audio.unlock(); await this.audio.prepare(this.chapter, progress => { $('#loading-text').textContent = `Reconstruyendo las dos voces… ${progress}%`; }); await this.audio.unlock();
+      this.session = new Core.Session(this.chapter, this.preferences.difficulty, event => this.judge(event));
+    this.down.clear(); this.failed = false; this.lastSection = null; this.resumeAnchor = 0; this.audio.play(0, 2); this.mode = 'countdown';
+      $('#menu').hidden = true; $('#play').hidden = false; $('#app').classList.add('game-mode'); $('#loading').hidden = true;
+      $('#play-chapter').textContent = this.chapter.name.toUpperCase(); $('#connection-label').textContent = this.chapter.place;
+      $('#footer-left').textContent = `${Core.DIFFICULTIES[this.preferences.difficulty].name.toUpperCase()} · P / ESC PARA PAUSAR`;
+      $('#judgement').style.opacity = '0'; this.renderKeys();
+      window.orbitaStage.effects = [];
+      if (document.hidden || !document.hasFocus()) this.pause();
+    } catch (error) { this.home(); this.notice(error.message || 'No se pudo preparar la canción. Recarga para volver a intentar.'); }
+    finally { this.preparing = false; }
+  }
+  tick() {
+    if (this.calibration) this.updateCalibration();
+    if (!['playing', 'countdown'].includes(this.mode) || !this.session) return;
+    const time = this.songTime();
+    if (this.mode === 'countdown') {
+      const left = this.resumeAnchor - time;
+      $('#countdown').innerHTML = left > 0 ? `${Math.ceil(left)}<small>ENCUENTRA EL PULSO</small>` : '';
+      if (left <= 0) {
+        this.mode = 'playing'; this.session.resume(time - this.preferences.offset / 1000);
+        this.session.notes.filter(n => n.state === 'holding' && this.down.has(n.lane)).forEach(n => { n.down = true; });
+      }
+    }
+    if (this.mode === 'playing') {
+      this.session.update(time - this.preferences.offset / 1000);
+      if (this.session.health <= 0 && this.preferences.difficulty !== 'story') { this.finish(true); return; }
+      if (time >= this.chapter.bars * 4 * 60 / this.chapter.bpm + .6) { this.finish(false); return; }
+    }
+    const beat = Math.max(0, time) * this.chapter.bpm / 60, section = Core.sectionAt(beat);
+    if (section !== this.lastSection) {
+      this.lastSection = section;
+      $('#play-section').innerHTML = ['Pulso <small>LLAMADA Y RESPUESTA</small>', 'Deriva <small>SOSTÉN EL ENLACE</small>', 'Confluencia <small>LAS DOS VOCES</small>'][section];
+    }
+    if (performance.now() - this.lastUI < 60) return;
+    this.lastUI = performance.now();
+    $('#accuracy').innerHTML = `${this.session.accuracy.toFixed(1)}<small>%</small>`; $('#combo').textContent = String(this.session.combo).padStart(3, '0');
+    $('#health').style.width = `${this.session.health}%`; $('#health').style.background = this.session.health < 30 ? '#eeb99e' : '#a5f5d2';
+    $('#time').textContent = this.formatTime(Math.max(0, this.chapter.bars * 4 * 60 / this.chapter.bpm - time));
+    $('#song-progress').style.width = `${clamp(time / (this.chapter.bars * 4 * 60 / this.chapter.bpm) * 100, 0, 100)}%`;
+  }
+  judge({ note, grade, error }) {
+    window.orbitaStage?.hit(note.lane, grade);
+    const label = { perfect: 'EN SINTONÍA', great: 'BUEN ENLACE', good: 'SEÑAL RECIBIDA', miss: 'INTERFERENCIA' }[grade];
+    const timing = error === null || Math.abs(error) < .025 ? '' : error < 0 ? 'UN POCO ANTES' : 'UN POCO DESPUÉS';
+    const el = $('#judgement'); el.innerHTML = `${label}<small>${timing}</small>`; el.style.color = grade === 'miss' ? '#bac9d3' : note.lane < 2 ? '#a5f5d2' : '#eeb99e';
+    el.getAnimations().forEach(a => a.cancel());
+    if (this.preferences.reduced) { el.style.opacity = '1'; clearTimeout(this.judgeTimeout); this.judgeTimeout = setTimeout(() => { el.style.opacity = '0'; }, 650); }
+    else el.animate([{ opacity: 1, transform: 'translate(-50%,-50%)' }, { opacity: 0, transform: 'translate(-50%,-65%)' }], { duration: 800, fill: 'forwards' });
+  }
+  pause() {
+    if (!['playing', 'countdown'].includes(this.mode)) return;
+    this.clearKeys(true); const anchor = this.mode === 'countdown' ? this.resumeAnchor : Math.max(0, this.songTime());
+    this.audio.pause(); this.audio.offset = anchor; this.mode = 'paused'; $('#countdown').textContent = ''; $('#pause-menu').hidden = false; $('#resume').focus();
+  }
+  async resume() {
+    if (this.mode !== 'paused') return;
+    try { await this.audio.unlock(); this.resumeAnchor = this.audio.offset; this.audio.play(this.resumeAnchor, 2); this.mode = 'countdown'; $('#pause-menu').hidden = true; this.down.clear(); this.renderKeys(); }
+    catch { this.notice('Pulsa Continuar para activar el audio.'); }
+  }
+  finish(failed) {
+    this.failed = failed; this.audio.stop(); this.mode = 'results'; this.clearKeys(); $('#countdown').textContent = '';
+    $('#results').hidden = false; $('#results-kicker').textContent = failed ? 'EL ENLACE SE DEBILITÓ' : 'ENLACE RESTAURADO';
+    $('#results-title').textContent = failed ? 'La señal sigue ahí.' : 'Una voz encontró la otra.';
+    $('#results-subtitle').textContent = failed ? 'Vuelve a intentarlo o elige Historia para escuchar el viaje con calma.' : 'La conversación puede continuar.';
+    $('#rank').textContent = failed ? '↻' : this.session.rank; $('#result-accuracy').textContent = `${this.session.accuracy.toFixed(1)}%`; $('#result-combo').textContent = this.session.bestCombo; $('#result-misses').textContent = this.session.counts.miss;
+    this.session.hands.forEach((hand, i) => { $(i ? '#result-right' : '#result-left').textContent = `${i ? 'RESPUESTA' : 'LLAMADA'} · ${hand.total ? (hand.earned / hand.total * 100).toFixed(1) : '0.0'}%`; });
+    const errors = this.session.errors, average = errors.length ? errors.reduce((sum, error) => sum + error, 0) / errors.length * 1000 : 0;
+    $('#timing-tip').textContent = errors.length ? `Tendencia de tus golpes: ${Math.abs(average).toFixed(0)} ms ${average < 0 ? 'antes' : 'después'}. Puedes probar la sincronización en Ajustes.` : 'Escucha el pulso y prueba Historia para aprender las dos voces.';
+    $('#result-next').innerHTML = failed ? 'Reintentar enlace <span>↗</span>' : 'Escuchar la respuesta <span>→</span>';
+    if (!failed) { const data = this.progress[this.chapter.id] || {}; data.complete = true; data[this.preferences.difficulty] = Math.max(Number(data[this.preferences.difficulty]) || 0, this.session.accuracy); this.progress[this.chapter.id] = data; this.save(); }
+    $('#result-next').focus();
+  }
+  formatTime(seconds) { const n = Math.ceil(seconds); return `${String(Math.floor(n / 60)).padStart(2, '0')}:${String(n % 60).padStart(2, '0')}`; }
+  notice(text) { clearTimeout(this.noticeTimer); $('#notice').textContent = text; $('#notice').hidden = false; this.noticeTimer = setTimeout(() => { $('#notice').hidden = true; }, 5500); }
+  async startCalibration() {
+    if (this.calibration) return;
+    try {
+      await this.audio.unlock(); $('#calibration').hidden = false; $('#calibrate').disabled = true;
+      this.calibration = { next: this.audio.ctx.currentTime + .3, clicks: [], samples: [], shown: -1 };
+      $('#calibration-status').textContent = 'Escucha cuatro pulsos. Después pulsa ESPACIO con cada clic.';
+      this.calibrationTimer = setInterval(() => {
+        const c = this.calibration; if (!c) return;
+        while (c.next < this.audio.ctx.currentTime + .12) { this.audio.click(c.clicks.length % 4 === 0, c.next); c.clicks.push(c.next); c.next += .5; }
+        if (c.clicks.length >= 28) this.stopCalibration(true);
+      }, 25);
+    } catch { this.notice('No se pudo activar el audio. Vuelve a pulsar la prueba.'); }
+  }
+  updateCalibration() {
+    const c = this.calibration, index = c.clicks.filter(time => time <= this.audio.ctx.currentTime).length - 1;
+    if (index !== c.shown) { c.shown = index; const pulse = $('#calibration-pulse'); pulse.getAnimations().forEach(a => a.cancel()); pulse.animate([{ opacity: 1, transform: 'scale(1.4)' }, { opacity: .25, transform: 'scale(1)' }], { duration: 250 }); }
+  }
+  calibrationTap() {
+    const c = this.calibration; if (c.clicks.length < 4) return;
+    const now = this.audio.ctx.currentTime, closest = c.clicks.reduce((best, time) => Math.abs(time - now) < Math.abs(best - now) ? time : best, c.clicks[0]);
+    if (Math.abs(now - closest) > .24 || c.last === closest) return;
+    c.last = closest; c.samples.push((now - closest) * 1000); $('#calibration-status').textContent = `${c.samples.length} / 12 golpes medidos. Sigue el pulso con ESPACIO.`;
+    if (c.samples.length >= 12) this.stopCalibration(true);
+  }
+  stopCalibration(apply = false) {
+    if (!this.calibration) return;
+    if (apply && this.calibration.samples.length >= 4) {
+      const sorted = this.calibration.samples.toSorted((a, b) => a - b), n = sorted.length;
+      const median = n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2;
+      this.preferences.offset = clamp(Math.round(median / 5) * 5, -250, 250); this.save(); this.renderPreferences(); this.notice(`Sincronización ajustada: ${this.preferences.offset > 0 ? '+' : ''}${this.preferences.offset} ms.`);
+    } else if (apply) this.notice('Faltaron golpes para medir. Puedes repetir la prueba.');
+    clearInterval(this.calibrationTimer); this.calibration = null; $('#calibration').hidden = true; $('#calibrate').disabled = false;
   }
 }
-
-// Mensaje legible si no se pudo cargar Phaser ni desde CDN ni desde la copia local.
-if (typeof Phaser === 'undefined') {
-  ui.title.textContent = 'No se pudo preparar la nave.';
-  ui.description.textContent = 'Recarga la página. Si el problema continúa, comprueba que la carpeta vendor esté junto a index.html.';
-} else {
-  new Phaser.Game({
-    type: Phaser.AUTO,
-    parent: 'game',
-    backgroundColor: '#081323',
-    scale: { mode: Phaser.Scale.RESIZE, width: 1280, height: 620 },
-    physics: { default: 'arcade', arcade: { gravity: { x: 0, y: 0 }, debug: false } },
-    render: { antialias: true },
-    scene: { preload, create, update }
-  });
-}
-
+try {
+  window.gameApp = new Contrapunto();
+  new Phaser.Game({ type: Phaser.AUTO, parent: 'space', backgroundColor: '#080f19', scale: { mode: Phaser.Scale.RESIZE, width: window.innerWidth, height: window.innerHeight }, render: { antialias: true }, scene: OrbitaStage });
+} catch (error) { $('#notice').hidden = false; $('#notice').textContent = 'No se pudo iniciar la Nomad. Recarga la página y comprueba que los archivos del proyecto estén completos.'; console.error(error); }

@@ -1,93 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080f19">
-  <meta name="description" content="Órbita: una pequeña aventura espacial. Recoge cristales, esquiva asteroides y encuentra el camino a casa.">
-  <title>Órbita — El camino a casa</title>
-  <link rel="icon" href="assets/orbita.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080f19"><meta name="description" content="Órbita: Contrapunto. Dos manos, dos voces y una conversación que cruza las estrellas. Una aventura de ritmo original.">
+  <title>Órbita: Contrapunto</title><link rel="icon" href="assets/orbita.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
+  <div id="space" aria-hidden="true"></div>
+  <main id="app">
     <header class="topbar">
-      <a class="brand" href="./" aria-label="Órbita, inicio"><img src="assets/orbita.svg" alt="" width="39" height="39"><span>ÓRBITA<span class="brand-dot">.</span></span></a>
-      <div class="topbar-caption">UNA PEQUEÑA AVENTURA ESPACIAL</div>
-      <div class="online"><span></span> SISTEMAS EN LÍNEA</div>
+      <button id="home" class="brand" aria-label="Volver al mapa"><img src="assets/orbita.svg" alt=""><span>ÓRBITA<small>CONTRAPUNTO</small></span></button>
+      <div class="connection"><span class="live-dot"></span><span id="connection-label">RED DE FAROS / SECTOR AURORA</span></div>
+      <nav class="top-actions" aria-label="Opciones"><button id="help" class="quiet">Cómo jugar</button><button id="settings" class="quiet">Ajustes <span>⚙</span></button><button id="fullscreen" class="icon-button" title="Pantalla completa" aria-label="Pantalla completa">⛶</button></nav>
     </header>
 
-    <main>
-      <section class="mission-heading" aria-label="Misión">
-        <div><div class="eyebrow"><span class="tiny-line"></span> MISIÓN 001 <span class="muted">/</span> SECTOR AURORA</div><h1>El camino a casa<span>.</span></h1><p>Un último salto. Ocho cristales. Todo un universo por cruzar.</p></div>
-        <div class="mission-patch"><span class="patch-orbit">✦</span><div>EXPLORACIÓN LIBRE<small>VEHÍCULO · NOMAD-01</small></div></div>
-      </section>
-
-      <section class="game-panel" aria-label="Juego Órbita">
-        <div class="instrument-bar">
-          <div class="instrument crystals"><span class="instrument-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 10 13-10 13L6 16Z"/><path d="M6 16h20M16 3l-4 13 4 13 4-13Z" class="fine-line"/></svg></span><div><span class="instrument-label">CRISTALES</span><div class="instrument-value"><span id="crystal-count">00</span><span class="value-total"> / 08</span></div></div><div class="crystal-slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div class="instrument"><span class="instrument-icon clock-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 8v9l6 3"/><path d="M16 3v3m13 10h-3M16 29v-3M3 16h3" class="fine-line"/></svg></span><div><span class="instrument-label">TIEMPO RESTANTE</span><div class="instrument-value" id="time-left">01:15</div></div></div>
-          <div class="instrument shield-instrument"><span class="instrument-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 10 4v9c0 6-10 13-10 13S6 22 6 16V7Z"/><path d="M16 9v12m-6-6h12" class="fine-line"/></svg></span><div><span class="instrument-label">ESCUDO</span><div class="shield-bars" id="shield-bars" aria-label="3 de 3 puntos de escudo"><i></i><i></i><i></i></div></div></div>
-          <div class="game-actions"><button id="sound-button" class="icon-button" aria-label="Activar sonido" aria-pressed="false" title="Activar sonido"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path id="sound-waves" d="m16 9 6 6m0-6-6 6"/></svg></button><span class="action-divider"></span><button id="pause-button" class="icon-button" aria-label="Pausar misión" title="Pausar (P)" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button></div>
-        </div>
-
-        <div class="viewport" id="viewport">
-          <div id="game" tabindex="0" role="application" aria-label="Juego espacial. Usa las flechas o WASD para moverte. P para pausar."></div>
-          <div class="sector-label"><span class="live-dot"></span> AURORA <span>/ 07.24.86</span></div>
-          <div class="coordinates" id="coordinates">X 0180 <span>Y 0360</span></div>
-          <div class="screen-effect" id="screen-effect" aria-hidden="true"></div>
-          <div class="overlay" id="overlay">
-            <div class="briefing" id="briefing">
-              <div class="eyebrow" id="overlay-kicker"><span class="tiny-line"></span> TU MISIÓN TE ESPERA</div>
-              <h2 id="overlay-title">El universo es enorme.<br><em>Tu próximo paso, pequeño.</em></h2>
-              <p id="overlay-description">Pilota la Nomad, reúne los 8 cristales de energía y activa el portal para volver a casa. Cuidado con los asteroides.</p>
-              <button class="primary-button" id="start-button" disabled>Preparando nave… <span>↗</span></button>
-              <div class="launch-note" id="launch-note"><span class="key">↵</span> para despegar <span class="note-dot">·</span> 75 segundos de aventura</div>
-            </div>
-          </div>
-          <div class="toast" id="toast" role="status" aria-live="polite"></div>
-          <div class="portal-hint" id="portal-hint" hidden>PORTAL ACTIVADO <span>CONTINÚA A LA DERECHA →</span></div>
-        </div>
-
-        <div class="route-bar"><span>INICIO</span><div class="route-track" aria-label="Avance por el sector"><div id="route-progress"></div><span class="route-ship" id="route-ship">◆</span><i></i><i></i><i></i><i></i></div><span class="route-destination">◇ PORTAL</span></div>
-      </section>
-
-      <div class="below-game">
-        <div class="controls-legend"><span class="legend-label">CONTROLES</span><span class="key">←</span><span class="key">↑</span><span class="key">↓</span><span class="key">→</span><span class="or">o</span><span class="key wide-key">W A S D</span><span class="legend-description">Mover nave</span><span class="legend-separator"></span><span class="key">P</span><span class="legend-description">Pausa</span></div>
-        <span class="explore-note"><span></span> Tómate un momento. Mira las estrellas.</span>
+    <section id="menu" class="screen menu-screen" aria-label="Mapa de faros">
+      <div class="menu-content">
+        <div class="eyebrow"><span class="tiny-line"></span> UNA AVENTURA DE RITMO Y SEÑALES</div>
+        <h1>Hay mensajes que<br>todavía esperan<br><em>una respuesta.</em></h1>
+        <p class="lead">Dos manos. Dos voces. Una nave entre mundos.<br>Reconstruye las canciones que la distancia dejó a medias.</p>
+        <div class="chapter-list" id="chapter-list" aria-label="Elegir encuentro"></div>
+        <div class="launch-row"><button id="launch" class="primary">Escuchar la señal <span>↗</span></button><div class="mission-summary"><span id="mission-duration">01:12</span><span id="mission-bpm">120 BPM</span></div></div>
+        <div class="difficulty-row"><span>DIFICULTAD</span><div class="segmented" id="difficulty" role="group" aria-label="Dificultad"><button data-difficulty="story">Historia</button><button data-difficulty="normal" aria-pressed="true" class="selected">Normal</button><button data-difficulty="expert">Experto</button></div></div>
       </div>
+      <aside class="transmission" aria-label="Señal seleccionada"><div class="transmission-top"><span class="live-dot"></span> SEÑAL DETECTADA <span>↗</span></div><div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="eyebrow" id="transmission-place">FARO 07 · AURORA</span><h2 id="transmission-title">Alguien sigue escuchando.</h2><p id="transmission-description">Una señal lleva años repitiéndose. Dale una respuesta.</p><div class="transmission-bottom"><span>NOMAD–01</span><span id="chapter-best">ENLACE POR ESTABLECER</span></div></aside>
+      <div class="orbital-coordinate">AURORA / 07.24.86 <span>✦</span> CANAL DE LARGO ALCANCE</div>
+    </section>
 
-      <div class="touch-controls" aria-label="Controles táctiles"><button data-direction="left" aria-label="Mover a la izquierda">←</button><div><button data-direction="up" aria-label="Mover arriba">↑</button><button data-direction="down" aria-label="Mover abajo">↓</button></div><button data-direction="right" aria-label="Mover a la derecha">→</button></div>
+    <section id="play" class="screen play-screen" hidden aria-label="Interpretación musical">
+      <div class="hud"><div><span class="label" id="play-chapter">FARO DORMIDO</span><span class="hud-title" id="play-section">Pulso <small>LLAMADA Y RESPUESTA</small></span></div><div class="hud-stats"><div><span class="label">PRECISIÓN</span><strong id="accuracy">100.0<small>%</small></strong></div><div><span class="label">CADENA</span><strong id="combo">000</strong></div><button id="pause" class="icon-button" aria-label="Pausar">Ⅱ</button></div></div>
+      <div class="stability"><span>ESTABILIDAD DEL ENLACE</span><div class="stability-track"><i id="health"></i></div><span id="time">00:00</span></div>
+      <div class="judgement" id="judgement" role="status" aria-live="off"></div>
+      <div class="countdown" id="countdown" aria-live="polite"></div>
+      <div class="hands-label"><span>LA LLAMADA</span><span>LA RESPUESTA</span></div>
+      <div class="keypads" id="keypads"><button data-lane="0" aria-label="Canal izquierdo exterior">D</button><button data-lane="1" aria-label="Canal izquierdo interior">F</button><span></span><button data-lane="2" aria-label="Canal derecho interior">J</button><button data-lane="3" aria-label="Canal derecho exterior">K</button></div>
+      <div class="song-progress"><i id="song-progress"></i></div>
+    </section>
 
-      <section class="mission-notes" aria-label="Instrucciones de la misión">
-        <article><span class="note-number">01</span><div><h3>Recoge la energía</h3><p>Encuentra los 8 cristales que iluminan el sector.</p></div><span class="note-symbol mint">◇</span></article>
-        <article><span class="note-number">02</span><div><h3>Cuida tu nave</h3><p>Tienes 3 puntos de escudo. Evita los asteroides.</p></div><span class="note-symbol peach">◌</span></article>
-        <article><span class="note-number">03</span><div><h3>Vuelve a casa</h3><p>Al reunirlos todos, cruza el portal al final del mapa.</p></div><span class="note-symbol violet">◎</span></article>
-      </section>
-    </main>
-    <footer><span>HECHO PARA EXPLORAR.</span><span>ÓRBITA <span class="footer-cross">✦</span> PHASER 3</span></footer>
-  </div>
-  <noscript><p class="noscript">Activa JavaScript para iniciar la misión.</p></noscript>
-  <script>
-    // Phaser por CDN, como en el taller. La copia local permite jugar sin conexión.
-    function loadScript(source) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = source;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.body.appendChild(script);
-      });
-    }
-    loadScript('https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js')
-      .catch(() => loadScript('vendor/phaser.min.js'))
-      .then(() => loadScript('visuals.js'))
-      .then(() => loadScript('game.js'))
-      .catch(() => {
-        document.querySelector('#overlay-title').textContent = 'No se pudo preparar la nave.';
-        document.querySelector('#overlay-description').textContent = 'Recarga la página y comprueba que game.js, visuals.js y vendor/phaser.min.js estén en el proyecto.';
-        document.querySelector('#start-button').textContent = 'Recarga para volver a intentar';
-      });
-  </script>
-</body>
-</html>
+    <footer><span id="footer-left">TU MANO IZQUIERDA LLAMA. TU MANO DERECHA RESPONDE.</span><span id="footer-right"><kbd>D</kbd><kbd>F</kbd><span class="footer-gap"></span><kbd>J</kbd><kbd>K</kbd> <span class="footer-caption">DOS VOCES · UN MISMO VIAJE</span></span></footer>
+
+    <section id="dialog" class="modal-layer" hidden aria-labelledby="dialog-title"><div class="dialog-card"><div class="dialog-top"><span class="eyebrow" id="dialog-kicker">TRANSMISIÓN ENTRANTE</span><span id="dialog-page">01 / 03</span></div><div class="signal-avatar" aria-hidden="true">⌁</div><span class="label" id="dialog-speaker">SIRA · OPERADORA DEL FARO</span><h2 id="dialog-title">Faro dormido</h2><p id="dialog-text"></p><div class="dialog-actions"><button id="dialog-skip" class="quiet">Saltar transmisión</button><button id="dialog-next" class="primary">Continuar <span>→</span></button></div></div></section>
+
+    <section id="pause-menu" class="modal-layer" hidden aria-labelledby="pause-title"><div class="panel compact"><span class="eyebrow">SISTEMAS EN ESPERA</span><h2 id="pause-title">La señal te espera.</h2><p id="pause-description">La música y tus notas continuarán juntas.</p><button id="resume" class="primary full">Continuar <span>→</span></button><button id="restart" class="secondary full">Reiniciar encuentro</button><button id="back-map" class="quiet full">Volver al mapa de faros</button><small class="hint">P / ESC para continuar · Reanuda los sostenidos al volver.</small></div></section>
+
+    <section id="results" class="modal-layer" hidden aria-labelledby="results-title"><div class="panel result-panel"><span class="eyebrow" id="results-kicker">ENLACE RESTAURADO</span><div class="rank" id="rank">A</div><h2 id="results-title">Una voz encontró la otra.</h2><p id="results-subtitle">La conversación puede continuar.</p><div class="result-stats"><div><span class="label">PRECISIÓN</span><strong id="result-accuracy">0%</strong></div><div><span class="label">MEJOR CADENA</span><strong id="result-combo">0</strong></div><div><span class="label">SEÑALES PERDIDAS</span><strong id="result-misses">0</strong></div></div><div class="hand-results"><span id="result-left"></span><span id="result-right"></span></div><p class="hint" id="timing-tip"></p><div class="result-actions"><button id="retry" class="secondary">Volver a interpretar</button><button id="result-next" class="primary">Escuchar la respuesta <span>→</span></button></div></div></section>
+
+    <section id="help-panel" class="modal-layer" hidden aria-labelledby="help-title"><div class="panel help-panel"><button class="close" data-close="help-panel" aria-label="Cerrar instrucciones">×</button><span class="eyebrow">DOS MANOS · DOS VOCES</span><h2 id="help-title">Escucha. Encuentra el pulso.</h2><p>Las señales bajan hacia la línea de luz. Pulsa su tecla cuando lleguen al receptor.</p><div class="help-notes"><article><span class="note-preview diamond"></span><div><h3>Pulso</h3><p>Un toque preciso. Sigue la llamada y su respuesta.</p></div></article><article><span class="note-preview hold"></span><div><h3>Resonancia</h3><p>Mantén la tecla durante toda la estela. Puedes soltar al llegar su final.</p></div></article><article><span class="note-preview chord">◇◇</span><div><h3>Enlace</h3><p>Dos señales a la vez. Haz que las dos voces coincidan.</p></div></article></div><div class="help-keys"><span><kbd>D</kbd><kbd>F</kbd> Mano izquierda</span><span><kbd>J</kbd><kbd>K</kbd> Mano derecha</span></div><p class="hint">Historia permite escuchar el relato con calma. Normal y Experto añaden señales y exigencia. P / Escape pausa; los botones de los canales también admiten toque.</p><button class="primary full" data-close="help-panel">Entendido <span>→</span></button></div></section>
+
+    <section id="settings-panel" class="modal-layer" hidden aria-labelledby="settings-title"><div class="panel settings-panel"><button class="close" data-close="settings-panel" aria-label="Cerrar ajustes">×</button><span class="eyebrow">CABINA DE LA NOMAD</span><h2 id="settings-title">A tu ritmo.</h2><label class="setting-label" for="volume">Volumen <output id="volume-value">65%</output></label><input id="volume" type="range" min="0" max="100" value="65"><label class="setting-label" for="offset">Ajuste de sincronización <output id="offset-value">0 ms</output></label><input id="offset" type="range" min="-250" max="250" step="5" value="0"><p class="hint">Si tus golpes llegan después de la música, aumenta el valor. Usa la prueba para encontrar tu ajuste.</p><button id="calibrate" class="secondary full">Probar sincronización</button><div id="calibration" hidden><p id="calibration-status" role="status">Escucha cuatro pulsos. Después pulsa ESPACIO con cada clic.</p><div class="calibration-pulse" id="calibration-pulse"></div><button id="calibration-stop" class="quiet full">Terminar prueba</button></div><label class="check"><input type="checkbox" id="reduced"> Reducir movimiento y efectos</label><span class="setting-label">Controles <span class="hint">Pulsa un botón y luego una tecla</span></span><div class="rebinds" id="rebinds"><button data-bind="0">D</button><button data-bind="1">F</button><button data-bind="2">J</button><button data-bind="3">K</button></div><p class="hint" id="binding-status" role="status">Dos teclas por mano. Los cambios se guardan en este equipo.</p><button class="primary full" data-close="settings-panel">Listo <span>✓</span></button></div></section>
+    <div id="loading" class="modal-layer" hidden><div class="loading-panel" role="status"><div class="loading-orbit"></div><span class="eyebrow">SINTONIZANDO LA NOMAD</span><h2 id="loading-text">Reconstruyendo la canción…</h2><p>Preparando las dos voces de este encuentro.</p></div></div>
+    <div id="notice" class="notice" hidden role="status"></div>
+  </main>
+  <noscript>Activa JavaScript para interpretar la señal.</noscript>
+  <script src="rhythm.js"></script><script src="music.js"></script><script src="vendor/phaser.min.js"></script><script src="visuals.js"></script><script src="stage.js"></script><script src="game.js"></script>
+</body></html>

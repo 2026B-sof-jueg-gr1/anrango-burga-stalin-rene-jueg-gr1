@@ -1,86 +1,104 @@
-# Órbita — El camino a casa
+# Órbita: Contrapunto
 
-Una pequeña aventura espacial para el taller **Setup, Desarrollo y Despliegue con Phaser 3**.
+**Dos manos. Dos voces. Una conversación que cruza las estrellas.**
 
-Pilota la Nomad-01, recoge **8 cristales**, evita los asteroides y cruza el portal al final del sector. Tienes **75 segundos** y **3 puntos de escudo**.
+Una aventura de ritmo para teclado, desarrollada con Phaser 3 y Web Audio. A bordo de la Nomad, reconstruyes los mensajes de una red de faros interestelares. Tu mano izquierda interpreta la llamada; la derecha, la respuesta.
 
-## Ejecutar
+## Esta versión
 
-1. Abre esta carpeta en Visual Studio Code.
-2. Instala la extensión **Live Server** si aún no la tienes.
-3. Haz clic derecho en `index.html` → **Open with Live Server**.
+Tres encuentros conectan la historia de Sira y su hija Elia:
 
-Alternativa si tienes Python instalado:
+| Encuentro | Tempo | Duración musical | Historia |
+| --- | --- | --- | --- |
+| Faro dormido | 120 BPM | 1:12 | Una operadora conserva una melodía para su hija. |
+| La respuesta pendiente | 128 BPM | 1:08 | Elia responde con la voz de la persona en que se convirtió. |
+| Mar de estática | 140 BPM | 1:09 | Las dos partes atraviesan el corredor y restauran el enlace. |
+
+Cada canción evoluciona entre **Pulso**, **Deriva** y **Confluencia**: llamada y respuesta, notas sostenidas y coordinación simultánea. Son fases de un mismo sistema de cuatro canales. Hay notas simples, sostenidos y acordes; las teclas mantienen su posición durante todo el encuentro.
+
+Las tres piezas son composiciones originales sintetizadas para el juego: ambiente espacial, bajos, batería electrónica y guitarras de cuerda modelada mediante Karplus–Strong. Las dos voces y el mapa de notas comparten partitura. La música se genera antes de jugar y se conserva en memoria durante la sesión, sin depender de servicios de audio, archivos de canciones externos o claves de API. Las guitarras son sintetizadas, no grabaciones de instrumentos reales.
+
+La interfaz ocupa la ventana completa, con mapa de faros, historia, instrucciones, ajustes y resultados integrados. El botón ⛶ permite solicitar pantalla completa del navegador. El movimiento reducido del sistema se respeta y se puede ajustar en el juego.
+
+## Ejecutar localmente
+
+Abre esta carpeta en VS Code y usa **Open with Live Server** sobre `index.html`. También puedes ejecutar:
 
 ```powershell
-python -m http.server 4173
+python -m http.server 4174 --bind 127.0.0.1
 ```
 
-Abre <http://localhost:4173>. No requiere npm, compilación ni claves de servicios.
-
-Phaser 3.90.0 se importa desde jsDelivr. Si el CDN falla, se usa la misma versión incluida en `vendor/`. Las fuentes de Google son opcionales y cuentan con alternativas del sistema. Todas las imágenes del juego se dibujan localmente con Canvas.
+Abre <http://127.0.0.1:4174>. El juego no requiere npm ni compilación. El primer clic para interpretar activa el audio del navegador.
 
 ## Controles
 
-| Acción | Control |
+| Acción | Entrada |
 | --- | --- |
-| Mover la nave | Flechas o WASD |
-| Pausar / continuar | P, Escape o botón de pausa |
-| Empezar / reintentar | Enter o botón en pantalla |
-| Activar / silenciar efectos | Botón de sonido |
-| Jugar en móvil | Botones táctiles bajo el escenario |
+| Voz izquierda | D / F |
+| Voz derecha | J / K |
+| Pausar y continuar | P / Escape |
+| Pantalla completa | Botón ⛶ |
+| Navegar menús | Ratón o Tab y Enter |
 
-La velocidad diagonal se normaliza para que no sea más rápida. Los impactos otorgan 1,7 segundos de protección para poder escapar. El juego se pausa al cambiar de pestaña o salir de la ventana. El sonido comienza silenciado y solo se activa por decisión del jugador.
+Las cuatro letras se pueden reasignar en **Ajustes**. P se reserva para pausa. Los botones de los cuatro canales también admiten entrada táctil. La experiencia principal está pensada para teclado con dos manos; los acordes se limitan a dos canales simultáneos.
 
-## Archivos
+Pulsa cuando la señal llega al receptor. Mantén la tecla durante una nota larga. Al volver de una pausa, tienes una cuenta de entrada y un breve margen para recuperar un sostenido que estuvieras tocando.
 
-- `index.html`: página, contadores, instrucciones, controles y carga de Phaser.
-- `styles.css`: presentación y adaptación a móvil.
-- `game.js`: configuración, escenas, movimiento, colisiones y reglas de la misión.
-- `visuals.js`: texturas, iluminación, partículas, propulsor, escudo y portal animado.
-- `assets/orbita.svg`: símbolo original del proyecto.
-- `vendor/phaser.min.js`: copia de respaldo de Phaser.
-- `vendor/PHASER-LICENSE.md`: licencia MIT de Phaser.
+## Dificultad y progreso
 
-## Cómo explicar el código en clase
+- **Historia:** una partitura más accesible; los errores no interrumpen el relato.
+- **Normal:** incorpora respuestas adicionales, acordes y pérdida de estabilidad por errores.
+- **Experto:** añade alternancias más densas y ventanas de precisión menores.
 
-El taller usa el ciclo `preload`, `create`, `update`. Este proyecto conserva esa estructura:
+Las tres dificultades conservan el tempo y las escenas de historia. Cada encuentro se puede volver a interpretar; el mapa permite seleccionar cualquiera de los tres. Los resultados muestran precisión, mejor cadena, señales perdidas y desempeño de cada mano.
 
-1. **Configuración:** `MISSION` contiene tiempo, velocidad, escudo y posiciones del mapa. Al final del archivo se crea `new Phaser.Game(...)` con física Arcade.
-2. **`preload()`** prepara las texturas de la nave y del escenario.
-3. **`create()`** crea al jugador, los cristales y asteroides; configura teclado, límites del mundo, cámara y detección de contacto con `physics.add.overlap`.
-4. **`update()`** lee las teclas, aplica velocidad a la nave y descuenta el tiempo. La cámara sigue al jugador con `startFollow`.
-5. **Reglas:** `collectCrystal()` suma energía; `hitAsteroid()` resta escudo; `enterPortal()` comprueba que estén los ocho cristales; `finishMission()` muestra el resultado.
-6. **Interfaz:** `updateHUD()` actualiza los contadores; `togglePause()` detiene y reanuda la misión; `startMission()` restablece la partida.
-7. **Arte:** `makeTextures()` y `drawRoute()` están en `visuals.js` y solo dibujan. El movimiento por capas del fondo usa diferentes factores de desplazamiento. Las animaciones de recogida, impacto y llegada al portal están separadas de las reglas.
+La repetición automática del teclado no produce nuevos golpes. Pulsar canales vacíos reduce la precisión; los errores afectan a la estabilidad según la dificultad. Un sostenido puntúa su inicio y su final.
 
-Las funciones de arte están en un archivo independiente para poder explicar primero las reglas del juego. Este proyecto amplía el ejemplo básico del taller con recolección, colisiones, tiempo y estados de partida. Las texturas se preparan una sola vez; los efectos temporales se destruyen al terminar y se limpian al reiniciar. La preferencia de movimiento reducido del dispositivo desactiva partículas, destellos y transiciones.
+El progreso, los mejores resultados por dificultad, las teclas y los ajustes se guardan en el almacenamiento local del navegador. No hay cuenta ni servidor de partidas. Si el almacenamiento no está disponible, se puede jugar sin persistencia.
 
-## Publicar en GitHub Pages
+## Sincronización y sonido
 
-1. Usa el repositorio **público** de la organización de tu grupo: [2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1).
-2. Coloca los archivos de este proyecto en la **raíz del repositorio**. `index.html` debe quedar junto al README, para que Pages encuentre el juego directamente. La carpeta `tmp/` contiene material de trabajo y no forma parte de la entrega.
-3. Guarda y sube los cambios a la rama principal.
-4. En GitHub, abre **Settings → Pages → Deploy from a branch**.
-5. Elige la rama principal y la carpeta **/(root)** y guarda.
-6. Espera a que termine el despliegue y abre el enlace publicado para verificar la partida.
+En **Ajustes** puedes cambiar volumen y compensación temporal entre -250 y +250 ms. Un valor positivo compensa golpes que llegan después de la referencia de audio.
 
-El archivo `.nojekyll` permite servir los recursos estáticos directamente. Se utilizan rutas relativas compatibles con Pages.
+**Probar sincronización** emite un metrónomo. Escucha los primeros cuatro pulsos y luego pulsa Espacio al ritmo de los clics. Con suficientes muestras se propone la mediana de los desfases, redondeada a 5 ms. La medición es personal: la latencia depende del equipo y la salida de audio.
 
-## Entrega en Teams
+El reloj de `AudioContext` gobierna las notas y la canción. Cambiar de pestaña o perder el foco pausa la partida. La reanudación crea una fuente de audio en el punto guardado, precedida por una cuenta de entrada. El modo de movimiento reducido atenúa las animaciones sin cambiar los tiempos de juicio.
 
-Completa este mensaje con tu información y los enlaces reales:
+## Estructura del código
 
-```text
-Mi Proyecto Phaser – [Tus Nombres y Apellidos]
-Link al juego: [Enlace de GitHub Pages]
-Link al código: [Enlace del repositorio]
+- `index.html`: pantallas, controles, diálogos e instrucciones.
+- `styles.css`: interfaz de juego que se adapta a la ventana.
+- `rhythm.js`: capítulos, partitura, mapas por dificultad y reglas de juicio; se prueba sin navegador.
+- `music.js`: síntesis de las canciones, reproducción y reloj musical.
+- `game.js`: historia, estados de partida, entrada, resultados, calibración y persistencia.
+- `stage.js`: escenario Phaser, nave, receptores, notas y efectos.
+- `visuals.js`: texturas originales de Órbita, creadas una sola vez con Canvas.
+- `assets/orbita.svg`: emblema del juego.
+- `vendor/`: Phaser 3.90.0 y su licencia MIT, incluidos para jugar sin descargar la librería.
+- `tests/`: pruebas del sistema de notas e integración en un navegador aislado.
+
+Las fuentes de Google Fonts son opcionales y tienen alternativas locales. Las rutas de recursos son relativas, compatibles con GitHub Pages.
+
+## Verificación
+
+Pruebas del núcleo, con Node.js:
+
+```powershell
+node --test tests/rhythm.test.cjs
 ```
 
-Después, juega y comenta los proyectos de al menos dos compañeros, como indica la guía del taller.
+Cubren los nueve mapas (tres encuentros por tres dificultades), interpretaciones perfectas, sostenidos, pausa, entradas incorrectas y pérdida de estabilidad.
+
+La prueba `tests/browser-smoke.cjs` requiere Playwright y un servidor local. Usa una instancia aislada de Chrome; no accede al perfil personal. El ejecutable se puede indicar mediante `CHROME_EXECUTABLE` y la dirección mediante `ORBITA_TEST_URL`. Comprueba preparación real de audio, dimensiones de pantalla, controles, pausa, resultado, historia y persistencia. Las capturas de QA se guardan en `tmp/`, ignorado por Git.
+
+## Publicar
+
+Repositorio: <https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1>
+
+Conserva `index.html` en la raíz, junto con los otros scripts y las carpetas `assets` y `vendor`. En GitHub Pages utiliza **Deploy from a branch → main → /(root)**. `.nojekyll` permite servir los archivos estáticos directamente.
+
+La dirección configurada del proyecto es <https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/>. Un cambio local aparece allí cuando se sube a la rama publicada y finaliza el despliegue de Pages.
 
 ## Créditos
 
-Programado en JavaScript con [Phaser 3](https://phaser.io/), distribuido bajo licencia MIT. Gráficos originales dibujados con Canvas y SVG. Tipografías DM Sans y Space Grotesk servidas por Google Fonts.
-
-Referencias técnicas: [cámaras de Phaser](https://docs.phaser.io/phaser/concepts/cameras) y [física Arcade](https://docs.phaser.io/phaser/concepts/physics/arcade).
+Historia, composiciones y gráficos originales de Órbita: Contrapunto. Desarrollado en JavaScript con [Phaser 3](https://phaser.io/), bajo licencia MIT del proveedor. Tipografías DM Sans y Space Grotesk de Google Fonts. Inspiración en la coordinación y lectura de patrones de los juegos de ritmo; no utiliza canciones, personajes o mapas de osu!.
