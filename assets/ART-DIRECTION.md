@@ -1,5 +1,31 @@
 # Dirección de arte — Órbita: Contrapunto
 
+## Pulido de movimiento y criaturas
+
+Nuevos recursos generados con la herramienta integrada `image_gen`, sin usar la alternativa CLI/API:
+
+- `elia-motion-v2.png`: doce poses, cuatro columnas y tres filas. Ocho momentos de carrera, golpe de suelo, ataque aéreo, canalización y reacción al daño. El renderizador consume recortes normalizados por transparencia para estabilizar los pies y la escala.
+- `creatures-v2.png`: cinco criaturas terrestres y cinco aéreas, cinco columnas y dos filas, una pareja por ambiente.
+- `guardians-v2.png`: seis jefes, tres columnas y dos filas. Los cinco móviles corresponden a los entornos; el sexto es el núcleo del desafío de escudo.
+
+Las hojas de Elia y los guardianes recibieron una segunda operación con la misma herramienta para retirar el fondo manteniendo posiciones y escala. Los PNG finales conservan transparencia. Los fondos anteriores se mantienen: el movimiento ambiental y los efectos se realizan con Canvas, sin modificar esas ilustraciones.
+
+### Prompt de movimientos
+
+Use case: stylized-concept. Production animated sprite sheet for ELIA, same heroine as reference illustration, identity reference only. Single transparent PNG with exact evenly spaced 4 columns by 3 rows, TWELVE equal square cells, no grid lines. Same character scale and feet baseline in each cell; generous empty alpha margin; all facing RIGHT, full body visible. Original anime space courier with short dark purple bob, copper streak, ivory/lavender flight suit, coral scarf, cyan ankle thrusters and circular plasma blade. TOP TWO ROWS: 8 successive frames of ONE fluid side-view running cycle, keyframes 0-7 in reading order, changing leg extension and arm swing naturally while head remains at the same height; sprite ready for animation. BOTTOM ROW: powerful low ground slash with circular blade forward; airborne upward slash with tucked legs and cyan jets; energy channeling stance holding circular blade forward; small damage recoil pose with arms raised. Crisp refined cel-shaded anime production artwork, consistent anatomy and outfit, clear silhouettes, expressive original heroine, no text, no labels, no watermark, no background or floor shadows. All 12 cells fully separated and aligned.
+
+### Prompt de criaturas
+
+Use case: stylized-concept. ONE transparent 2D game sprite atlas, EXACT 5 columns by 2 rows of TEN isolated enemies with empty alpha margins, equal sized cells, centered within each cell, no overlaps, no text or grid. Original colorful anime sci-fi robot creatures for side-scrolling space rhythm action, facing LEFT. Strong polished cel-shaded silhouettes, dark purple outlines, saturated coral cyan gold jade violet, metallic highlights, expressive glowing eyes. TOP ROW ground enemies, left to right: coral-white orbital cargo crab robot with four magnetic legs; jade and amber mechanical seed beetle with leaf antennae; copper industrial cog crawler with chunky tracked legs; indigo electric crystal fox robot crouching; ivory-gold miniature orbital knight robot. BOTTOM ROW flying enemies corresponding to the same five worlds: cyan orbital manta drone with peach engine; jade hummingbird pollinator drone with luminous translucent leaf wings; copper-orange wasp drone with turbine wings; purple-cyan lightning jellyfish drone with glowing tendrils; ivory-gold rotating solar cherub drone with orbital rings. Every creature distinct and beautifully detailed but legible at small game size. Side-view sprite assets, same scale across cells. GENUINE TRANSPARENT alpha-zero background; no white background or haze, no floor shadows, no watermark.
+
+### Prompt de guardianes
+
+Use case: stylized-concept. One production 2D boss sprite atlas, transparent alpha-zero PNG, exactly THREE columns by TWO rows, six equal sized square cells, generous empty transparent margins, all fully separate, no grid lines, no text. Original colorful anime sci-fi machines, side view facing LEFT, crisp dark purple outlines, refined polished cel shading, readable silhouette, luminous energy cores and detailed armor. Top row left to right: enormous coral-ivory cargo crab tank with rotating cyan plasma cannon; majestic jade-gold mechanical greenhouse stag beetle with leaf wing armor and seed cannons; copper-orange tracked industrial forging dragon with turbine cannon. Bottom row left to right: giant indigo-cyan mechanical electric manta with storm pylons on wings and forward plasma mouth; magnificent ivory-gold orbital lion with sun disk cannon and winglike ring armor; floating purple-violet faceted energy reactor with concentric broken coral/cyan armored rings and brilliant central core (shield challenge). NO humans, no scenery, no shadows, no floor, no white haze, no watermark. Every boss faces left to shoot toward player on the left. Consistent scale across all six cells, genuine clear alpha background.
+
+### Ajuste de transparencia
+
+Se solicitó retirar todo fondo blanco/gris y sombras de suelo, conservar las figuras, sus efectos y la cuadrícula exacta, y dejar alfa cero entre figuras y en las esquinas.
+
 Arte nuevo creado para la reconstrucción lateral con la herramienta integrada `image_gen`. No se usó la alternativa CLI/API. Todos los PNG se sirven localmente.
 
 `elia-aurora.png`: portada. `elia-sprites.png`: ocho poses en cuatro columnas y dos filas, con transparencia. Carrera en la fila superior; golpe terrestre, aéreo, canalización y victoria en la inferior. Canvas consume los encuadres sin alterar el PNG original. `aurora.png`, `io.png`, `scrap.png`, `ions.png`, `zero.png`: escenarios y portadas de las cinco estaciones.
