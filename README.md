@@ -1,83 +1,71 @@
 # Órbita: Contrapunto
 
-Juego de ritmo lateral espacial. Elia intenta recuperar la llamada de Sira y reparar Aurora sin borrar las conversaciones pendientes. La historia principal tiene cinco capítulos; tres rutas extra amplían el viaje.
+Juego de ritmo lateral con Phaser 3. Elia atraviesa seis estaciones para responder a la canción de su madre y devolver la comunicación a Aurora. Dos rutas extra amplían el viaje.
 
 **[Jugar](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/)** · **[Repositorio](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1)**
 
-## Cómo jugar
+## Controles
 
-- **F:** golpea abajo. **J:** golpea arriba. Las teclas responden también antes de que llegue un enemigo.
-- Pulsa cuando el objetivo llegue al círculo de su altura. Mantén la tecla para una cinta larga y pulsa ambas alturas para una pareja simultánea.
-- **P / Escape:** pausa. Puedes continuar, reiniciar o volver al selector.
-- El primer jefe se mueve y dispara proyectiles: devuélvelos siguiendo el ritmo. Más adelante aparece un núcleo protegido: alterna las dos acciones para romper su escudo.
-- En Ajustes puedes elegir 2, 4 u 8 teclas, reasignarlas, calibrar audio y reducir movimiento. Las teclas adicionales son alternativas para las mismas dos acciones; no cambian el mapa ni duplican puntos.
-- Los botones de suelo y aire admiten toque. La experiencia de partida está pensada para composición horizontal.
+- **F:** suelo. **J:** aire. Golpea cuando el objetivo llegue a su círculo.
+- Mantén las estelas. Usa ambas acciones en las parejas simultáneas.
+- Devuelve los proyectiles del jefe. Alterna las manos para lanzar aros contra el escudo.
+- **P / Escape:** pausa o vuelve. **Enter / Espacio:** activa el botón enfocado o la acción principal.
+- Ajustes permite 2, 4 u 8 teclas. Son alternativas para las mismas dos alturas; todos los mapas funcionan con cualquier configuración.
 
-## Tutorial y presentación
+La primera visita incluye una presentación breve y un entrenamiento continuo de siete pasos. Los receptores indicados destellan; un paso avanza cuando lo completas. Los errores repiten los objetivos sin quitar vida y Elia sigue corriendo. La ayuda del menú es un modal independiente. La historia se cuenta mediante seis viñetas navegables.
 
-La primera visita presenta tres frases sobre negro, escritas progresivamente. Una pulsación puede completar la frase; la siguiente avanza. Después empieza el entrenamiento, sin opción de saltar directamente desde la presentación.
+## Música
 
-El tutorial introduce las dos alturas, muestra una demostración automática y luego espera a que pulses **Practicar**. Sus siete pasos incluyen suelo, aire, alternancia, sostenidos, simultáneas, proyectiles y escudo. Cada paso correcto tiene una confirmación visual; un error permite repetir sin perder vidas. **Saltar tutorial** permanece visible en la esquina superior.
+Se usan los archivos locales proporcionados por el propietario del proyecto. Se reproduce cada archivo decodificado **completo**, a su velocidad y frecuencia originales, sin recorte a tres minutos ni fundido añadido. El tiempo de la partida, las notas y los juicios comparten el reloj del audio.
 
-La ayuda está situada abajo, con letras legibles y las teclas actuales. El personaje sigue corriendo durante la explicación. Al terminar puedes ir al menú o practicar otra vez.
+| Orden | Mapa | Canción | Archivo completo |
+| --- | --- | --- | --- |
+| 01 | Puerto Aurora | Sakuzyo — Altale | 2:36 |
+| 02 | Jardines de Io | wa. — Black Lotus | 3:02 |
+| 03 | Cinturón de Chatarra | Silentroom × 駿 — Nhelv | 2:42 |
+| 04 | Núcleo de Rebote | t+pazolite — Cheatreal | 4:54 |
+| 05 | Mar de Iones | xi — Blue Zenith | 4:18 |
+| 06 | Abismo de Plasma, extra 1 | Laur — Sound Chimera (Nyankovsky & Kobaryo Remix) | 3:39 |
+| 07 | Órbita Libre, extra 2 | Camellia — Spin Eternally | 3:50 |
+| 08 | Faro Zero, final | Kurokotei — Galaxy Collapse | 6:47 |
 
-## Música y mapas
+Los títulos y enlaces de referencia aparecen en los créditos de la canción seleccionada. Los BPM del catálogo son los indicados por el propietario como referencia; no se presentan como mediciones oficiales ni fuerzan las notas a una rejilla constante.
 
-El propietario del proyecto proporcionó los ocho MP3 locales. Las canciones se reproducen desde `assets/audio/`; no se extrae audio de YouTube ni se necesita un servicio externo durante el juego. Los enlaces de referencia y créditos están en el selector.
+Hay **24 partituras**, almacenadas como JSON con segundos explícitos. Su primera versión detecta ataques del audio en bandas graves y agudas, selecciona acentos según dificultad y conserva huecos. Incluye sostenidos, simultáneas y dos encuentros con jefes. Estos mapas son **borradores por acentos**, no partituras revisadas nota por nota. La colocación expresiva, las colas y la elección de frases aún pueden afinarse escuchando y jugando.
 
-| Estación | Artista y pista | Edición de juego |
-| --- | --- | --- |
-| Puerto Aurora | Yunomi feat. TORIENA — Wakusei Rabbit | 2:59 aprox. |
-| Jardines de Io | Nayutalien — Alien Alien | 2:59 aprox. |
-| Cinturón de Chatarra | Camellia — PLANET//SHAPER | 2:59 aprox. |
-| Mar de Iones | xi — Ascension to Heaven | 2:47 |
-| Faro Cero | Kurokotei — Galaxy Collapse | 3:00 aprox. |
-| Núcleo de Rebote, ruta extra | t+pazolite — Oshama Scramble! | 3:00 aprox. |
-| Abismo de Plasma, ruta extra | USAO — Cthugha | 2:35 aprox. |
-| Órbita Libre, ruta extra | xi — FREEDOM DiVE | 2:59 aprox. |
+El antiguo compositor de patrones periódicos se retiró. Para autoría manual se puede importar osu!mania de dos columnas o JSON, sin cuantizar sus tiempos. El editor es una herramienta de producción: la partida continúa siendo lateral.
 
-Hay **ocho rutas y tres dificultades por ruta: 24 mapas**. Las rutas extra reutilizan el mundo industrial, de iones y solar con música y patrones propios. La canción conserva su velocidad al cambiar de dificultad.
+**[Guía de mapeo y revisión musical](docs/MAPEO.md)** · **[Abrir herramientas de partituras](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/?editor=1)**
 
-Los MP3 originales se mantienen sin cambios. Al prepararlos se crea en memoria una edición de hasta tres minutos, cerrada a compás y con salida suave; los archivos más cortos conservan su duración disponible. La rejilla de pulsos se obtuvo del audio, se suavizó y quedó registrada en `src/track-maps.js`. El BPM de la rejilla es una medición de estos archivos concretos, no una afirmación del BPM oficial de cada composición.
+## Presentación y movimiento
 
-El motor calcula las notas desde esa rejilla, adapta huecos a la energía del audio y utiliza el reloj de reproducción para el juicio y la representación. Las partituras son una base generada; se pueden seguir afinando manualmente por frases y acentos. La calibración del jugador compensa diferencias de dispositivo.
+La pantalla de título conserva su ilustración. La carga tiene progreso central, porcentaje y órbitas animadas. El selector usa flechas y mantiene todas las rutas abiertas durante el desarrollo. La partida muestra puntuación, combo, pausa y vida/energía/progreso en una barra inferior.
 
-## Historia y arte
+Elia usa una escala de celda constante con calibración anatómica por pose: el contorno del aro no cambia el tamaño de su cuerpo. Hay ocho fases de carrera, transiciones cortas entre poses, desplazamiento suave entre alturas, canalización y propulsores. Las criaturas tienen balanceo, flotación y apéndices animados.
 
-La narrativa completa, los personajes, las reglas del mundo, las revelaciones y las pautas para nuevos mapas están en [docs/HISTORIA.md](docs/HISTORIA.md). Se puede consultar también el archivo narrativo desde el menú, con fragmentos asociados al progreso.
+Las partículas cambian con el entorno y el enemigo: estrellas, hojas, fragmentos y cristales. Los proyectiles y los aros recorren la distancia hasta el jefe y producen impactos en su posición. El escudo admite una ráfaga de hasta 18 segundos y exige más alternancias según dificultad.
 
-Los fondos originales se conservan y se animan con desplazamiento suave, partículas y capas ambientales. Elia tiene una nueva hoja de doce movimientos, además de su pose de victoria. Diez criaturas y seis diseños de jefe aportan identidades de carga orbital, jardín, fundición, tormenta y faro.
+Los fondos tienen tráfico orbital, hojas, chispas, ondas, rayos o anillos mediante Canvas; no necesitan videos. El ajuste de movimiento reducido elimina el movimiento decorativo y conserva las señales necesarias para jugar.
 
-Los impactos producen arcos de plasma, pulsos, fragmentos o partículas vegetales según el entorno. La devolución de un proyectil tiene una estela de regreso. Perfect/Great/Good/Miss aparecen sobre Elia. La vida y la energía tienen una barra central inferior. Se respeta el ajuste de movimiento reducido.
+**[Historia](docs/HISTORIA.md)** · **[Dirección de arte](assets/ART-DIRECTION.md)** · **[Prompt de la historieta](assets/COMIC-PROMPT.md)**
 
-Las imágenes se crearon con la herramienta integrada de generación de imágenes y se guardan localmente. Procedencia y prompts: [assets/ART-DIRECTION.md](assets/ART-DIRECTION.md).
+## Ejecutar y comprobar
 
-## Ejecución local
-
-Sin instalación ni compilación:
+No requiere instalación ni compilación:
 
 ```powershell
 python -m http.server 4175 --bind 127.0.0.1
 ```
 
-Abre [localhost:4175](http://127.0.0.1:4175) o usa Live Server. Phaser está incluido en `vendor/`. Las fuentes de Google son opcionales y tienen alternativas locales. GitHub Pages publica desde `main`, `/(root)`.
-
-## Código y comprobaciones
-
-- `src/core.js`: ocho rutas, composición de eventos, dos acciones y reglas de juicio.
-- `src/track-maps.js`: rejillas y metadatos medidos de los MP3.
-- `src/audio.js`, `src/tracks.js`: reproducción, preparación de ediciones de juego y análisis.
-- `src/scene.js`, `src/art.js`: escenario, animación, atlas, jefes y efectos.
-- `src/story.js`: narrativa y símbolos SVG.
-- `src/library.js`: catálogo y créditos de canciones.
-- `src/app.js`, `src/experience.js`: flujo, tutorial, menús, ajustes y persistencia.
-- `styles.css`, `experience.css`: interfaz adaptable y mejoras de legibilidad.
+Abre [localhost:4175](http://127.0.0.1:4175). Phaser está incluido en `vendor/`. GitHub Pages publica desde `main`, `/(root)`.
 
 ```powershell
-node --test tests/core.test.cjs
+node --test tests/core.test.cjs tests/notation.test.cjs
 node tests/browser.test.cjs
 ```
 
-La segunda prueba requiere Playwright y un servidor local. Usa Chrome en un perfil aislado; admite `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Comprueba introducción progresiva, siete demostraciones y prácticas, reintentos, F/J libre, dos jefes, reproducción y muestras de los ocho MP3, récords y seis resoluciones. Las pruebas del núcleo cubren los 24 mapas y sus sostenidos, pausa, entradas alternativas y enemigos.
+Las pruebas de navegador requieren Playwright y un servidor local. Usan Chrome con un perfil aislado; admiten `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Cubren las siete prácticas, controles, navegación, viñetas, carga, escala del personaje, dos jefes, canciones completas, récords y seis tamaños de pantalla. Las pruebas del motor comprueban los 24 mapas, sostenidos, alternancia y formatos de partitura.
 
-Las capturas y datos temporales de verificación se guardan en `tmp/`, ignorado por Git. El progreso se conserva en el navegador; los nuevos récords de esta versión se distinguen de los de la antigua banda sonora.
+`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. `src/scene.js` y `src/motion.js` dibujan y animan. `src/app.js` y `src/experience.js` controlan las pantallas y la persistencia.
+
+El progreso se guarda en el navegador. Los récords distinguen canciones y partituras importadas. Las capturas y utilidades temporales quedan en `tmp/`, ignorado por Git.

@@ -1,8 +1,8 @@
 'use strict';
 window.OrbitStory={
   title:'Las voces que quedan',
-  premise:'La tormenta aisló las colonias. Aurora va a reiniciarse y borrará los mensajes que no llegaron. Elia reconoce entre ellos la canción de su madre. Para recuperarlos, debe volver a conectar cinco estaciones sin borrar sus recuerdos.',
-  intro:['La tormenta dejó a las colonias sin voz.','Entre miles de mensajes perdidos, Elia reconoció la canción de su madre.','Cinco estaciones para recuperarla. Esta vez, nadie se quedará sin respuesta.'],
+  premise:'La tormenta aisló las colonias. Aurora va a reiniciarse y borrará los mensajes que no llegaron. Elia reconoce entre ellos la canción de su madre. Para recuperarlos, debe volver a conectar seis estaciones sin borrar sus recuerdos.',
+  intro:['La tormenta dejó a las colonias sin voz.','Entre miles de mensajes perdidos, Elia reconoció la canción de su madre.','Seis estaciones para recuperarla. Esta vez, nadie se quedará sin respuesta.'],
   ending:'Sira oye una guitarra que no conoce. Elia la construyó lejos de casa. La melodía de su madre ya tiene una respuesta propia. Aurora vuelve a transmitir, conservando las voces que el reinicio habría borrado.',
   episodes:[
     {goal:'Recupera la llamada',before:'En el puerto sigue atrapada la última llamada de Sira. Los transportes automáticos confunden cualquier señal nueva con una amenaza.',after:'«No sé si vas a oírme. Dejé encendida la luz del taller.» — Sira',discovery:'El mensaje no era una despedida: su madre sigue esperando.',enemies:'Cangrejos de carga y mantarrayas de vigilancia',radio:'ELIA · Esa melodía… mamá, voy a encontrarte.'},
