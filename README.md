@@ -6,11 +6,16 @@ Juego de ritmo lateral con Phaser 3. Elia atraviesa seis estaciones para respond
 
 ## Controles
 
-- **F:** suelo. **J:** aire. Golpea cuando el objetivo llegue a su círculo.
-- Mantén las estelas. Usa ambas acciones en las parejas simultáneas.
+- **Teclado:** F golpea el suelo y J golpea el aire.
+- **Mouse + teclado:** mueve el cursor arriba o abajo para elegir la altura. Z y X son equivalentes: cualquiera golpea donde apuntas. El mouse mueve a Elia incluso sin pulsar; el clic no golpea.
+- Mantén la tecla hasta el final de una estela. Conserva su altura inicial aunque apuntes a la otra para golpear una nota con la segunda tecla.
 - Devuelve los proyectiles del jefe. Alterna las manos para lanzar aros contra el escudo.
 - **P / Escape:** pausa o vuelve. **Enter / Espacio:** activa el botón enfocado o la acción principal.
-- Ajustes permite 2, 4 u 8 teclas. Son alternativas para las mismas dos alturas; todos los mapas funcionan con cualquier configuración.
+- Elige entre los dos modos en Ajustes o desde la ficha de una estación. Son dos teclas fijas por modo; se retiraron las configuraciones de cuatro y ocho teclas y la reasignación.
+
+Los jefes piden alternar F/J en teclado o Z/X en mouse, aunque el cursor permanezca en una altura. No cuentan repeticiones automáticas por mantener una tecla. El teclado conserva las parejas simultáneas; en mouse se condensan en un objetivo, manteniendo el sostenido si lo hay. La música y sus tiempos permanecen iguales y los archivos de partituras no se modifican.
+
+Los récords del mouse se guardan aparte. Si cambias el modo durante una pausa, el botón de continuar ofrece reiniciar con el nuevo control para no mezclar partituras ni puntuaciones. Las preferencias antiguas de ocho teclas migran a F/J.
 
 La primera visita incluye una presentación breve y un entrenamiento continuo de siete pasos. Los receptores indicados destellan; un paso avanza cuando lo completas. Los errores repiten los objetivos sin quitar vida y Elia sigue corriendo. La ayuda del menú es un modal independiente. La historia se cuenta mediante seis viñetas navegables.
 
@@ -62,10 +67,12 @@ Abre [localhost:4175](http://127.0.0.1:4175). Phaser está incluido en `vendor/`
 ```powershell
 node --test tests/core.test.cjs tests/notation.test.cjs
 node tests/browser.test.cjs
+node --test tests/input.test.cjs
+node tests/controls.browser.cjs
 ```
 
 Las pruebas de navegador requieren Playwright y un servidor local. Usan Chrome con un perfil aislado; admiten `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Cubren las siete prácticas, controles, navegación, viñetas, carga, escala del personaje, dos jefes, canciones completas, récords y seis tamaños de pantalla. Las pruebas del motor comprueban los 24 mapas, sostenidos, alternancia y formatos de partitura.
 
-`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. `src/scene.js` y `src/motion.js` dibujan y animan. `src/app.js` y `src/experience.js` controlan las pantallas y la persistencia.
+`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/input.js` controla F/J, mouse + Z/X y la adaptación de parejas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. `src/scene.js` y `src/motion.js` dibujan y animan. `src/app.js` y `src/experience.js` controlan las pantallas y la persistencia.
 
 El progreso se guarda en el navegador. Los récords distinguen canciones y partituras importadas. Las capturas y utilidades temporales quedan en `tmp/`, ignorado por Git.

@@ -46,4 +46,4 @@ Los intervalos especiales usan `{ "time": 60, "end": 78 }`. No añadas un escudo
 
 Las ocho pistas son las seleccionadas el 14 de noviembre de 2026. Se usa Altale, no After Altale, porque ese es el archivo disponible. Cheatreal dura 4:54 y Galaxy Collapse, 6:47; se conservan enteras. Los BPM del catálogo son las referencias proporcionadas, mientras que los golpes del borrador se colocan en ataques del archivo, sin obligarlos a esa cifra.
 
-Falta una revisión musical de autor para convertir los borradores en mapas definitivos. El importador y la exportación permiten hacer esa revisión por frases sin cambiar el motor, las animaciones ni las configuraciones de 2, 4 u 8 teclas.
+Falta una revisión musical de autor para convertir los borradores en mapas definitivos. El importador y la exportación permiten hacer esa revisión por frases sin cambiar el motor ni las animaciones. Los modos actuales son teclado F/J y mouse + Z/X. La partitura de autor conserva sus dos alturas; en mouse las parejas simultáneas se condensan durante la partida porque el cursor apunta a una altura cada vez. Los JSON originales y los tiempos de la canción se conservan.

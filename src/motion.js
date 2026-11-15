@@ -44,6 +44,10 @@ class OrbitMotionScene extends OrbitScene{
   }
   targets(s,t,level,reduced){
     super.targets(s,t,level,reduced);const app=window.app,c=this.ctx,A=OrbitArt,tr=app.state==='tutorial'?app.training:null;
+    if(app.settings.inputMode==='hybrid'){
+      const action=app.input.aim,y=action?375:535,col=action?level.colors[4]:level.colors[3];
+      c.save();c.strokeStyle=col;c.lineWidth=4;c.shadowColor=col;c.shadowBlur=reduced?0:12;c.beginPath();c.arc(this.hitX,y,35,0,Math.PI*2);c.stroke();c.shadowBlur=0;c.fillStyle=col;c.font='700 13px Arial';c.fillText('Z / X',this.hitX+48,y+5);c.restore();
+    }
     if(!tr||tr.phase!=='practice')return;let actions=[];
     if(tr.step===6)actions=[0,1];else{const pending=s.notes.filter(n=>n.state!=='done'),next=pending[0];if(next)actions=pending.filter(n=>Math.abs(n.time-next.time)<.02).map(n=>n.action);}
     for(const action of new Set(actions)){const y=action?375:535,col=action?level.colors[4]:level.colors[3],p=reduced?.7:(Math.sin(this.visualTime*5)+1)/2;c.save();c.strokeStyle=col;c.shadowColor=col;c.shadowBlur=reduced?0:20;c.lineWidth=3;c.globalAlpha=.4+p*.55;c.beginPath();c.arc(this.hitX,y,34+p*12,0,Math.PI*2);c.stroke();A.poly(c,[[this.hitX+62,y-10],[this.hitX+46,y],[this.hitX+62,y+10]],col);c.restore();}
@@ -77,10 +81,10 @@ class OrbitMotionScene extends OrbitScene{
     }
   }
   actor(s,t,delta,reduced){
-    const app=window.app,c=this.ctx,A=OrbitArt,x=this.hitX-60,channel=s?.notes.some(n=>n.state==='holding'),airHeld=s?.notes.some(n=>n.state==='holding'&&n.action===1),active=t<this.poseUntil,air=active?this.pose:airHeld?1:0;
+    const app=window.app,c=this.ctx,A=OrbitArt,x=this.hitX-60,channel=s?.notes.some(n=>n.state==='holding'),airHeld=s?.notes.some(n=>n.state==='holding'&&n.action===1),active=t<this.poseUntil,air=app.settings.inputMode==='hybrid'?app.input.aim:active?this.pose:airHeld?1:0;
     const target=air?535:610;this.charY+=(target-this.charY)*(1-Math.exp(-Math.min(delta,50)/58));
     c.save();c.globalAlpha=.25;A.circle(c,x,615,Math.max(17,32-(610-this.charY)*.07),'#13152c');c.restore();
-    const cycle=[0,1,2,3,4,5,6,7],frame=t<this.damageUntil?11:channel?(air?9:10):active?(air?9:8):reduced?0:cycle[Math.floor(this.visualTime*16)%8];
+    const cycle=[0,1,2,3,4,5,6,7],frame=t<this.damageUntil?11:channel?(air?9:10):active?(air?9:8):air?3:reduced?0:cycle[Math.floor(this.visualTime*16)%8];
     if(frame!==this.actorFrame){this.previousFrame=this.actorFrame;this.actorFrame=frame;this.frameChanged=this.visualTime;}
     const cellW=this.motion.image.width/4,cellH=this.motion.image.height/3;
     // La escala depende de la celda de producción y de la cabeza, nunca del contorno del ataque.
@@ -93,7 +97,7 @@ class OrbitMotionScene extends OrbitScene{
     this.actorMetrics={frame,cellSize:218*calibration[frame],x,y:this.charY,headScale:calibration[frame]};
     if(!reduced){
       c.save();c.globalCompositeOperation='screen';const gait=this.visualTime*17;
-      if(air||channel){const col=air?app.level.colors[4]:app.level.colors[3];c.strokeStyle=col;c.lineWidth=3;c.shadowColor=col;c.shadowBlur=15;for(let i=0;i<2;i++){c.beginPath();c.ellipse(this.hitX-18,air?375:535,25+i*8,35+i*9,this.visualTime*2,0,Math.PI*2);c.stroke();}}
+      if(air&&active||channel){const col=air?app.level.colors[4]:app.level.colors[3];c.strokeStyle=col;c.lineWidth=3;c.shadowColor=col;c.shadowBlur=15;for(let i=0;i<2;i++){c.beginPath();c.ellipse(this.hitX-18,air?375:535,25+i*8,35+i*9,this.visualTime*2,0,Math.PI*2);c.stroke();}}
       if(air){const length=30+Math.sin(gait)*9;c.fillStyle='#9cffff88';A.poly(c,[[x-18,this.charY-25],[x-60,this.charY+length],[x-5,this.charY-12]],'#9cffff66');}
       if(!air&&!active){for(let i=0;i<4;i++){const p=((this.visualTime*3+i*.25)%1);c.globalAlpha=(1-p)*.3;A.circle(c,x-35-p*60,612-p*8,2+p*5,app.level.colors[4]);}}
       c.restore();

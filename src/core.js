@@ -6,7 +6,7 @@
   const known=node?require('./track-maps.js'):(root.OrbitTrackMaps||{});
   LEVELS.forEach(l=>{if(known[l.songId])Object.assign(l,known[l.songId]);if(l.sourceDuration){l.duration=l.sourceDuration;l.bars=Math.floor((l.duration-(l.firstBeat||0))*l.bpm/240);}if(node){try{l.charts=require('../assets/charts/'+l.songId+'.json');}catch(error){if(error.code!=='MODULE_NOT_FOUND')throw error;}}});
   const RULES={easy:{name:'Fácil',perfect:.08,great:.13,window:.18,damage:5,boss:32},medium:{name:'Medio',perfect:.06,great:.11,window:.15,damage:8,boss:48},hard:{name:'Difícil',perfect:.045,great:.09,window:.13,damage:10,boss:64}};
-  const PRESETS={2:[['KeyF'],['KeyJ']],4:[['KeyD','KeyF'],['KeyJ','KeyK']],8:[['KeyA','KeyS','KeyD','KeyF'],['KeyJ','KeyK','KeyL','Semicolon']]};
+  const KEYBOARD=[['KeyF'],['KeyJ']];
   function chart(level,difficulty){
     const notation=node?require('./notation.js'):root.OrbitNotation;
     if(!level.charts?.[difficulty])throw Error('Prepara la canción antes de iniciar su partitura.');
@@ -23,11 +23,11 @@
       else{this.combo++;this.bestCombo=Math.max(this.bestCombo,this.combo);this.score+=Math.round(1000*value*(1+Math.min(1,Math.floor(this.combo/10)*.1)));this.health=Math.min(100,this.health+.7);this.resonance+=6;if(error!==null)this.errors.push(error);if(this.resonance>=100){this.resonance=0;this.feverUntil=time+6;}}
       this.onJudge({note,grade,error,time});
     }
-    press(action,time){
+    press(action,time,stroke=action){
       if(time-this.lastPress[action]<.035)return 'duplicate';this.lastPress[action]=time;
       if(this.boss&&time>=this.boss.time&&time<this.boss.end&&!this.bossDone){
-        if(action===this.bossLast||time-this.bossLastTime<.055)return 'boss-wait';
-        this.bossLast=action;this.bossLastTime=time;this.bossHits++;
+        if(stroke===this.bossLast||time-this.bossLastTime<.055)return 'boss-wait';
+        this.bossLast=stroke;this.bossLastTime=time;this.bossHits++;
         if(this.bossHits>=this.rules.boss){this.bossWon=true;this.bossDone=true;this.score+=10000;this.health=Math.min(100,this.health+15);}
         this.onJudge({note:{action,kind:'boss'},grade:this.bossWon?'boss-break':'boss-hit',time,error:null});return 'boss';
       }
@@ -51,5 +51,5 @@
     get accuracy(){return this.judged?Math.max(0,this.earned/(this.judged+this.ghosts*.1)*100):0;}
     get rank(){return this.accuracy>=97?'S':this.accuracy>=90?'A':this.accuracy>=78?'B':this.accuracy>=60?'C':'D';}
   }
-  const api={LEVELS,RULES,PRESETS,chart,Session};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.Orbita=api;
+  const api={LEVELS,RULES,KEYBOARD,chart,Session};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.Orbita=api;
 })(globalThis);
