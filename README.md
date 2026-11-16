@@ -1,62 +1,42 @@
-# Órbita: Contrapunto
+# Órbita · La canción de vuelta
 
-Juego de ritmo lateral con Phaser 3. En un puerto abandonado, Elia reconoce la melodía de su madre en un transmisor apagado. Sigue sus pistas para completar una conversación pendiente.
+Una mensajera sigue una melodía para encontrar el camino de regreso a unas colonias que todos creían perdidas. Una expedición espacial ilustrada con Phaser 3 y un cómic que se descubre durante el recorrido.
 
-**Piloto actual: Puerto Aurora.** Estrena escenario pastel, criaturas postales compactas, prólogo ilustrado y una pista tras completar el mapa. Se valida esta dirección antes de extenderla a las otras siete rutas, que siguen abiertas con su presentación anterior. Altale permanece completa como música provisional. [Alcance del piloto](docs/PILOTO-AURORA.md).
+**[Explorar](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/)** · **[Repositorio](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1)**
 
-**[Jugar](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/)** · **[Repositorio](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1)**
+## Esta entrega
 
-## Controles
+El enfoque actual es **arte, animación y narrativa**. La experiencia es completamente silenciosa: no carga canciones, no inicia un contexto de audio y desactiva el sonido de Phaser. Se pueden explorar todos los destinos, probar los golpes y devolver los pulsos de sus guardianes. Las canciones definitivas, el mapeo musical, el timing y sus puntuaciones se trabajarán después.
 
-- **Teclado:** F golpea el suelo y J golpea el aire.
-- **Mouse + teclado:** mueve el cursor arriba o abajo para elegir la altura. Z y X son equivalentes: cualquiera golpea donde apuntas. El mouse mueve a Elia incluso sin pulsar; el clic no golpea.
-- Mantén la tecla hasta el final de una estela. Conserva su altura inicial aunque apuntes a la otra para golpear una nota con la segunda tecla.
-- Devuelve los proyectiles del jefe. Alterna las manos para lanzar aros contra el escudo.
-- **P / Escape:** pausa o vuelve. **Enter / Espacio:** activa el botón enfocado o la acción principal.
-- Elige entre los dos modos en Ajustes o desde la ficha de una estación. Son dos teclas fijas por modo; se retiraron las configuraciones de cuatro y ocho teclas y la reasignación.
+- Ocho fondos y ocho portadas propios.
+- Dieciséis criaturas, con cuatro cuadros de animación por criatura.
+- Ocho guardianes, con tres poses por guardián.
+- Elia con ocho fases de carrera y cuatro poses de acción.
+- Nueve páginas de cómic, treinta y seis viñetas, diálogos y narración legibles.
+- Ambientes animados, suelo en movimiento e impactos temáticos acotados.
 
-Los jefes piden alternar F/J en teclado o Z/X en mouse, aunque el cursor permanezca en una altura. No cuentan repeticiones automáticas por mantener una tecla. El teclado conserva las parejas simultáneas; en mouse se condensan en un objetivo, manteniendo el sostenido si lo hay. La música y sus tiempos permanecen iguales y los archivos de partituras no se modifican.
+La ilustración inicial se conserva. El catálogo permite añadir destinos y nuevos arcos; el cierre de la primera ruta deja otros caminos abiertos.
 
-Los récords del mouse se guardan aparte. Si cambias el modo durante una pausa, el botón de continuar ofrece reiniciar con el nuevo control para no mezclar partituras ni puntuaciones. Las preferencias antiguas de ocho teclas migran a F/J.
+## Modos y controles
 
-La primera visita incluye una presentación breve, tres viñetas y la elección de control antes del entrenamiento continuo de siete pasos. Los receptores indicados destellan; los errores repiten los objetivos sin quitar vida. La práctica completada y el aviso previo al juego se guardan por modo. La ayuda del menú es independiente. Una cuarta viñeta se descubre al continuar después de superar Aurora.
+Los modos se eligen en las **pestañas superiores del selector de rutas**. Comparten los mismos destinos; la ficha de una estación muestra el modo elegido.
 
-## Música
+| Modo | Control |
+| --- | --- |
+| **Órbita Pulso** | F golpea en el suelo; J impulsa y golpea en el aire. |
+| **Órbita Vector** | Mouse arriba/abajo para elegir altura; Z y X golpean donde apuntas. El clic no golpea. |
 
-Se usan los archivos locales proporcionados por el propietario del proyecto. Se reproduce cada archivo decodificado **completo**, a su velocidad y frecuencia originales, sin recorte a tres minutos ni fundido añadido. El tiempo de la partida, las notas y los juicios comparten el reloj del audio.
+**P / Escape:** pausa o vuelve. **Enter / Espacio:** activa el botón enfocado o la acción principal. **Flechas:** exploran rutas o recorren el cómic. La configuración ofrece intensidad de efectos, movimiento del entorno y animación reducida.
 
-| Orden | Mapa | Canción | Archivo completo |
-| --- | --- | --- | --- |
-| 01 | Puerto Aurora | Sakuzyo — Altale | 2:36 |
-| 02 | Jardines de Io | wa. — Black Lotus | 3:02 |
-| 03 | Cinturón de Chatarra | Silentroom × 駿 — Nhelv | 2:42 |
-| 04 | Núcleo de Rebote | t+pazolite — Cheatreal | 4:54 |
-| 05 | Mar de Iones | xi — Blue Zenith | 4:18 |
-| 06 | Abismo de Plasma, extra 1 | Laur — Sound Chimera (Nyankovsky & Kobaryo Remix) | 3:39 |
-| 07 | Órbita Libre, extra 2 | Camellia — Spin Eternally | 3:50 |
-| 08 | Faro Zero, final | Kurokotei — Galaxy Collapse | 6:47 |
+## Historia integrada
 
-Los títulos y enlaces de referencia aparecen en los créditos de la canción seleccionada. Los BPM del catálogo son los indicados por el propietario como referencia; no se presentan como mediciones oficiales ni fuerzan las notas a una rejilla constante.
+La primera visita abre el prólogo. En cada estación, **Descubrir el recuerdo** revela una página nueva de la historia. Sus bocadillos, cartelas y onomatopeyas se componen sobre el arte original como texto HTML. Se puede alternar entre página completa y viñetas ampliadas; las pantallas pequeñas comienzan ampliadas.
 
-Hay **24 partituras**, almacenadas como JSON con segundos explícitos. Su primera versión detecta ataques del audio en bandas graves y agudas, selecciona acentos según dificultad y conserva huecos. Incluye sostenidos, simultáneas y dos encuentros con jefes. Estos mapas son **borradores por acentos**, no partituras revisadas nota por nota. La colocación expresiva, las colas y la elección de frases aún pueden afinarse escuchando y jugando.
+**Los recuerdos** permite releer lo descubierto. Las páginas pendientes llevan a su destino. Todos los destinos están disponibles en esta etapa de exploración; el progreso se guarda localmente en el navegador.
 
-El antiguo compositor de patrones periódicos se retiró. Para autoría manual se puede importar osu!mania de dos columnas o JSON, sin cuantizar sus tiempos. El editor es una herramienta de producción: la partida continúa siendo lateral.
+**[Historia](docs/HISTORIA.md)** · **[Guion completo del cómic](docs/GUION-COMIC.md)** · **[Dirección de arte](docs/EXPEDICION-VISUAL.md)** · **[Recursos y prompts](assets/expedition/PROMPTS.md)**
 
-**[Guía de mapeo y revisión musical](docs/MAPEO.md)** · **[Abrir herramientas de partituras](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/?editor=1)**
-
-## Presentación y movimiento
-
-La pantalla de título conserva su ilustración. La carga tiene progreso central, porcentaje y órbitas animadas. El selector usa flechas y mantiene todas las rutas abiertas durante el desarrollo. La partida muestra puntuación, combo, pausa y vida/energía/progreso en una barra inferior.
-
-Elia usa una escala de celda constante con calibración anatómica por pose: el contorno del aro no cambia el tamaño de su cuerpo. Hay ocho fases de carrera, transiciones cortas entre poses, desplazamiento suave entre alturas, canalización y propulsores. Las criaturas tienen balanceo, flotación y apéndices animados.
-
-Los proyectiles y aros recorren la distancia hasta el jefe y producen impactos breves en su posición. Aurora tiene una zona de notas despejada, criaturas más pequeñas y respuestas sin grandes flashes ni sacudidas. El escudo admite una ráfaga de hasta 18 segundos y exige más alternancias según dificultad.
-
-Los ajustes separan intensidad de efectos, movimiento ambiental y movimiento reducido. A cero se conservan círculos, objetivos y confirmación mínima del golpe. El fondo nuevo mantiene el detalle lejos de las dos alturas de lectura.
-
-**[Historia](docs/HISTORIA.md)** · **[Arte del piloto y prompts](assets/PILOT-ART.md)** · **[Arte anterior](assets/ART-DIRECTION.md)**
-
-## Ejecutar y comprobar
+## Ejecutar
 
 No requiere instalación ni compilación:
 
@@ -64,17 +44,26 @@ No requiere instalación ni compilación:
 python -m http.server 4175 --bind 127.0.0.1
 ```
 
-Abre [localhost:4175](http://127.0.0.1:4175). Phaser está incluido en `vendor/`. GitHub Pages publica desde `main`, `/(root)`.
+Abre [localhost:4175](http://127.0.0.1:4175). GitHub Pages publica desde `main`, `/(root)`. Phaser y las fuentes se sirven localmente; Outfit y Comic Neue incluyen sus licencias en `assets/fonts/`.
+
+## Verificar
 
 ```powershell
-node --test tests/core.test.cjs tests/notation.test.cjs tests/input.test.cjs tests/pilot.test.cjs
+node --test tests/expedition.test.cjs
 node tests/browser.test.cjs
-node tests/controls.browser.cjs
-node tests/pilot.browser.cjs
 ```
 
-Las pruebas de navegador requieren Playwright y un servidor local. Usan Chrome con un perfil aislado; admiten `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Cubren las siete prácticas, controles, navegación, viñetas, carga, escala del personaje, dos jefes, canciones completas, récords y seis tamaños de pantalla. Las pruebas del motor comprueban los 24 mapas, sostenidos, alternancia y formatos de partitura.
+La prueba de navegador requiere Playwright, Chrome y el servidor local. Admite `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Recorre los ocho destinos, ambos controles, guardianes, cómic, pausa, archivo, persistencia y seis tamaños de ventana. También comprueba que no se solicite audio ni se cree un contexto de audio.
 
-`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/input.js` controla F/J, mouse + Z/X y la adaptación de parejas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. Las capas `scene`/`motion` y `app`/`experience` conservan el juego anterior. `src/pilot-scene.js` y `src/pilot.js` integran el escenario de Aurora, la nueva historia y preferencias. `src/pilot-score.js` organiza sus frases musicales.
+`node scripts/index-art.cjs` registra las dimensiones originales de los PNG para recortar los atlas sin deformarlos.
 
-El progreso se guarda en el navegador. Los récords distinguen canciones y partituras importadas. Las capturas y utilidades temporales quedan en `tmp/`, ignorado por Git.
+## Estructura
+
+- `src/worlds.js`: destinos, modos, criaturas, colores y recursos.
+- `src/comic.js`: páginas, diálogos y orden narrativo.
+- `src/expedition.js`: pantallas, cómic, navegación y guardado.
+- `src/expedition-scene.js`: escenarios, animaciones e impactos.
+- `src/input.js`: controles de dos acciones.
+- `assets/expedition/`: arte final de esta expedición.
+
+Los módulos y partituras de las etapas musicales anteriores se conservan como material de trabajo y no forman parte de la entrada actual. Las capturas y variantes descartadas se guardan en `tmp/`, ignorado por Git.

@@ -1,44 +1,41 @@
-# La señal que faltaba
-
-Nueva dirección acordada: misterio espacial y aventura arcade con un centro emocional. Esta entrega implementa **Puerto Aurora como piloto**. Los otros siete mapas siguen disponibles para jugar, pero todavía conservan el arte y parte de la presentación anterior.
+# La canción de vuelta
 
 ## Premisa
 
-Puerto Aurora lleva años abandonado. Hoy, un receptor empieza a tocar una melodía que Elia conoce desde pequeña: la canción de su madre, Sira. El transmisor está apagado. Elia sigue la señal para averiguar quién la envía y desde dónde.
+Elia tenía ocho años cuando evacuaron Aurora. Escapó en uno de los últimos transportes; su madre, Sira, se quedó organizando la salida de otras familias. Después colapsaron las rutas de salto. La galaxia dio por perdidas a las colonias aisladas.
 
-El valor del viaje es completar una conversación pendiente. Las pistas son objetos y sonidos familiares; cada lugar debe aportar un descubrimiento, en vez de repetir la reparación de una antena.
+Doce años después, Elia recibe la melodía que tocaba con su madre. Contiene una respuesta que nunca había escuchado. Decide seguirla para encontrar el camino de regreso.
 
-## Lo que cuenta el piloto
+La aventura reúne misterio espacial, momentos cotidianos y emoción esperanzadora. Elia comienza buscando una voz y descubre que hay muchas familias esperando la misma ruta.
 
-1. Tres frases sobre negro presentan una anomalía sencilla.
-2. Tres viñetas muestran el receptor, el recuerdo de Sira enseñando la canción y la antena que ha despertado. Se avanza al ritmo del jugador.
-3. Se elige **un** control antes de practicar. El otro sigue disponible para después.
-4. En Aurora, Elia atraviesa antiguos autómatas de reparto y devuelve sus pulsos. La melodía funciona como guía.
-5. Tras completar el mapa, la cuarta viñeta descubre un cartucho con un sol dibujado a mano: el receptor registra una llegada de hoy, pero la grabación tiene doce años.
+## Personajes y mundo
 
-El prólogo aparece una vez antes del primer entrenamiento o del primer vuelo en Aurora para quienes ya tenían una partida. Puede revisarse desde el menú. La cuarta viñeta se incorpora a la galería al recuperar la pista; el prólogo no revela el desenlace.
+**Elia** es una mensajera de veinte años. Su bufanda coral, su traje marfil/lavanda, sus botas turquesas y su aro la identifican. Conoce las máquinas y sabe aprovechar piezas de los lugares que visita. Su viaje también trata de responder con lo que ha aprendido lejos de casa.
 
-## Arco previsto para los capítulos siguientes
+**Sira** es su madre e ingeniera. Durante la evacuación decidió quedarse para ayudar a otros pasajeros. Ha mantenido abierto el puerto de Faro Zero y conserva los mensajes de las familias aisladas. Elia descubre esa decisión a través de los registros del viaje.
 
-Este apartado es un guion de producción, no contenido terminado en el juego.
+**Los faros de Aurora** reconocen patrones armónicos para sincronizar las rutas. Los autómatas siguen protegiendo las estaciones con protocolos antiguos. Los golpes de Elia devuelven sus pulsos y abren un paso, sin violencia gráfica.
 
-Elia encuentra rastros de la ruta que Sira recorrió buscándola. Recuerdos cálidos contrastan con estaciones que parecen vacías. Más adelante descubre que la respuesta que grabó de niña nunca llegó a enviarse. La meta deja de ser repetir el pasado: Elia quiere responder con la música de la persona en que se ha convertido. En Faro Zero, Sira contesta en directo. El final abre una conversación y un reencuentro esperanzador.
+## Primera expedición
 
-| Lugar | Identidad visual prevista | Función del capítulo |
-| --- | --- | --- |
-| Puerto Aurora | Puerto marfil al amanecer, nubes lavanda, autómatas postales | Una voz familiar y una fecha imposible. Piloto implementado. |
-| Jardines de Io | Jardines suspendidos, agua y vegetación mecánica | Un recuerdo revela una dirección. |
-| Cinturón de Chatarra | Restos de naves flotantes, percusión y piezas recuperadas | Elia encuentra rastros del viaje de Sira. |
-| Núcleo de Rebote | Instalación de gravedad, anillos curvos, movimiento elástico | Una respuesta antigua permanece retenida. |
-| Mar de Iones | Océano eléctrico y tormentas lejanas | Elia intenta abrir una conversación real. |
-| Abismo de Plasma, extra | Observatorio profundo, luces translúcidas | Una historia lateral sobre otra señal. |
-| Órbita Libre, extra | Cometas, estructuras abiertas y luz | Un desvío luminoso que celebra explorar. |
-| Faro Zero | Amanecer estelar marfil, intimidad que se vuelve expansión | Elia responde con su propia música. |
+| Capítulo | Descubrimiento |
+| --- | --- |
+| Prólogo | La promesa de terminar una canción, la evacuación y una respuesta inesperada. |
+| Puerto Aurora | Un cartucho de doce años acaba de llegar con una respuesta nueva. |
+| Jardines de Io | Los habitantes no desaparecieron: siguieron cuidando sus lugares. |
+| Cinturón de Chatarra | Las bitácoras muestran a Sira coordinando nuevos rescates. |
+| Núcleo de Rebote | Las rutas se sellaron para proteger las colonias; el camino aún existe. |
+| Mar de Iones | Una grabación reciente confirma que Sira mantiene abierto el puerto. |
+| Abismo de Plasma | Miles de mensajes esperan a otras familias. La búsqueda se vuelve colectiva. |
+| Órbita Libre | La señal empieza a viajar en ambos sentidos y permite compartir el regreso. |
+| Faro Zero | Elia y Sira se reencuentran. La canción continúa con una parte que Elia aprendió lejos de casa. |
 
-## Lenguaje común
+La última viñeta abre rutas hacia otras estrellas. El reencuentro cierra este arco emocional; la expedición puede seguir creciendo con otros personajes, colonias e historias.
 
-Elia conserva su bufanda coral, traje marfil/lavanda, botas turquesas y aro de plasma. Sira tiene identidad propia como ingeniera y madre. El combate es desactivar protocolos y devolver pulsos, sin violencia gráfica.
+## Cómo se cuenta
 
-El piloto reserva coral para suelo y turquesa para aire. El fondo lleva el detalle y la emoción hacia el horizonte; el corredor de notas permanece despejado. Las criaturas tienen una silueta compacta, y los impactos son locales y breves.
+El prólogo forma parte de la entrada al juego. Cada destino revela una página de cuatro viñetas al recuperar su recuerdo. La puesta en página combina encuadres de distinto ancho, bocadillos, narración y onomatopeyas. El texto es independiente del bitmap para conservar legibilidad y poder revisarlo sin regenerar la ilustración.
 
-La música definitiva se elegirá después de validar este piloto. Por ahora se mantiene **Altale de Sakuzyo, completa (2:36)**. No se atribuye a sus autores la ficción del juego ni se presenta el borrador de notas como una partitura terminada a mano.
+El archivo reúne las páginas descubiertas. También se puede ampliar una viñeta y recorrer la historia con flechas. No se exige leer un texto largo antes de explorar un lugar.
+
+El guion completo de diálogos está en [GUION-COMIC.md](GUION-COMIC.md) y su fuente editable en `src/comic.js`. En esta entrega la narración y la exploración son silenciosas; la selección de canciones y sus partituras corresponde a la siguiente fase.
