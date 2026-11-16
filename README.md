@@ -1,6 +1,8 @@
 # Órbita: Contrapunto
 
-Juego de ritmo lateral con Phaser 3. Elia atraviesa seis estaciones para responder a la canción de su madre y devolver la comunicación a Aurora. Dos rutas extra amplían el viaje.
+Juego de ritmo lateral con Phaser 3. En un puerto abandonado, Elia reconoce la melodía de su madre en un transmisor apagado. Sigue sus pistas para completar una conversación pendiente.
+
+**Piloto actual: Puerto Aurora.** Estrena escenario pastel, criaturas postales compactas, prólogo ilustrado y una pista tras completar el mapa. Se valida esta dirección antes de extenderla a las otras siete rutas, que siguen abiertas con su presentación anterior. Altale permanece completa como música provisional. [Alcance del piloto](docs/PILOTO-AURORA.md).
 
 **[Jugar](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/)** · **[Repositorio](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1)**
 
@@ -17,7 +19,7 @@ Los jefes piden alternar F/J en teclado o Z/X en mouse, aunque el cursor permane
 
 Los récords del mouse se guardan aparte. Si cambias el modo durante una pausa, el botón de continuar ofrece reiniciar con el nuevo control para no mezclar partituras ni puntuaciones. Las preferencias antiguas de ocho teclas migran a F/J.
 
-La primera visita incluye una presentación breve y un entrenamiento continuo de siete pasos. Los receptores indicados destellan; un paso avanza cuando lo completas. Los errores repiten los objetivos sin quitar vida y Elia sigue corriendo. La ayuda del menú es un modal independiente. La historia se cuenta mediante seis viñetas navegables.
+La primera visita incluye una presentación breve, tres viñetas y la elección de control antes del entrenamiento continuo de siete pasos. Los receptores indicados destellan; los errores repiten los objetivos sin quitar vida. La práctica completada y el aviso previo al juego se guardan por modo. La ayuda del menú es independiente. Una cuarta viñeta se descubre al continuar después de superar Aurora.
 
 ## Música
 
@@ -48,11 +50,11 @@ La pantalla de título conserva su ilustración. La carga tiene progreso central
 
 Elia usa una escala de celda constante con calibración anatómica por pose: el contorno del aro no cambia el tamaño de su cuerpo. Hay ocho fases de carrera, transiciones cortas entre poses, desplazamiento suave entre alturas, canalización y propulsores. Las criaturas tienen balanceo, flotación y apéndices animados.
 
-Las partículas cambian con el entorno y el enemigo: estrellas, hojas, fragmentos y cristales. Los proyectiles y los aros recorren la distancia hasta el jefe y producen impactos en su posición. El escudo admite una ráfaga de hasta 18 segundos y exige más alternancias según dificultad.
+Los proyectiles y aros recorren la distancia hasta el jefe y producen impactos breves en su posición. Aurora tiene una zona de notas despejada, criaturas más pequeñas y respuestas sin grandes flashes ni sacudidas. El escudo admite una ráfaga de hasta 18 segundos y exige más alternancias según dificultad.
 
-Los fondos tienen tráfico orbital, hojas, chispas, ondas, rayos o anillos mediante Canvas; no necesitan videos. El ajuste de movimiento reducido elimina el movimiento decorativo y conserva las señales necesarias para jugar.
+Los ajustes separan intensidad de efectos, movimiento ambiental y movimiento reducido. A cero se conservan círculos, objetivos y confirmación mínima del golpe. El fondo nuevo mantiene el detalle lejos de las dos alturas de lectura.
 
-**[Historia](docs/HISTORIA.md)** · **[Dirección de arte](assets/ART-DIRECTION.md)** · **[Prompt de la historieta](assets/COMIC-PROMPT.md)**
+**[Historia](docs/HISTORIA.md)** · **[Arte del piloto y prompts](assets/PILOT-ART.md)** · **[Arte anterior](assets/ART-DIRECTION.md)**
 
 ## Ejecutar y comprobar
 
@@ -65,14 +67,14 @@ python -m http.server 4175 --bind 127.0.0.1
 Abre [localhost:4175](http://127.0.0.1:4175). Phaser está incluido en `vendor/`. GitHub Pages publica desde `main`, `/(root)`.
 
 ```powershell
-node --test tests/core.test.cjs tests/notation.test.cjs
+node --test tests/core.test.cjs tests/notation.test.cjs tests/input.test.cjs tests/pilot.test.cjs
 node tests/browser.test.cjs
-node --test tests/input.test.cjs
 node tests/controls.browser.cjs
+node tests/pilot.browser.cjs
 ```
 
 Las pruebas de navegador requieren Playwright y un servidor local. Usan Chrome con un perfil aislado; admiten `CHROME_EXECUTABLE` y `ORBITA_TEST_URL`. Cubren las siete prácticas, controles, navegación, viñetas, carga, escala del personaje, dos jefes, canciones completas, récords y seis tamaños de pantalla. Las pruebas del motor comprueban los 24 mapas, sostenidos, alternancia y formatos de partitura.
 
-`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/input.js` controla F/J, mouse + Z/X y la adaptación de parejas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. `src/scene.js` y `src/motion.js` dibujan y animan. `src/app.js` y `src/experience.js` controlan las pantallas y la persistencia.
+`src/catalog.js` define el recorrido; `src/track-maps.js`, las duraciones; `assets/charts/`, las notas. `src/input.js` controla F/J, mouse + Z/X y la adaptación de parejas. `src/notation.js` importa, valida y genera borradores. `src/audio.js` y `src/tracks.js` reproducen. Las capas `scene`/`motion` y `app`/`experience` conservan el juego anterior. `src/pilot-scene.js` y `src/pilot.js` integran el escenario de Aurora, la nueva historia y preferencias. `src/pilot-score.js` organiza sus frases musicales.
 
 El progreso se guarda en el navegador. Los récords distinguen canciones y partituras importadas. Las capturas y utilidades temporales quedan en `tmp/`, ignorado por Git.

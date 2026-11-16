@@ -1,40 +1,44 @@
-# Una canción entre estrellas
+# La señal que faltaba
 
-Una tormenta aisló las colonias. Entre la estática, Elia reconoce la canción que su madre, Sira, aún transmite desde el otro extremo de Aurora. Para responder debe reparar seis estaciones. El sistema prepara un reinicio que recuperaría la conexión borrando las conversaciones pendientes; Elia busca conservarlas.
+Nueva dirección acordada: misterio espacial y aventura arcade con un centro emocional. Esta entrega implementa **Puerto Aurora como piloto**. Los otros siete mapas siguen disponibles para jugar, pero todavía conservan el arte y parte de la presentación anterior.
 
-La emoción del viaje es sencilla: alguien sigue llamando y alguien quiere responder. Al principio Elia reconoce la melodía de su infancia. Al final contesta con una guitarra que construyó lejos de casa. Sira escucha a la persona que su hija es ahora.
+## Premisa
 
-## Personajes y mundo
+Puerto Aurora lleva años abandonado. Hoy, un receptor empieza a tocar una melodía que Elia conoce desde pequeña: la canción de su madre, Sira. El transmisor está apagado. Elia sigue la señal para averiguar quién la envía y desde dónde.
 
-**Elia** es mensajera e ingeniera. Su bufanda coral, sus botas propulsoras y el aro de plasma la identifican. El aro devuelve proyectiles y envía pulsos para desactivar protocolos averiados.
+El valor del viaje es completar una conversación pendiente. Las pistas son objetos y sonidos familiares; cada lugar debe aportar un descubrimiento, en vez de repetir la reparación de una antena.
 
-**Sira**, su madre, mantiene encendida la luz del taller del Faro Zero. No es un recuerdo ni una aparición: sigue viva, esperando poder conversar.
+## Lo que cuenta el piloto
 
-**Aurora** es una red de comunicaciones. Las máquinas de sus estaciones obedecen protocolos dañados; desactivarlas abre un canal para repararlo. El juego usa efectos de energía y fragmentos, sin sangre.
+1. Tres frases sobre negro presentan una anomalía sencilla.
+2. Tres viñetas muestran el receptor, el recuerdo de Sira enseñando la canción y la antena que ha despertado. Se avanza al ritmo del jugador.
+3. Se elige **un** control antes de practicar. El otro sigue disponible para después.
+4. En Aurora, Elia atraviesa antiguos autómatas de reparto y devuelve sus pulsos. La melodía funciona como guía.
+5. Tras completar el mapa, la cuarta viñeta descubre un cartucho con un sol dibujado a mano: el receptor registra una llegada de hoy, pero la grabación tiene doce años.
 
-El contrapunto une música e historia: reconocer una voz, responder con la propia y aprender a escuchar juntas. Los artistas y las canciones seleccionadas acompañan el juego; no se les atribuye autoría de la ficción.
+El prólogo aparece una vez antes del primer entrenamiento o del primer vuelo en Aurora para quienes ya tenían una partida. Puede revisarse desde el menú. La cuarta viñeta se incorpora a la galería al recuperar la pista; el prólogo no revela el desenlace.
 
-## Recorrido
+## Arco previsto para los capítulos siguientes
 
-| Orden del selector | Estación | Qué cambia |
+Este apartado es un guion de producción, no contenido terminado en el juego.
+
+Elia encuentra rastros de la ruta que Sira recorrió buscándola. Recuerdos cálidos contrastan con estaciones que parecen vacías. Más adelante descubre que la respuesta que grabó de niña nunca llegó a enviarse. La meta deja de ser repetir el pasado: Elia quiere responder con la música de la persona en que se ha convertido. En Faro Zero, Sira contesta en directo. El final abre una conversación y un reencuentro esperanzador.
+
+| Lugar | Identidad visual prevista | Función del capítulo |
 | --- | --- | --- |
-| 01 | Puerto Aurora | Elia encuentra una llamada reciente: Sira sigue esperando. |
-| 02 | Jardines de Io | Descubre que reiniciar la red borraría las conversaciones pendientes. |
-| 03 | Cinturón de Chatarra | Usa lo que aprendió fabricando su guitarra para construir un canal nuevo. |
-| 04 | Núcleo de Rebote | Enciende el repetidor de la fundición: su respuesta puede cruzar las colonias. |
-| 05 | Mar de Iones | Sira responde. Ahora deben sostener una conversación a través de la tormenta. |
-| 06 | Abismo de Plasma, extra | Otra voz espera ayuda en un canal profundo. |
-| 07 | Órbita Libre, extra | Una ruta celebra la expansión de la red. |
-| 08 | Faro Zero | Las dos voces sincronizan Aurora sin borrar los mensajes. |
+| Puerto Aurora | Puerto marfil al amanecer, nubes lavanda, autómatas postales | Una voz familiar y una fecha imposible. Piloto implementado. |
+| Jardines de Io | Jardines suspendidos, agua y vegetación mecánica | Un recuerdo revela una dirección. |
+| Cinturón de Chatarra | Restos de naves flotantes, percusión y piezas recuperadas | Elia encuentra rastros del viaje de Sira. |
+| Núcleo de Rebote | Instalación de gravedad, anillos curvos, movimiento elástico | Una respuesta antigua permanece retenida. |
+| Mar de Iones | Océano eléctrico y tormentas lejanas | Elia intenta abrir una conversación real. |
+| Abismo de Plasma, extra | Observatorio profundo, luces translúcidas | Una historia lateral sobre otra señal. |
+| Órbita Libre, extra | Cometas, estructuras abiertas y luz | Un desvío luminoso que celebra explorar. |
+| Faro Zero | Amanecer estelar marfil, intimidad que se vuelve expansión | Elia responde con su propia música. |
 
-Las rutas 06 y 07 son opcionales. El desenlace de los seis capítulos principales conserva los mensajes y abre las conversaciones de otras familias. Durante el desarrollo todo el selector permanece desbloqueado.
+## Lenguaje común
 
-## Cómo se cuenta
+Elia conserva su bufanda coral, traje marfil/lavanda, botas turquesas y aro de plasma. Sira tiene identidad propia como ingeniera y madre. El combate es desactivar protocolos y devolver pulsos, sin violencia gráfica.
 
-La entrada presenta tres frases sobre negro. El tutorial usa únicamente instrucciones breves y receptores que destellan. Cada ficha muestra un objetivo y cada resultado, una frase.
+El piloto reserva coral para suelo y turquesa para aire. El fondo lleva el detalle y la emoción hacia el horizonte; el corredor de notas permanece despejado. Las criaturas tienen una silueta compacta, y los impactos son locales y breves.
 
-La historia del menú es una historieta de seis viñetas: el silencio de Aurora, la canción de Sira, el reconocimiento de Elia, el recorrido por las estaciones, la espera y la respuesta. Se navega con flechas y se cierra con X o Escape; no contiene otro bloque de texto ni un botón para repetir la introducción.
-
-El cierre es: «Estoy aquí, mamá». «Te escucho». La canción tiene respuesta y la relación puede continuar.
-
-Los fondos y los enemigos reflejan la función de cada lugar: transportes y vigilancia, jardín mecánico, fundición, tormenta y faro. Las dos rutas industriales comparten una identidad visual; los extras prolongan los entornos de plasma y solar. Las canciones completas mantienen su estructura, sin asignarles un significado narrativo que sus autores no hayan indicado.
+La música definitiva se elegirá después de validar este piloto. Por ahora se mantiene **Altale de Sakuzyo, completa (2:36)**. No se atribuye a sus autores la ficción del juego ni se presenta el borrador de notas como una partitura terminada a mano.

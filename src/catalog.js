@@ -1,9 +1,9 @@
 /* Catálogo y orden de vuelo acordados. El tiempo definitivo procede del MP3. */
 (function(root){
  'use strict';
- const palettes=[['#201c48','#7264a0','#ffd4af','#ff947f','#9ef0ef'],['#123a42','#47837e','#f4e9ba','#ffcb7b','#99f6c4'],['#302237','#92546a','#f9c6a1','#ff9b66','#ffdb92'],['#201939','#6954a8','#c5c8ff','#d3a1ff','#91e4ff'],['#292345','#8f83a6','#fff2c5','#ffc786','#e8ffed']];
+ const palettes=[['#252641','#7b789c','#fff4df','#ff9fad','#8de4de'],['#123a42','#47837e','#f4e9ba','#ffcb7b','#99f6c4'],['#302237','#92546a','#f9c6a1','#ff9b66','#ffdb92'],['#201939','#6954a8','#c5c8ff','#d3a1ff','#91e4ff'],['#292345','#8f83a6','#fff2c5','#ffc786','#e8ffed']];
  const levels=[
-  {id:'aurora',name:'Puerto Aurora',theme:0,songId:'altale',bpm:130,backdrop:'aurora',boss:'Centinela de aduana',genre:'PIANO / PRIMERA SEÑAL',line:'Entre la estática, reconociste su canción.',goal:'Recupera la llamada',fragment:'«Dejé encendida la luz del taller.» — Sira'},
+  {id:'aurora',name:'Puerto Aurora',theme:0,songId:'altale',bpm:130,backdrop:'aurora-dawn',pilot:true,boss:'Guardián del archivo',genre:'PIANO / PRIMERA SEÑAL',line:'El transmisor estaba apagado. La canción seguía sonando.',goal:'Sigue la melodía',fragment:'La señal es nueva. La grabación tiene doce años.'},
   {id:'io',name:'Jardines de Io',theme:1,songId:'lotus',bpm:153,backdrop:'io',boss:'Jardinero orbital',genre:'ECOS VIVOS',line:'Una melodía crece donde parecía no quedar nada.',goal:'Conserva el recuerdo',fragment:'«Escucha antes de cambiar todas las piezas.» — Sira'},
   {id:'scrap',name:'Cinturón de Chatarra',theme:2,songId:'nhelv',bpm:174.45,backdrop:'scrap',boss:'Prensa Titán',genre:'HECHA CON MIS MANOS',line:'Hasta las piezas rotas pueden encontrar su voz.',goal:'Construye una respuesta',fragment:'«La canción era tuya; esta parte es mía.» — Elia'},
   {id:'rebound',name:'Núcleo de Rebote',theme:2,songId:'cheatreal',bpm:190,backdrop:'scrap',boss:'Tambor de fundición',genre:'EL PULSO DEL NÚCLEO',line:'Un corazón mecánico despierta bajo la fundición.',goal:'Enciende el repetidor',fragment:'«La señal ya no es un eco. Ahora puede cruzar.» — Elia'},

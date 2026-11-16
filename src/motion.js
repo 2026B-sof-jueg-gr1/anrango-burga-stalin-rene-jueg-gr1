@@ -63,7 +63,7 @@ class OrbitMotionScene extends OrbitScene{
       const win=kind==='boss'?s.boss:s.moving;if(!win||t<win.time-3||t>win.end+1)continue;
       const burst=kind==='boss',pos=this.bossPosition(s,t,kind),won=burst&&s.bossWon,age=t-s.bossLastTime;
       const impact=this.packets.some(p=>p.type===kind&&t>=p.arrival&&t-p.arrival<.16);
-      c.save();c.translate(pos.x,pos.y);if(impact&&!reduced)c.translate(Math.sin(t*120)*5,Math.cos(t*100)*4);
+      c.save();c.translate(pos.x,pos.y);if(impact&&!reduced&&window.app.settings.effects>=.7)c.translate(Math.sin(t*120)*5,Math.cos(t*100)*4);
       if(won&&age>.65){c.restore();continue;}
       if(won)c.globalAlpha=Math.max(0,1-age/.65);
       if(burst){
@@ -76,7 +76,7 @@ class OrbitMotionScene extends OrbitScene{
         const shooting=s.notes.some(n=>n.kind==='projectile'&&t>=n.time-1.5&&t<n.time-1.32);
         if(shooting){c.shadowColor=cool;c.shadowBlur=reduced?0:25;A.circle(c,-100,-10,24,cream);}
       }
-      if(impact){c.globalCompositeOperation='screen';c.globalAlpha=.6;A.circle(c,0,0,burst?100:70,cream);}
+      if(impact){c.strokeStyle=cool;c.lineWidth=3;c.beginPath();c.arc(0,0,burst?100:70,-2.7,-.45);c.stroke();}
       c.restore();
     }
   }

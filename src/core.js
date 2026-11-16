@@ -24,6 +24,7 @@
       this.onJudge({note,grade,error,time});
     }
     press(action,time,stroke=action){
+      const holding=this.notes.find(n=>n.action===action&&n.state==='holding');if(holding){holding.down=true;return 'resume';}
       if(time-this.lastPress[action]<.035)return 'duplicate';this.lastPress[action]=time;
       if(this.boss&&time>=this.boss.time&&time<this.boss.end&&!this.bossDone){
         if(stroke===this.bossLast||time-this.bossLastTime<.055)return 'boss-wait';
@@ -32,7 +33,6 @@
         this.onJudge({note:{action,kind:'boss'},grade:this.bossWon?'boss-break':'boss-hit',time,error:null});return 'boss';
       }
       if(this.boss&&time>=this.boss.time&&time<this.boss.end)return 'boss-cleared';
-      const holding=this.notes.find(n=>n.action===action&&n.state==='holding');if(holding){holding.down=true;return 'resume';}
       const note=this.notes.find(n=>n.action===action&&n.state==='pending'&&Math.abs(n.time-time)<=this.rules.window);
       if(!note){if(this.notes.some(n=>n.state==='pending'&&Math.abs(n.time-time)<this.rules.window)){this.ghosts++;}return 'empty';}
       const error=time-note.time,abs=Math.abs(error);this.judge(note,abs<=this.rules.perfect?'perfect':abs<=this.rules.great?'great':'good',time,error);

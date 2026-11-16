@@ -1,0 +1,2883 @@
+{
+  "version": 1,
+  "source": "accent-draft",
+  "title": "",
+  "artist": "",
+  "audioFile": "",
+  "timing": [],
+  "notes": [
+    {
+      "time": 2.644,
+      "end": 2.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 3.334,
+      "end": 3.334,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 3.664,
+      "end": 3.664,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 4.644,
+      "end": 4.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 4.984,
+      "end": 4.984,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 5.334,
+      "end": 5.334,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 5.654,
+      "end": 5.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 6.314,
+      "end": 6.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 6.644,
+      "end": 6.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 7.654,
+      "end": 7.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 7.984,
+      "end": 7.984,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 8.314,
+      "end": 8.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 8.654,
+      "end": 8.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 8.904,
+      "end": 8.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 9.144,
+      "end": 9.144,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 9.654,
+      "end": 9.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 9.864,
+      "end": 9.864,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 10.314,
+      "end": 10.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 10.484,
+      "end": 10.484,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 10.654,
+      "end": 10.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 10.844,
+      "end": 10.844,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 11.324,
+      "end": 11.324,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 11.634,
+      "end": 11.634,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 12.664,
+      "end": 12.664,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 12.994,
+      "end": 12.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 13.334,
+      "end": 13.334,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 13.644,
+      "end": 13.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 13.994,
+      "end": 13.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 14.164,
+      "end": 14.164,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 14.454,
+      "end": 14.454,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 14.644,
+      "end": 14.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 14.944,
+      "end": 14.944,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 15.324,
+      "end": 15.324,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 15.664,
+      "end": 15.664,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 15.824,
+      "end": 15.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 15.994,
+      "end": 15.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 16.174,
+      "end": 16.174,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 16.644,
+      "end": 16.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 16.644,
+      "end": 16.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 16.824,
+      "end": 16.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 17.154,
+      "end": 17.154,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 17.404,
+      "end": 17.404,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 17.594,
+      "end": 17.594,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 17.814,
+      "end": 17.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 17.984,
+      "end": 17.984,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 18.154,
+      "end": 18.154,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 18.444,
+      "end": 18.444,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 18.764,
+      "end": 18.764,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 19.064,
+      "end": 19.064,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 19.474,
+      "end": 19.474,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 19.814,
+      "end": 19.814,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 19.994,
+      "end": 19.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 20.164,
+      "end": 20.164,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 20.474,
+      "end": 20.474,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 20.654,
+      "end": 20.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 21.114,
+      "end": 21.114,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 21.324,
+      "end": 21.324,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 21.494,
+      "end": 21.494,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 21.694,
+      "end": 21.694,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 22.054,
+      "end": 22.054,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 22.244,
+      "end": 22.244,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 22.454,
+      "end": 22.454,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 22.654,
+      "end": 22.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 22.844,
+      "end": 22.844,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 23.134,
+      "end": 23.134,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 23.374,
+      "end": 23.374,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 23.644,
+      "end": 23.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 23.814,
+      "end": 23.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 24.064,
+      "end": 24.064,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 24.254,
+      "end": 24.254,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 24.494,
+      "end": 24.494,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 24.664,
+      "end": 24.664,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 25.004,
+      "end": 25.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 25.334,
+      "end": 25.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 25.644,
+      "end": 25.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 25.804,
+      "end": 25.804,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 26.004,
+      "end": 26.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 26.334,
+      "end": 26.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 26.654,
+      "end": 26.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 26.824,
+      "end": 26.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 27.004,
+      "end": 27.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 27.334,
+      "end": 27.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 27.644,
+      "end": 27.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 27.644,
+      "end": 27.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 27.904,
+      "end": 27.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 28.144,
+      "end": 28.144,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 28.314,
+      "end": 28.314,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 28.474,
+      "end": 28.474,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 28.644,
+      "end": 28.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 28.804,
+      "end": 28.804,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 29.004,
+      "end": 29.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 29.334,
+      "end": 29.334,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 29.494,
+      "end": 29.494,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 29.744,
+      "end": 29.744,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 30.004,
+      "end": 30.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 30.334,
+      "end": 30.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 30.644,
+      "end": 30.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 30.814,
+      "end": 30.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 30.994,
+      "end": 30.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 31.314,
+      "end": 31.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 31.644,
+      "end": 31.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 32.024,
+      "end": 32.024,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 32.344,
+      "end": 32.344,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 32.514,
+      "end": 32.514,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 32.704,
+      "end": 32.704,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 32.984,
+      "end": 32.984,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 33.344,
+      "end": 33.344,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 33.644,
+      "end": 33.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 33.824,
+      "end": 33.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.004,
+      "end": 34.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.004,
+      "end": 34.004,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.334,
+      "end": 34.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.644,
+      "end": 34.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.824,
+      "end": 34.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 34.994,
+      "end": 34.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 35.304,
+      "end": 35.304,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 35.644,
+      "end": 35.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 35.824,
+      "end": 35.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 35.994,
+      "end": 35.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 36.154,
+      "end": 36.154,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 36.334,
+      "end": 36.334,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 36.644,
+      "end": 36.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 37.034,
+      "end": 37.034,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 37.304,
+      "end": 37.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 37.644,
+      "end": 37.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 37.974,
+      "end": 37.974,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 38.304,
+      "end": 38.304,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 38.654,
+      "end": 38.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 38.974,
+      "end": 38.974,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 39.304,
+      "end": 39.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 39.474,
+      "end": 39.474,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 39.644,
+      "end": 39.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 39.834,
+      "end": 39.834,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 40.004,
+      "end": 40.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 40.334,
+      "end": 40.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 40.654,
+      "end": 40.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 40.844,
+      "end": 40.844,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 41.064,
+      "end": 41.064,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 41.324,
+      "end": 41.324,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 41.494,
+      "end": 41.494,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 41.654,
+      "end": 41.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 41.894,
+      "end": 41.894,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 42.114,
+      "end": 42.114,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 42.294,
+      "end": 42.294,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 42.654,
+      "end": 42.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 42.844,
+      "end": 42.844,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 43.144,
+      "end": 43.144,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 43.334,
+      "end": 43.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 43.644,
+      "end": 43.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 43.904,
+      "end": 43.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 44.214,
+      "end": 44.214,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 44.494,
+      "end": 44.494,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 44.654,
+      "end": 44.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 44.824,
+      "end": 44.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 45.004,
+      "end": 45.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 45.304,
+      "end": 45.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 45.484,
+      "end": 45.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 45.714,
+      "end": 45.714,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 45.994,
+      "end": 45.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 46.314,
+      "end": 46.314,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 46.534,
+      "end": 46.534,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 46.814,
+      "end": 46.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 47.004,
+      "end": 47.004,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 47.304,
+      "end": 47.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 47.644,
+      "end": 47.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 47.814,
+      "end": 47.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 47.984,
+      "end": 47.984,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 48.354,
+      "end": 48.354,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 48.654,
+      "end": 48.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 48.964,
+      "end": 48.964,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 49.154,
+      "end": 49.154,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 49.394,
+      "end": 49.394,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 49.704,
+      "end": 49.704,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 49.904,
+      "end": 49.904,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 50.084,
+      "end": 50.084,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 50.334,
+      "end": 50.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 50.654,
+      "end": 50.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 50.964,
+      "end": 50.964,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 51.164,
+      "end": 51.164,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 51.374,
+      "end": 51.374,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 51.654,
+      "end": 51.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 51.964,
+      "end": 51.964,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 52.134,
+      "end": 52.134,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 52.324,
+      "end": 52.324,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 52.654,
+      "end": 52.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 52.854,
+      "end": 52.854,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 53.034,
+      "end": 53.034,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 53.194,
+      "end": 53.194,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 53.384,
+      "end": 53.384,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 53.574,
+      "end": 53.574,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 53.754,
+      "end": 53.754,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 53.914,
+      "end": 53.914,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 54.154,
+      "end": 54.154,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 54.654,
+      "end": 54.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 54.844,
+      "end": 54.844,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 55.034,
+      "end": 55.034,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 55.314,
+      "end": 55.314,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 55.494,
+      "end": 55.494,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 55.654,
+      "end": 55.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 55.994,
+      "end": 55.994,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 56.164,
+      "end": 56.164,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 56.464,
+      "end": 56.464,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 56.654,
+      "end": 56.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 56.974,
+      "end": 56.974,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 57.314,
+      "end": 57.314,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 57.484,
+      "end": 57.484,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 57.714,
+      "end": 57.714,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 57.874,
+      "end": 57.874,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 58.154,
+      "end": 58.154,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 58.474,
+      "end": 58.474,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 58.654,
+      "end": 58.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 58.984,
+      "end": 58.984,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 59.314,
+      "end": 59.314,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 59.654,
+      "end": 59.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 59.864,
+      "end": 59.864,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 60.084,
+      "end": 60.084,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 60.494,
+      "end": 60.494,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 60.654,
+      "end": 60.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 60.924,
+      "end": 60.924,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 61.094,
+      "end": 61.094,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 61.274,
+      "end": 61.274,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 61.474,
+      "end": 61.474,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 61.764,
+      "end": 61.764,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 61.984,
+      "end": 61.984,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 62.174,
+      "end": 62.174,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 62.484,
+      "end": 62.484,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 62.744,
+      "end": 62.744,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 62.984,
+      "end": 62.984,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 63.314,
+      "end": 63.314,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 63.654,
+      "end": 63.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 63.984,
+      "end": 63.984,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 64.254,
+      "end": 64.254,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 64.484,
+      "end": 64.484,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 64.664,
+      "end": 64.664,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 64.934,
+      "end": 64.934,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 65.144,
+      "end": 65.144,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 65.394,
+      "end": 65.394,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 65.654,
+      "end": 65.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 65.844,
+      "end": 65.844,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 66.044,
+      "end": 66.044,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 66.204,
+      "end": 66.204,
+      "action": 1,
+      "kind": "projectile"
+    },
+    {
+      "time": 66.484,
+      "end": 66.484,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 66.654,
+      "end": 66.654,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 66.914,
+      "end": 66.914,
+      "action": 0,
+      "kind": "projectile"
+    },
+    {
+      "time": 67.264,
+      "end": 67.264,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 67.464,
+      "end": 67.464,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 67.654,
+      "end": 67.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 67.944,
+      "end": 67.944,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 68.154,
+      "end": 68.154,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 68.484,
+      "end": 68.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 68.654,
+      "end": 68.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 68.844,
+      "end": 68.844,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 69.154,
+      "end": 69.154,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 69.484,
+      "end": 69.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 69.644,
+      "end": 69.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 69.824,
+      "end": 69.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 70.044,
+      "end": 70.044,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 70.384,
+      "end": 70.384,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 70.664,
+      "end": 70.664,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 70.864,
+      "end": 70.864,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 71.094,
+      "end": 71.094,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 71.484,
+      "end": 71.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 71.654,
+      "end": 71.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 71.864,
+      "end": 71.864,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 72.044,
+      "end": 72.044,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 72.314,
+      "end": 72.314,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 72.484,
+      "end": 72.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 72.654,
+      "end": 72.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 72.844,
+      "end": 72.844,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 73.154,
+      "end": 73.154,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 73.464,
+      "end": 73.464,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 73.654,
+      "end": 73.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 73.814,
+      "end": 73.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 73.984,
+      "end": 73.984,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 74.314,
+      "end": 74.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 74.514,
+      "end": 74.514,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 74.714,
+      "end": 74.714,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 75.044,
+      "end": 75.044,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 75.374,
+      "end": 75.374,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 75.644,
+      "end": 75.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 75.824,
+      "end": 75.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 76.154,
+      "end": 76.154,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 76.394,
+      "end": 76.394,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 76.654,
+      "end": 76.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 76.924,
+      "end": 76.924,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 77.124,
+      "end": 77.124,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 77.304,
+      "end": 77.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 77.644,
+      "end": 77.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 77.984,
+      "end": 77.984,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 78.314,
+      "end": 78.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 78.544,
+      "end": 78.544,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 78.704,
+      "end": 78.704,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 78.924,
+      "end": 78.924,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 79.314,
+      "end": 79.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 79.644,
+      "end": 79.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 79.914,
+      "end": 79.914,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 80.314,
+      "end": 80.314,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 80.634,
+      "end": 80.634,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 81.314,
+      "end": 81.314,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 81.754,
+      "end": 81.754,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 82.304,
+      "end": 82.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 82.664,
+      "end": 82.664,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 82.994,
+      "end": 82.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 83.654,
+      "end": 83.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 83.994,
+      "end": 83.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 84.654,
+      "end": 84.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 84.964,
+      "end": 84.964,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 85.254,
+      "end": 85.254,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 85.654,
+      "end": 85.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 85.854,
+      "end": 85.854,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 86.034,
+      "end": 86.034,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 86.294,
+      "end": 86.294,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 86.514,
+      "end": 86.514,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 86.764,
+      "end": 86.764,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 87.104,
+      "end": 87.104,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 87.304,
+      "end": 87.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 87.664,
+      "end": 87.664,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 87.994,
+      "end": 87.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 88.234,
+      "end": 88.234,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 88.464,
+      "end": 88.464,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 88.654,
+      "end": 88.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 88.814,
+      "end": 88.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 88.984,
+      "end": 88.984,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 89.264,
+      "end": 89.264,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 89.454,
+      "end": 89.454,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 89.704,
+      "end": 89.704,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 89.934,
+      "end": 89.934,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 90.104,
+      "end": 90.104,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 90.324,
+      "end": 90.324,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 90.494,
+      "end": 90.494,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 90.714,
+      "end": 90.714,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 91.014,
+      "end": 91.014,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 91.324,
+      "end": 91.324,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 91.654,
+      "end": 91.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 91.814,
+      "end": 91.814,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 91.984,
+      "end": 91.984,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 92.224,
+      "end": 92.224,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 92.494,
+      "end": 92.494,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 93.654,
+      "end": 93.654,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 93.834,
+      "end": 93.834,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 94.104,
+      "end": 94.104,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 94.284,
+      "end": 94.284,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 94.484,
+      "end": 94.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 94.654,
+      "end": 94.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 94.824,
+      "end": 94.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 95.034,
+      "end": 95.034,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 95.264,
+      "end": 95.264,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 95.434,
+      "end": 95.434,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 95.644,
+      "end": 95.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 95.994,
+      "end": 95.994,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 96.274,
+      "end": 96.274,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 96.474,
+      "end": 96.474,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 96.694,
+      "end": 96.694,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 96.864,
+      "end": 96.864,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 97.064,
+      "end": 97.064,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 97.304,
+      "end": 97.304,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 97.644,
+      "end": 97.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 97.824,
+      "end": 97.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 97.994,
+      "end": 97.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 98.174,
+      "end": 98.174,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 98.394,
+      "end": 98.394,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 98.564,
+      "end": 98.564,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 98.814,
+      "end": 98.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 99.014,
+      "end": 99.014,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 99.244,
+      "end": 99.244,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 99.464,
+      "end": 99.464,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 118.944,
+      "end": 118.944,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 119.114,
+      "end": 119.114,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 119.464,
+      "end": 119.464,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 119.644,
+      "end": 119.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 119.854,
+      "end": 119.854,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 120.214,
+      "end": 120.214,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 120.654,
+      "end": 120.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 120.814,
+      "end": 120.814,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 121.014,
+      "end": 121.014,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 121.184,
+      "end": 121.184,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 121.484,
+      "end": 121.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 121.664,
+      "end": 121.664,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 121.854,
+      "end": 121.854,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 122.074,
+      "end": 122.074,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 122.424,
+      "end": 122.424,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 122.644,
+      "end": 122.644,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 122.644,
+      "end": 122.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 122.994,
+      "end": 122.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 123.344,
+      "end": 123.344,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 123.544,
+      "end": 123.544,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 123.864,
+      "end": 123.864,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 124.064,
+      "end": 124.064,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 124.234,
+      "end": 124.234,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 124.504,
+      "end": 124.504,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 124.694,
+      "end": 124.694,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 124.994,
+      "end": 124.994,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 125.384,
+      "end": 125.384,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 125.734,
+      "end": 125.734,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 126.464,
+      "end": 126.464,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 126.824,
+      "end": 126.824,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 127.024,
+      "end": 127.024,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 127.204,
+      "end": 127.204,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 127.564,
+      "end": 127.564,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 127.904,
+      "end": 127.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 128.124,
+      "end": 128.124,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 128.324,
+      "end": 128.324,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 128.644,
+      "end": 128.644,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 129.014,
+      "end": 129.014,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 129.254,
+      "end": 129.254,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 129.714,
+      "end": 129.714,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 130.144,
+      "end": 130.144,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 130.444,
+      "end": 130.444,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 130.944,
+      "end": 130.944,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 131.214,
+      "end": 131.214,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 132.244,
+      "end": 132.244,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 132.484,
+      "end": 132.484,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 132.654,
+      "end": 132.654,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 132.974,
+      "end": 132.974,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 133.324,
+      "end": 133.324,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 133.694,
+      "end": 133.694,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 134.054,
+      "end": 134.054,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 134.474,
+      "end": 134.474,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 134.634,
+      "end": 134.634,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 134.834,
+      "end": 134.834,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 135.174,
+      "end": 135.174,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 135.394,
+      "end": 135.394,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 135.714,
+      "end": 135.714,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 136.184,
+      "end": 136.184,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 136.504,
+      "end": 136.504,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 136.764,
+      "end": 136.764,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 137.094,
+      "end": 137.094,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 137.274,
+      "end": 137.274,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 137.554,
+      "end": 137.554,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 137.844,
+      "end": 137.844,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 138.134,
+      "end": 138.134,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 138.384,
+      "end": 138.384,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 138.614,
+      "end": 138.614,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 138.944,
+      "end": 138.944,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.114,
+      "end": 139.114,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.334,
+      "end": 139.334,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.524,
+      "end": 139.524,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.734,
+      "end": 139.734,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.914,
+      "end": 139.914,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 140.174,
+      "end": 140.174,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 140.384,
+      "end": 140.384,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 140.554,
+      "end": 140.554,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 140.734,
+      "end": 140.734,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 140.924,
+      "end": 140.924,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 141.254,
+      "end": 141.254,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 141.564,
+      "end": 141.564,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 141.924,
+      "end": 141.924,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 142.404,
+      "end": 142.404,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 142.864,
+      "end": 142.864,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 143.124,
+      "end": 143.124,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 143.394,
+      "end": 143.394,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 143.754,
+      "end": 143.754,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 143.934,
+      "end": 143.934,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 144.224,
+      "end": 144.224,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 144.484,
+      "end": 144.484,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 144.674,
+      "end": 144.674,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 144.864,
+      "end": 144.864,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 145.034,
+      "end": 145.034,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 145.264,
+      "end": 145.264,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 145.604,
+      "end": 145.604,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 145.914,
+      "end": 145.914,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 146.134,
+      "end": 146.134,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 146.314,
+      "end": 146.314,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 146.534,
+      "end": 146.534,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 146.704,
+      "end": 146.704,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 146.904,
+      "end": 146.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 147.134,
+      "end": 147.134,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 147.374,
+      "end": 147.374,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 147.554,
+      "end": 147.554,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 147.804,
+      "end": 147.804,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 148.124,
+      "end": 148.124,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 148.454,
+      "end": 148.454,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 148.634,
+      "end": 148.634,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 148.904,
+      "end": 148.904,
+      "action": 0,
+      "kind": "enemy"
+    },
+    {
+      "time": 149.104,
+      "end": 149.104,
+      "action": 0,
+      "kind": "enemy"
+    }
+  ],
+  "boss": {
+    "time": 100.15384615384616,
+    "end": 118.15384615384616
+  },
+  "moving": {
+    "time": 53.07692307692308,
+    "end": 67.07692307692308
+  },
+  "duration": 156.71147392290248,
+  "sustains": [
+    {
+      "time": 88.654,
+      "end": 90.014,
+      "action": 1,
+      "kind": "enemy"
+    },
+    {
+      "time": 139.914,
+      "end": 141.114,
+      "action": 1,
+      "kind": "enemy"
+    }
+  ]
+}
