@@ -1,6 +1,6 @@
 # Arte final y prompts
 
-Herramienta utilizada: **image_gen integrada**, sin CLI ni API externa de generación. Fecha de producción: 16 de noviembre de 2026. Los originales se conservan en la carpeta de imágenes generadas de Codex; los recursos usados por el juego están en esta carpeta del repositorio.
+Herramienta utilizada: **image_gen integrada**, sin CLI ni API externa de generación. Fecha de producción: 16 de noviembre de 2026. Los originales seleccionados se conservan en la carpeta de imágenes generadas de Codex; las variantes descartadas se retiraron durante la limpieza. Los recursos finales usados por el juego están en esta carpeta del repositorio y permiten continuar sin acceso a Codex.
 
 Son **28 PNG finales**: ocho fondos, dos atlas con ocho portadas, cuatro atlas con dieciséis criaturas, cuatro atlas con ocho guardianes, un atlas de Elia y nueve páginas con treinta y seis viñetas. Los diálogos y onomatopeyas se componen como texto en el juego. Las dimensiones originales se registran en src/art-sizes.js.
 

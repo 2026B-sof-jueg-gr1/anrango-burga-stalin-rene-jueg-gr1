@@ -55,7 +55,7 @@ python scripts/build-rhythm.py --charts-only
 python scripts/build-rhythm.py --only aurora
 ```
 
-Los resultados son deterministas. Si cambias el MP3 debes regenerar su análisis, mapas y catálogo. Para editar un mapa a mano, modifica sus tiempos absolutos en el JSON y valida con las pruebas antes de publicar; volver a componer reemplaza esa edición. Los módulos de importación de la etapa anterior se conservan como material histórico, pero su panel no forma parte de la interfaz actual.
+Los resultados son deterministas. Si cambias el MP3 debes regenerar su análisis, mapas y catálogo. Para editar un mapa a mano, modifica sus tiempos absolutos en el JSON y valida con las pruebas antes de publicar; volver a componer reemplaza esa edición. Actualmente no existe un panel de importación ni un editor de mapas dentro del juego. Los importadores de los prototipos anteriores se retiraron con la limpieza.
 
 ## Juicio y sostenidos
 

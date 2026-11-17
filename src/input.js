@@ -19,6 +19,5 @@
     isHeld(action){return [...this.lanes.values()].includes(action);}
     clear(){this.held.clear();this.lanes.clear();}
   }
-  function adaptChart(chart){return chart;}
-  const api={MODES,KEYS,Controller,adaptChart};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.OrbitInput=api;
+  const api={MODES,KEYS,Controller};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.OrbitInput=api;
 })(globalThis);

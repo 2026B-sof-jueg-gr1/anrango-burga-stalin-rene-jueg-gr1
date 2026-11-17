@@ -2,6 +2,8 @@
 
 Un juego de ritmo espacial con dos teclas. Elia sigue una melodía hacia las colonias que todos creían perdidas. Ocho escenarios ilustrados, veinticuatro partituras y una historia que se desbloquea al completar las canciones.
 
+**Para continuar el proyecto con otra IA o desarrollador, lee primero [CONTEXTO-PROYECTO.md](CONTEXTO-PROYECTO.md).** Reúne las decisiones vigentes, las reglas, el estado real del código y el trabajo pendiente.
+
 **[Jugar](https://2026b-sof-jueg-gr1.github.io/anrango-burga-stalin-rene-jueg-gr1/)** · **[Repositorio](https://github.com/2026B-sof-jueg-gr1/anrango-burga-stalin-rene-jueg-gr1)**
 
 ## Jugar con F y J
@@ -62,7 +64,7 @@ python -m http.server 4175 --bind 127.0.0.1
 Abre [localhost:4175](http://127.0.0.1:4175). GitHub Pages publica `main`, `/(root)`.
 
 ```powershell
-node --test tests/core.test.cjs tests/notation.test.cjs tests/input.test.cjs tests/pilot.test.cjs tests/expedition.test.cjs tests/rhythm.test.cjs
+node --test tests/input.test.cjs tests/expedition.test.cjs tests/rhythm.test.cjs
 node tests/browser.test.cjs
 node tests/playback.browser.cjs
 node tests/transport.browser.cjs
@@ -81,4 +83,4 @@ Las pruebas de navegador necesitan Playwright, Chrome y el servidor. Admiten `CH
 - `assets/music/`, `assets/scores/`: MP3 completos y partituras actuales.
 - `scripts/build-rhythm.py`: análisis y composición reproducibles.
 
-Los módulos y audios de etapas anteriores permanecen como material histórico y no se cargan desde la entrada actual. Las dependencias de análisis, capturas y reportes temporales están en `tmp/`, ignorado por Git. Phaser, Outfit y Comic Neue se sirven localmente y conservan sus licencias.
+Los prototipos y recursos sustituidos se retiraron del árbol actual; el historial de Git permite consultar esas versiones. `tmp/`, ignorado por Git, se usa para capturas y resultados temporales de las pruebas y puede recrearse. Phaser, Outfit y Comic Neue se sirven localmente y conservan sus licencias.
