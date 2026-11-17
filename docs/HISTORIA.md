@@ -38,4 +38,4 @@ La entrada conserva tres frases escritas en tiempo real sobre negro; después ap
 
 El archivo reúne las páginas desbloqueadas mediante una navegación paginada, sin desplazamiento vertical. También se puede ampliar una viñeta y recorrer la historia con flechas. No se presenta un recuerdo al abrir el juego ni durante una partida sin terminar.
 
-El guion completo de diálogos está en [GUION-COMIC.md](GUION-COMIC.md) y su fuente editable en `src/comic.js`. En esta entrega la narración y la exploración son silenciosas; la selección de canciones y sus partituras corresponde a la siguiente fase.
+El guion completo de diálogos está en [GUION-COMIC.md](GUION-COMIC.md) y su fuente editable en `src/comic.js`. Cada escenario utiliza la canción seleccionada y sus tres partituras. Completarla con energía y al menos 60% de precisión desbloquea el capítulo correspondiente; los recuerdos ya ganados en la versión visual se conservan.

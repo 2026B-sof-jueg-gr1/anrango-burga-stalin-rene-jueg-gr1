@@ -1,49 +1,84 @@
-# Mapeo musical
+# Motor musical y partituras
 
-## Qué cambió
+## Archivo, reloj y duración
 
-Las notas ya no salen de un patrón repetido sobre el BPM. Cada JSON contiene `time`, `end` y `action` por nota, en segundos desde el principio del archivo de audio completo. El motor no redondea esos tiempos. Un cambio de tempo no obliga a cambiar de canción ni a cortar el audio.
+Cada destino usa el MP3 elegido en `assets/music/<destino>.mp3`. `src/music-catalog.js` declara artista, título, duración y SHA-256. `assets/scores/<destino>.json` contiene tres dificultades sobre ese archivo exacto. La carga contrasta hash y duración con el audio decodificado antes de iniciar.
 
-Los 24 mapas incluidos son una primera selección de transitorios reales. La detección separa energía grave y aguda, localiza subidas y deja huecos entre ataques. Las dificultades eligen densidades diferentes. La detección no puede decidir por sí sola qué melodía seguir, si una cola es expresiva ni si una frase resulta cómoda. Esas decisiones requieren escuchar y probar.
+`RhythmAudio.Transport` programa un AudioBufferSourceNode y calcula el tiempo escuchado con `AudioContext.getOutputTimestamp()`. Si el navegador no lo ofrece, utiliza el reloj del contexto y su estimación de latencia. Los timestamps de teclado se convierten al mismo dominio temporal. El ajuste de sincronización en milisegundos desplaza juntos la representación y el juicio.
 
-## Flujo recomendado: osu! como editor
+No se acumulan deltas de animación para decidir cuándo llega una nota. Su posición horizontal es `receptor + (nota.time - canción.time) × velocidad`. Al pausar se detiene la fuente y se conserva el cursor; al continuar se crea una fuente desde esa posición con una cuenta atrás. La partida solo termina normalmente cuando ha transcurrido el archivo de audio completo.
 
-1. Usa el **mismo MP3** que está en `assets/audio/`. Una versión distinta, incluso con el mismo nombre, puede tener una introducción o silencios diferentes.
-2. Crea una partitura **osu!mania de 2 columnas**. La izquierda representa suelo y la derecha, aire. No cambia el estilo lateral del juego; solo usamos el editor para colocar notas.
-3. En Timing (F3), ajusta el comienzo, el pulso y los cambios de tempo con el metrónomo. Consulta la [guía oficial de Timing](https://osu.ppy.sh/wiki/en/Client/Beatmap_editor/Timing).
-4. Mapea una frase corta. Elige un instrumento protagonista; evita intentar marcar todas las capas de la canción a la vez. En Fácil prioriza acentos claros y pausas. Añade respuestas y contratiempos progresivamente en Medio y Difícil.
-5. Marca sostenidos cuando haya una nota o textura que realmente se mantenga. Coloca la cola donde termina esa frase, no donde convenga completar un patrón.
-6. Exporta/guarda el `.osu`. Su formato almacena golpes en milisegundos y las colas de los sostenidos. El importador conserva esos tiempos y los cambios de tempo. Véase el [formato oficial .osu](https://osu.ppy.sh/wiki/en/Client/File_formats/osu_(file_format)).
-7. Abre el juego con `?editor=1`, elige la estación y la dificultad y pulsa **Partitura → Importar partitura**. Importa el `.osu` o un JSON de Órbita. La selección queda guardada en ese navegador para probarla; no cambia el archivo público.
-8. Juega y revisa una frase cada vez. La calibración compensa la latencia del dispositivo; no debe usarse para ocultar un error del mapa. Si el desfase aumenta a lo largo de la canción, revisa el tempo o la versión del audio.
-9. Exporta el JSON desde el mismo panel. Para publicarlo, sustituye únicamente la dificultad correspondiente en `assets/charts/<canción>.json` y ejecuta las pruebas. Conserva las otras dos dificultades.
+Referencias de la plataforma: [reloj de salida](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/getOutputTimestamp), [programación de una fuente](https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/start).
 
-Una importación `.osu` conserva todas sus notas y no añade jefes automáticamente. Para los encuentros especiales, usa el JSON: el jefe móvil ocupa un intervalo y sus notas llevan `kind: "projectile"`. La ráfaga tiene su propio intervalo sin notas normales. Así no se borran notas que el autor colocó deliberadamente.
-
-## Formato mínimo
+## Formato actual
 
 ```json
 {
-  "version": 1,
-  "source": "manual",
-  "duration": 156.71147392290248,
-  "notes": [
-    { "action": 0, "time": 3.127, "end": 3.127 },
-    { "action": 1, "time": 4.519, "end": 5.261 },
-    { "action": 0, "time": 6.993, "end": 6.993 },
-    { "action": 1, "time": 6.993, "end": 6.993 }
-  ],
-  "moving": null,
-  "boss": null
+  "version": 2,
+  "audio": {"id": "aurora", "sha256": "…", "duration": 152.230023},
+  "difficulties": {
+    "easy": {
+      "version": 2,
+      "difficulty": "easy",
+      "duration": 152.230023,
+      "notes": [
+        {"time": 3.024, "end": 3.024, "action": 1, "kind": "enemy"},
+        {"time": 3.675, "end": 5.497, "action": 1, "kind": "enemy"}
+      ],
+      "bosses": [{"time": 95.5, "end": 105.5, "required": 28}],
+      "encounters": [{"time": 40, "end": 55}]
+    }
+  }
 }
 ```
 
-`action: 0` es suelo y `action: 1`, aire. Dos notas al mismo tiempo en alturas distintas forman una simultánea. Un `end` mayor que `time` forma un sostenido. La duración real del audio prevalece: un JSON no puede recortar la canción. Se rechazan tiempos fuera del archivo, solapamientos en una misma altura e intervalos de escudo que oculten notas.
+El ejemplo ilustra la estructura, no sustituye un mapa completo. `action: 0` es F/suelo y `action: 1`, J/aire. `end > time` es un sostenido. Dos notas con el mismo `time` en alturas distintas forman una doble. `kind: "projectile"` representa un disparo del guardián. Las otras dificultades se llaman `normal` y `hard`.
 
-Los intervalos especiales usan `{ "time": 60, "end": 78 }`. No añadas un escudo encima de notas existentes; reserva una frase para él. Una pista puede tener únicamente notas y ningún jefe si eso favorece su música.
+Los intervalos de alternancia reservan una frase sin notas normales ni colas que invadan su plazo. El validador rechaza solapamientos por altura, tiempos fuera del audio y objetivos de alternancia imposibles.
 
-## Estado de esta entrega
+## Cómo se construyeron los 24 mapas
 
-Las ocho pistas son las seleccionadas el 14 de noviembre de 2026. Se usa Altale, no After Altale, porque ese es el archivo disponible. Cheatreal dura 4:54 y Galaxy Collapse, 6:47; se conservan enteras. Los BPM del catálogo son las referencias proporcionadas, mientras que los golpes del borrador se colocan en ataques del archivo, sin obligarlos a esa cifra.
+`scripts/build-rhythm.py` analiza los archivos originales con librosa, NumPy y SciPy. Separa novedades graves y agudas, detecta ataques y refina su comienzo con una microenvolvente de 5,8 ms. Rastrea el pulso local usando referencias para resolver ambigüedades de media velocidad. Los ataques no se redondean a esa rejilla: conservan sus tiempos medidos.
 
-Falta una revisión musical de autor para convertir los borradores en mapas definitivos. El importador y la exportación permiten hacer esa revisión por frases sin cambiar el motor ni las animaciones. Los modos actuales son teclado F/J y mouse + Z/X. La partitura de autor conserva sus dos alturas; en mouse las parejas simultáneas se condensan durante la partida porque el cursor apunta a una altura cada vez. Los JSON originales y los tiempos de la canción se conservan.
+Las frases alternan pulso, respuesta entre alturas, escaleras y contratiempos. Fácil deja más pausas; Medio incorpora respuestas y dobles; Difícil añade subdivisiones y mayor densidad. Los sostenidos parten de energía armónica sostenida y terminan en una caída medida o en otro ataque real que permita respirar antes de la siguiente nota. Las dobles se reservan para acentos, dejando libres ambas alturas.
+
+Las fuentes medibles están en `assets/scores/source/`. Cada nota conserva el índice de su ataque; las colas indican `tailSource` y, cuando corresponde, `tailAttack`. `assets/scores/report.json` resume notas, sostenidos, dobles y proyectiles. Una revisión musical puede cambiar qué instrumento sigue una frase sin alterar el motor ni el audio.
+
+Para regenerar:
+
+```powershell
+python -m pip install -r scripts/audio-requirements.txt
+python scripts/build-rhythm.py
+# Recompone desde el análisis guardado, sin volver a decodificar:
+python scripts/build-rhythm.py --charts-only
+# Solo una canción:
+python scripts/build-rhythm.py --only aurora
+```
+
+Los resultados son deterministas. Si cambias el MP3 debes regenerar su análisis, mapas y catálogo. Para editar un mapa a mano, modifica sus tiempos absolutos en el JSON y valida con las pruebas antes de publicar; volver a componer reemplaza esa edición. Los módulos de importación de la etapa anterior se conservan como material histórico, pero su panel no forma parte de la interfaz actual.
+
+## Juicio y sostenidos
+
+El motor acepta una entrada por pulsación física. Mantener una tecla no genera golpes repetidos. Se busca la nota pendiente más cercana de su altura y se compara el error absoluto con las ventanas de la dificultad. El sostenido juzga cabeza y cola; soltar demasiado pronto pierde la cola una sola vez. La cola se completa automáticamente cuando se ha mantenido la tecla hasta el final.
+
+Pausar libera las teclas sin regalar la cola. Durante la cuenta atrás se puede recuperar la tecla de un sostenido; al volver al audio hay 400 ms de margen. Recuperarlo no vuelve a puntuar su cabeza.
+
+Los aciertos alimentan energía y combo; los fallos quitan energía. Las pulsaciones en la altura incorrecta junto a una nota no otorgan puntos y penalizan precisión. Al final se necesita energía y al menos 60% de precisión. Los bonus del jefe no inflan la precisión de las notas.
+
+## Jefes con plazo y bonus
+
+El intervalo musical determina el comienzo y el cierre del desafío. Su mínimo depende de la duración y la dificultad: aproximadamente 2,8, 4,2 o 5,8 alternancias por segundo.
+
+- Solo cuenta alternar F/J; repetir la misma tecla o el auto repeat no suma.
+- Se exige un intervalo mínimo de 35 ms entre alternancias válidas.
+- Cada alternancia válida suma 25 puntos.
+- Romper el mínimo concede 3.000 puntos una sola vez.
+- Cada alternancia adicional dentro del plazo concede **100 puntos extra**.
+- El desafío sigue abierto después de romper el escudo. Se cierra al vencer su tiempo.
+- Si no se alcanza el mínimo, el guardián escapa, rompe el combo y quita 18 de energía. La canción continúa mientras quede energía.
+
+El bonus está limitado por el plazo real y las pulsaciones físicas, sin cerrar anticipadamente el contador. Los resultados muestran cuántos guardianes se superaron y el bonus adicional obtenido.
+
+## Verificación
+
+Las pruebas recorren las 24 partituras con entradas perfectas, comprueban los hashes de los ocho MP3, el origen temporal de ataques y colas, dobles, pausas, fallos, repetición de teclas, bonus y deadlines. El navegador decodifica las ocho pistas y revisa los patrones y seis tamaños de ventana. Una prueba adicional reproduce Altale completa con audio real, pausa durante un sostenido y alternancia hasta acumular bonus.

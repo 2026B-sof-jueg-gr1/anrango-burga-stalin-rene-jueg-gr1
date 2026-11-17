@@ -1,8 +1,8 @@
-# Propuesta musical — pendiente de elección
+# Selección musical confirmada
 
-Esta es una selección para escuchar y decidir. No se ha integrado audio ni se han construido partituras musicales nuevas. La asignación a los mapas expresa una intención artística; no es una medición del timing de los archivos.
+Estas ocho canciones fueron confirmadas por el usuario e integradas desde sus MP3. Se reproducen completas y tienen tres partituras cada una. La asignación a los mapas expresa la intención artística del viaje; los tiempos de juego se obtienen del archivo exacto y su análisis.
 
-| Nivel | Primera candidata | Intención para la escena |
+| Nivel | Canción seleccionada | Intención para la escena |
 | --- | --- | --- |
 | 01 · Puerto Aurora | [Sakuzyo — Altale](https://www.youtube.com/watch?v=seaH2sPOVE0) | Curiosidad, nostalgia y salida de casa. |
 | 02 · Jardines de Io | [Snail's House — Pixel Galaxy](https://www.youtube.com/watch?v=3nlSDxvt6JU) | Un tramo luminoso y juguetón entre jardines y pequeños autómatas. |
@@ -26,8 +26,8 @@ La propuesta reserva el cierre para una sensación de regreso. La intensidad má
 - Órbita Libre: `uplifting drum and bass`, `space electronic adventure`.
 - Faro Zero: `emotional artcore finale`, `orchestral electronic uplifting`.
 
-Busca un pulso que puedas seguir, secciones que cambien de energía y una melodía que recuerdes al terminar. Anota artista, nombre y enlace de la versión que prefieras. Después verificaremos su archivo completo, duración, tempo y cambios de compás antes de mapearlo.
+Para futuras canciones, busca un pulso que puedas seguir, secciones que cambien de energía y una melodía que recuerdes al terminar. Anota artista, nombre y enlace de la versión. Antes de sustituir una pista se verificarán el archivo completo y sus tiempos para regenerar el análisis y las partituras.
 
 ## Tres dificultades por canción
 
-Cada nivel utilizará **una misma canción** y tendrá tres partituras: Fácil, Medio y Difícil. Cambiarán la densidad, las combinaciones y la complejidad; se conservará la duración y la velocidad de la canción. La elección musical y el diseño de dificultad se harán de manera conjunta después de escuchar las candidatas seleccionadas.
+Cada nivel utiliza **una misma canción** con tres partituras: Fácil, Medio y Difícil. Cambian la densidad, las combinaciones y la complejidad; se conservan la duración y la velocidad de la canción. Los archivos actuales están en `assets/music/` y los 24 mapas, en `assets/scores/`.
