@@ -9,9 +9,27 @@ test('Cada destino tiene fondo, portada, dos criaturas, guardián y capítulo pr
  }
  for(const set of [backgrounds,covers,creatures,guardians])assert.equal(set.size,E.WORLDS.length);
 });
-test('La expedición comparte destinos entre Pulso y Vector y conserva sus controles',()=>{
- assert.deepEqual(E.MODES.map(m=>m.name),['Pulso','Vector']);const pulso=new Input.Controller(E.MODES[0].id),vector=new Input.Controller(E.MODES[1].id);
- assert.equal(pulso.actionFor('KeyF'),0);assert.equal(pulso.actionFor('KeyJ'),1);vector.move(10,720);assert.equal(vector.actionFor('KeyZ'),1);assert.equal(vector.actionFor('KeyX'),1);assert.equal(pulso.actionFor('KeyZ'),null);
+test('Solo existe Pulso con F/J; las tres dificultades comparten los ocho destinos',()=>{
+ assert.deepEqual(E.MODES.map(m=>m.name),['Pulso']);const pulso=new Input.Controller('keyboard');
+ assert.equal(pulso.actionFor('KeyF'),0);assert.equal(pulso.actionFor('KeyJ'),1);assert.equal(pulso.actionFor('KeyZ'),null);
+ assert.deepEqual(E.DIFFICULTIES.map(d=>d.name),['Fácil','Medio','Difícil']);
+ for(let i=1;i<E.DIFFICULTIES.length;i++){const a=E.DIFFICULTIES[i-1],b=E.DIFFICULTIES[i];assert.ok(b.speed>a.speed&&b.hits>a.hits&&b.returns>a.returns&&b.spawn<a.spawn);}
+});
+test('Un recuerdo exige completar ambos objetivos y terminar; abrirlo no concede progreso',()=>{
+ const rule=E.DIFFICULTIES[0],enough={hits:rule.hits,returns:rule.returns,elapsed:rule.duration};
+ assert.ok(E.evaluateRun(enough,rule));for(const stats of [{...enough,hits:0},{...enough,returns:0},{...enough,elapsed:1},{...enough,hits:NaN}])assert.equal(E.evaluateRun(stats,rule),false);
+ assert.equal(E.unlockedPages([]).size,0);assert.equal(E.unlockedPages(['prologue','aurora:impossible','io']).size,0);
+ assert.deepEqual([...E.unlockedPages(['aurora:easy','aurora:hard'])],['prologue','chapter-aurora']);
+ assert.equal(E.unlockedPages(E.WORLDS.map(w=>w.id+':normal')).size,C.PAGES.length);
+});
+test('Las tres dificultades se pueden completar con entradas reales en varios tamaños de pantalla',()=>{
+ const vm=require('node:vm'),context={Phaser:{Scene:class{}},app:{finishRun(){}},window:{}};
+ vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../src/expedition-scene.js'),'utf8')+'\nthis.SceneUnderTest=ExpeditionScene;',context);
+ for(const width of [900,1280,2400])for(const rule of E.DIFFICULTIES){let finished;context.app.finishRun=stats=>finished=stats;const s=new context.SceneUnderTest();s.textures={get:()=>({getSourceImage:()=>({})})};s.enter(E.WORLDS[0],rule);s.worldW=width;s.hitX=width*.25;
+  s.bossActive=true;s.strike(0);assert.equal(s.stats.returns,0);assert.equal(s.stats.hits,0);
+  while(!s.finished){for(const lane of [0,1])if(s.objects.some(o=>!o.done&&o.lane===lane&&Math.abs(o.x-s.hitX)<10))s.strike(lane);s.simulate(1/60);}
+  assert.ok(E.evaluateRun(finished,rule),width+'/'+rule.id);
+ }
 });
 test('La historia completa tiene diálogos legibles y capítulos extensibles',()=>{
  assert.equal(C.PAGES[0].id,'prologue');assert.equal(C.PAGES.length,E.WORLDS.length+1);assert.equal(new Set(C.PAGES.map(p=>p.id)).size,C.PAGES.length);

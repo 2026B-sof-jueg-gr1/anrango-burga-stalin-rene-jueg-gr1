@@ -2,8 +2,14 @@
 (function(root){
   'use strict';
   const MODES=[
-    {id:'keyboard',name:'Pulso',title:'Órbita Pulso',icon:'pulse',keys:'F / J',description:'Dos manos. Dos alturas.',help:'F golpea abajo · J impulsa y golpea arriba.',color:'#ff9cab'},
-    {id:'hybrid',name:'Vector',title:'Órbita Vector',icon:'vector',keys:'↕ + Z / X',description:'Apunta el rumbo. Traza el golpe.',help:'Mouse: altura · Z o X: golpear donde apuntas.',color:'#90e8dd'}
+    {id:'keyboard',name:'Pulso',title:'Órbita Pulso',icon:'pulse',keys:'F / J',description:'Dos teclas. Dos alturas.',help:'F golpea en el suelo · J salta y golpea en el aire.',color:'#ff9cab'}
+  ];
+  const INTRO=['Puerto Aurora lleva años en silencio.','Hoy ha sonado una melodía que Elia conoce desde pequeña.','El transmisor está apagado. ¿Quién sigue tocando?'];
+  // Reglas de la prueba visual. Las futuras partituras musicales serán independientes.
+  const DIFFICULTIES=[
+    {id:'easy',name:'Fácil',description:'Más espacio entre objetivos.',hits:6,returns:2,speed:170,projectileSpeed:250,spawn:2.8,duration:44},
+    {id:'normal',name:'Medio',description:'Más objetivos y mayor velocidad.',hits:9,returns:3,speed:205,projectileSpeed:290,spawn:2.15,duration:44},
+    {id:'hard',name:'Difícil',description:'Secuencias más rápidas y densas.',hits:12,returns:4,speed:240,projectileSpeed:330,spawn:1.6,duration:44}
   ];
   const WORLDS=[
     {id:'aurora',name:'Puerto Aurora',subtitle:'La primera respuesta',environment:'Un puerto que aún espera a sus pasajeros.',discovery:'Un cartucho reciente conserva una voz de hace doce años.',palette:['#302941','#b9a1d2','#fff2db','#ff9cab','#90e8dd'],ground:'Mensajero de andén',air:'Mantarraya postal',boss:'Custodio del equipaje',effect:'post',ambience:'traffic',radio:'ELIA · Ese sol… lo dibujé en el taller de mamá.',token:'El cartucho del sol',chapter:'aurora'},
@@ -17,6 +23,10 @@
   ];
   const floors={aurora:626.7,io:622.8,scrap:615.2,rebound:626.7,ions:609.1,chimera:604.5,spin:619.8,zero:610.6};
   WORLDS.forEach((w,index)=>Object.assign(w,{index,floor:floors[w.id]||616,number:String(index+1).padStart(2,'0'),background:`assets/expedition/worlds/${w.id}.png`,coverSheet:`assets/expedition/covers/route-${Math.floor(index/4)+1}.png`,coverIndex:index%4,creatureSheet:`assets/expedition/sprites/creatures-${Math.floor(index/2)+1}.png`,creatureRow:index%2*2,bossSheet:`assets/expedition/sprites/guardians-${Math.floor(index/2)+1}.png`,bossRow:index%2,chapterId:'chapter-'+w.id}));
-  const api={MODES,WORLDS,mode:id=>MODES.find(m=>m.id===id)||MODES[0],world:id=>WORLDS.find(w=>w.id===id)||WORLDS[0]};
+  const difficulty=id=>DIFFICULTIES.find(d=>d.id===id)||DIFFICULTIES[0];
+  const validCompletion=key=>WORLDS.some(w=>DIFFICULTIES.some(d=>key===w.id+':'+d.id));
+  const unlockedPages=completed=>{const valid=[...completed].filter(validCompletion),pages=new Set();if(valid.length)pages.add('prologue');for(const w of WORLDS)if(valid.some(key=>key.startsWith(w.id+':')))pages.add(w.chapterId);return pages;};
+  const evaluateRun=(stats,rule)=>Number.isFinite(stats.elapsed)&&stats.elapsed>=rule.duration&&Number.isFinite(stats.hits)&&stats.hits>=rule.hits&&Number.isFinite(stats.returns)&&stats.returns>=rule.returns;
+  const api={MODES,INTRO,DIFFICULTIES,WORLDS,difficulty,validCompletion,unlockedPages,evaluateRun,mode:()=>MODES[0],world:id=>WORLDS.find(w=>w.id===id)||WORLDS[0]};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.OrbitExpedition=api;
 })(globalThis);

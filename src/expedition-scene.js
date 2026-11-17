@@ -17,22 +17,21 @@ class ExpeditionScene extends Phaser.Scene{
     });
     this.queue=(this.queue||Promise.resolve()).catch(()=>{}).then(run);return this.queue;
   }
-  enter(world){
-    this.world=world;this.t=0;this.foot=world.floor;this.poseUntil=0;this.objects=[];this.effects=[];this.packets=[];this.nextSpawn=.6;this.serial=0;this.guardianHits=0;this.lastShot=-1;
+  enter(world,rules){
+    this.world=world;this.rules=rules;this.stats={hits:0,returns:0};this.finished=false;this.t=0;this.foot=world.floor;this.poseUntil=0;this.objects=[];this.effects=[];this.packets=[];this.nextSpawn=.6;this.serial=0;this.guardianHits=0;this.lastShot=-1;
     this.bg=this.textures.get('bg-'+world.id).getSourceImage();this.creatures=this.textures.get('creatures-'+world.id).getSourceImage();this.guardian=this.textures.get('boss-'+world.id).getSourceImage();
   }
   get groundY(){return this.world.floor-55;}
   get airY(){return this.world.floor-231;}
-  get lane(){return app.mode.id==='hybrid'?app.input.aim:this.t<this.poseUntil?this.lastLane:0;}
+  get lane(){return this.t<this.poseUntil?this.lastLane:0;}
   strike(lane){
-    if(!this.world)return;this.lastLane=lane;this.poseUntil=this.t+.28;const y=lane?this.airY:this.groundY;
+    if(!this.world||this.finished||(lane!==0&&lane!==1))return;this.lastLane=lane;this.poseUntil=this.t+.28;const y=lane?this.airY:this.groundY;
     this.effects.push({x:this.hitX,y,at:this.t,kind:'slash',lane,seed:this.serial++});
-    const near=this.objects.filter(o=>o.lane===lane&&!o.done&&Math.abs(o.x-this.hitX)<100).sort((a,b)=>Math.abs(a.x-this.hitX)-Math.abs(b.x-this.hitX))[0];
-    if(near){near.done=true;this.effects.push({x:near.x,y:near.y,at:this.t,kind:'impact',lane,seed:this.serial++});if(near.projectile)this.sendPulse(lane);}
-    else if(this.bossActive)this.sendPulse(lane);
+    const near=this.objects.filter(o=>o.lane===lane&&!o.done&&Math.abs(o.x-this.hitX)<70).sort((a,b)=>Math.abs(a.x-this.hitX)-Math.abs(b.x-this.hitX))[0];
+    if(near){near.done=true;this.effects.push({x:near.x,y:near.y,at:this.t,kind:'impact',lane,seed:this.serial++});if(near.projectile)this.sendPulse(lane);else this.stats.hits++;}
     this.effects=this.effects.slice(-12);
   }
-  sendPulse(lane){this.packets.push({at:this.t,lane});this.packets=this.packets.slice(-12);this.guardianHits++;this.guardianReact=this.t+.2;}
+  sendPulse(lane){this.packets.push({at:this.t,lane});this.packets=this.packets.slice(-12);this.guardianHits++;this.stats.returns++;this.guardianReact=this.t+.2;}
   cell(image,column,row,cols,rows,x,y,size,anchorX=.5,anchorY=.5){const cw=image.width/cols,ch=image.height/rows,dh=size*ch/cw;this.ctx.drawImage(image,column*cw,row*ch,cw,ch,x-size*anchorX,y-dh*anchorY,size,dh);}
   circle(x,y,r,fill,stroke,width=2){const c=this.ctx;c.beginPath();c.arc(x,y,r,0,Math.PI*2);if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}}
   line(points,color,width=2){const c=this.ctx;c.strokeStyle=color;c.lineWidth=width;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();}
@@ -54,18 +53,26 @@ class ExpeditionScene extends Phaser.Scene{
     c.globalAlpha=.15;for(let i=-1;i<w/240+1;i++){const x=i*240-(t*90)%240;this.line([[x,627],[x+65,627]],world.palette[2],2);}c.restore();
   }
   simulate(dt){
+    if(this.finished||dt<=0)return;
     this.t+=dt;const t=this.t,w=this.worldW;
-    if(t>=this.nextSpawn){const lane=this.serial%3===1?1:0;this.objects.push({x:w+90,y:lane?this.airY:this.groundY,lane,frameSeed:this.serial++,done:false});this.nextSpawn=t+2.4+(this.serial%3)*.35;}
+    if(t>=this.nextSpawn){const lane=this.serial%3===1?1:0;this.objects.push({x:w+90,y:lane?this.airY:this.groundY,lane,frameSeed:this.serial++,done:false});this.nextSpawn=t+this.rules.spawn+(this.serial%3)*.15;}
     const phase=t%44;this.bossActive=phase>=13&&phase<=34;
     if(this.bossActive&&phase>16){const shot=Math.floor((phase-16)/3.4),round=Math.floor(t/44),key=round*100+shot;if(key!==this.lastShot){this.lastShot=key;const lane=shot%2;this.objects.push({x:w*.82,y:lane?this.airY:this.groundY,lane,projectile:true,done:false});}}
-    for(const o of this.objects)o.x-=dt*(o.projectile?300:175);this.objects=this.objects.filter(o=>!o.done&&o.x>-100).slice(-8);
+    for(const o of this.objects)o.x-=dt*(o.projectile?this.rules.projectileSpeed:this.rules.speed);this.objects=this.objects.filter(o=>!o.done&&o.x>-100).slice(-12);
     this.effects=this.effects.filter(e=>t-e.at<.32);this.packets=this.packets.filter(p=>t-p.at<.75);
+    if(t>=this.rules.duration){this.finished=true;app.finishRun({...this.stats,elapsed:t});}
+  }
+  receptors(){
+    const c=this.ctx;
+    // Disco oscuro + contorno claro: la identificación no depende del color del fondo.
+    for(let lane=0;lane<2;lane++){const y=lane?this.airY:this.groundY,col=lane?'#90e8dd':'#ff9cab',active=this.t<this.poseUntil&&this.lastLane===lane;
+      c.save();this.circle(this.hitX,y,34,'#201c32e8','#171323',4);this.circle(this.hitX,y,29,null,'#fff8ec',6);this.circle(this.hitX,y,29,null,col,3);
+      c.font='700 17px Orbit, sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillStyle='#fff8ec';c.fillText(lane?'J':'F',this.hitX,y+1);
+      if(active){this.circle(this.hitX,y,39,null,col,3);}c.restore();
+    }
   }
   targets(){
-    const c=this.ctx,quiet=app.settings.reduced,w=this.world,x=this.hitX;
-    for(let lane=0;lane<2;lane++){const y=lane?this.airY:this.groundY,col=lane?'#90e8dd':'#ff9cab',selected=app.mode.id==='hybrid'&&app.input.aim===lane;
-      c.save();c.strokeStyle=col;c.lineWidth=selected?3:2;c.globalAlpha=selected?1:.7;c.beginPath();c.arc(x,y,26,-2.4,2.4);c.stroke();this.circle(x,y,4,col);if(selected){c.globalAlpha=.2;this.circle(x,y,33,null,col,2);}c.restore();
-    }
+    const c=this.ctx,quiet=app.settings.reduced,w=this.world;
     for(const o of this.objects){const col=o.lane?'#90e8dd':'#ff9cab',frame=quiet?0:Math.floor(this.t*8+(o.frameSeed||0))%4;
       if(o.projectile){const c=this.ctx;c.save();c.translate(o.x,o.y);c.fillStyle=col;c.strokeStyle=w.palette[0];c.lineWidth=2;c.beginPath();c.moveTo(-19,0);c.lineTo(0,-12);c.lineTo(20,0);c.lineTo(0,12);c.closePath();c.fill();c.stroke();this.circle(0,0,3,w.palette[2]);c.restore();}
       else{if(!o.lane){c.save();c.globalAlpha=.14;const shadow=c.createRadialGradient(o.x,w.floor,1,o.x,w.floor,27);shadow.addColorStop(0,'#251d45');shadow.addColorStop(1,'#251d4500');c.fillStyle=shadow;c.fillRect(o.x-30,w.floor-8,60,16);c.restore();}this.cell(this.creatures,frame,w.creatureRow+o.lane,4,4,o.x,o.y,128*this.creatures.width/this.creatures.height);}
@@ -101,6 +108,6 @@ class ExpeditionScene extends Phaser.Scene{
   update(_,delta){
     if(!this.world||!['explore','pause'].includes(window.app?.state))return;const sw=this.scale.width,sh=this.scale.height;this.worldW=Math.max(900,Math.min(2400,sw/sh*720));const width=Math.round(this.worldW);
     if(this.surface.width!==width){this.surface.setSize(width,720);this.ctx=this.surface.getContext();}this.image.setScale(sw/width,sh/720);this.hitX=this.worldW*.25;
-    const dt=app.state==='pause'?0:Math.min(delta,80)/1000;this.simulate(dt);this.background();this.targets();this.bosses();this.actor(dt);this.effectsDraw();this.surface.refresh();app.sceneTick(this.t);
+    const dt=app.state==='pause'?0:Math.min(delta,80)/1000;this.simulate(dt);this.background();this.targets();this.bosses();this.actor(dt);this.effectsDraw();this.receptors();this.surface.refresh();app.sceneTick(this.t);
   }
 }

@@ -34,8 +34,8 @@ La última viñeta abre rutas hacia otras estrellas. El reencuentro cierra este 
 
 ## Cómo se cuenta
 
-El prólogo forma parte de la entrada al juego. Cada destino revela una página de cuatro viñetas al recuperar su recuerdo. La puesta en página combina encuadres de distinto ancho, bocadillos, narración y onomatopeyas. El texto es independiente del bitmap para conservar legibilidad y poder revisarlo sin regenerar la ilustración.
+La entrada conserva tres frases escritas en tiempo real sobre negro; después aparece el menú. El cómic se descubre como recompensa: la primera victoria desbloquea el prólogo y el capítulo del nivel completado; cada victoria en un nuevo destino desbloquea su capítulo. La puesta en página combina encuadres de distinto ancho, bocadillos, narración y onomatopeyas. El texto es independiente del bitmap para conservar legibilidad y poder revisarlo sin regenerar la ilustración.
 
-El archivo reúne las páginas descubiertas. También se puede ampliar una viñeta y recorrer la historia con flechas. No se exige leer un texto largo antes de explorar un lugar.
+El archivo reúne las páginas desbloqueadas mediante una navegación paginada, sin desplazamiento vertical. También se puede ampliar una viñeta y recorrer la historia con flechas. No se presenta un recuerdo al abrir el juego ni durante una partida sin terminar.
 
 El guion completo de diálogos está en [GUION-COMIC.md](GUION-COMIC.md) y su fuente editable en `src/comic.js`. En esta entrega la narración y la exploración son silenciosas; la selección de canciones y sus partituras corresponde a la siguiente fase.
