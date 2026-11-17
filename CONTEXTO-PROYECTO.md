@@ -1,6 +1,6 @@
 # Contexto vigente de Órbita: La canción de vuelta
 
-Actualizado: **16 de noviembre de 2026**. Código musical de referencia: `29b0cf9`; este documento incorpora la limpieza posterior de prototipos.
+Actualizado: **17 de noviembre de 2026**. Código musical de referencia: `29b0cf9`. Este documento describe el concepto vigente y la implementación actual.
 
 Este archivo permite continuar el proyecto sin leer los chats anteriores. Se basa en decisiones del usuario y en el código actual. Las nuevas instrucciones explícitas del usuario prevalecen. No conviertas propuestas de mejora de este documento en funcionalidades ya aprobadas ni en trabajo ya realizado.
 
@@ -172,7 +172,7 @@ Si cambia el MP3, regenerar hash, análisis, catálogo y mapas juntos. `--charts
 
 - Los ocho audios completos están integrados; las 24 partituras tienen individuales, dobles, sostenidos, proyectiles y desafíos con plazo.
 - Motor, puntuación, jefes con bonus, pausa, configuración, récords y recompensa narrativa funcionan.
-- La prueba de navegador carga las ocho pistas y revisa patrones y seis resoluciones. Hay una prueba de Altale completa en tiempo real con entradas automáticas, pausa en sostenido y bonus; antes de esta limpieza terminó sin fallos de juicio.
+- La prueba de navegador carga las ocho pistas y revisa patrones y seis resoluciones. Hay una prueba de Altale completa en tiempo real con entradas automáticas, pausa en sostenido y bonus; la ejecución verificada terminó sin fallos de juicio.
 - Existen pruebas de EOF con offsets positivos/negativos y de cancelación de carga. No confundir fixtures de puntos de control con una reproducción completa de las ocho canciones.
 
 ### Prioridades para pulir, sin rediseñar
@@ -212,21 +212,22 @@ node tests/playback.browser.cjs
 node tests/transport.browser.cjs
 ```
 
-`CHROME_EXECUTABLE` permite cambiar la ruta de Chrome y `ORBITA_TEST_URL` el sitio de prueba. La prueba de playback dura la canción real; no es un bloqueo del proceso. `tmp/` se recrea para capturas/reportes y se ignora en Git.
+`CHROME_EXECUTABLE` permite cambiar la ruta de Chrome y `ORBITA_TEST_URL` el sitio de prueba. La prueba de playback dura la canción real; no es un bloqueo del proceso.
 
 Para análisis musical: instalar dependencias de `scripts/audio-requirements.txt` en un entorno de desarrollo y seguir `docs/MAPEO.md`. No hace falta conservar las dependencias temporales de otra máquina ni rutas privadas de Codex.
 
 La publicación acordada usa `main`, `/(root)` en GitHub Pages. Se han autorizado commit/push al terminar cambios completos y verificados; no hacer commits intermedios de una reconstrucción a medias. No reescribir el historial ni forzar pushes como parte de una limpieza ordinaria. Revisar siempre las instrucciones más recientes del usuario antes de publicar.
 
-## 10. Limpieza de esta entrega
+## 10. Documentación de referencia
 
-Se retiraron 58 archivos versionados sin uso en la entrada vigente: motores/apps de prototipos, CSS anterior, imágenes y prompts sustituidos, la carpeta antigua de audios/partituras, el piloto de Aurora, su generador y pruebas que dependían de esos motores. Su historia sigue en Git; no se arrastran como requisitos del juego actual.
+- `README.md`: ejecución, controles y organización del proyecto.
+- `docs/HISTORIA.md` y `docs/GUION-COMIC.md`: narrativa y diálogos.
+- `docs/EXPEDICION-VISUAL.md`: identidad visual de los ocho destinos.
+- `docs/MAPEO.md`: formato, generación y reglas técnicas de las partituras.
+- `docs/MUSICA-PROPUESTA.md`: selección musical confirmada.
+- `assets/expedition/PROMPTS.md`: prompts del arte final.
 
-Fuera del repositorio se identificó exclusivamente la carpeta de este chat/proyecto en Codex. Se retiraron dos diseños antiguos de Contrapunto (nave/canales verticales y plan de cinco estaciones) y 31 variantes gráficas descartadas. Se conservaron 29 originales gráficos cuyo hash coincide con PNG finales del repositorio. La configuración global, credenciales, sesiones, adjuntos del usuario, plugins y archivos de otros proyectos no forman parte de esta limpieza.
-
-La revisión automática rechazó el borrado recursivo de `tmp/` con el mensaje «blocked by policy», sin motivo más específico. Esa carpeta permanece local, ignorada por Git, con capturas, informes y dependencias de análisis temporales (aproximadamente 664 MiB antes de las últimas pruebas). Es limpieza pendiente del entorno, no una dependencia para jugar. No se eludió el rechazo mediante otro mecanismo de borrado.
-
-Se mantienen las fuentes musicales, el arte final y los prompts finales dentro del repositorio. Para otra IA basta entregar este archivo y el repositorio actual; no hace falta copiar `tmp/` ni el directorio global `.codex`.
+Para continuar con otra IA basta entregar este archivo y el repositorio actual. Las fuentes musicales, el arte final y sus prompts están dentro del proyecto. Los documentos de prototipos anteriores no definen los requisitos vigentes.
 
 ## 11. Guía de continuidad para otra IA
 
